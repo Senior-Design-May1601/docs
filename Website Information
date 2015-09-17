@@ -1,0 +1,18 @@
+Senior Design Website Space
+
+Site: http://may1601.sd.ece.iastate.edu
+SSL Site: https://may1601.sd.ece.iastate.edu:585/
+
+Username: may1601
+Password: mu57gptu
+SFTP: sftp may1601@may1601.sd.ece.iastate.edu
+
+Database Name: may1601_db
+Database Username: may1601
+Database Password: pphqvyid
+Database host: localhost
+
+Database Management using phpMyAdmin: https://sdweb.ece.iastate.edu/phpMyAdmin/
+
+From windows the path is:
+\\sdweb.ece.iastate.edu\may1601
