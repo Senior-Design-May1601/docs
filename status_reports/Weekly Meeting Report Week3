@@ -1,7 +1,8 @@
  Discussion Notes: 
 	Goals:
 •	Research and develop better understanding of project parameters. 
-Research categories will be divided amongst team members and discussd further at next group meeting.
+•	Get in touch with our contact at Alliant Energy to clarify some design specifications.
+•	Research categories will be divided amongst team members and discussd further at next group meeting.
 
 
 
@@ -13,23 +14,23 @@ Research categories will be divided amongst team members and discussd further at
 
 
 	Pending Issues: 
-•	Discuss Integration into SCATA environment
-•	Client may still need to provide the following information at a future date:	
-	What protocol(s) is the honeypot using to communicate?
+•	Discuss Integration into SCADA environment
+•	Client still needs to provide the following information at a future date:	
+•	What protocol(s) is the honeypot using to communicate?
 •	Identify what equipment configuration honeypot might be emulating.
 •	Identify hardware requirements based on customers needs.
 
 
 
-Weekly Personal Contributions: 				Hours:			Total Hours:
+Weekly Personal Contributions: 				      Hours:		   Total Hours:
 
-Jonathon Hope:						1			2		
+Jonathon Hope:							1			2		
 	Contributions: 
 
-Korbin Stich:							1			2
-	Contributions: 
+Korbin Stich:							3			4
+	Contributions: Raspberry Pi Hardware Specifications
 	
-Daniel Borgerding:					4				6
+Daniel Borgerding:						4			6
 	Contributions: Hardware Research
 
 Jonathon Osborne:						1			2
