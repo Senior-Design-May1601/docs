@@ -1,0 +1,18 @@
+**1. Conpot service setup
+  -start ssh
+  -work w/ cutom http app
+
+**2. Conpot Logging
+  -splunk
+  -syslog
+  
+**3 Go/custom minimal
+  webserver w/ false auth page
+  
+**4 Docker Setup & Build
+
+**5 Sys admin stuff
+  -firewall
+  -general system
+  -automated build
+  -Ansible.
