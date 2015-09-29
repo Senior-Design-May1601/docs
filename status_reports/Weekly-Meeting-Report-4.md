@@ -35,6 +35,5 @@
 | Jonathan Hope	| <ul><li>Began research on build deployment/automation</li><li>Began research on deployment tools (Ansible)</li><ul> | 2 | 4 |
 | Korbin Stich | Further researched hardware specifications for SCADA honepot system.  Set up device firewall using IP tables in Debian OS. | 4 | 8 |
 | Daniel Borgerding | Researched possible project redefinement for greater EE implementation | 4 | 10 |		
-| Jonathan Osborne | Built initial website and updated it with a bit more style. Began Research on splunk  
-| 3 | 4 |
+| Jonathan Osborne | Built initial website and updated it with a bit more style. Began Research on splunk. | 3 | 4 |
 | Nik Kinkel | <ul><li>prototyped network architecture and firewall setup</li><li>designed and implemented prototype HTTP/HTTPS server honeypot</li><li>designed and implemented prototype SSH server honeypot</li><li>prototyped initial build automation and deployment infrastructure</li></ul> | 10 | 12 |
