@@ -33,7 +33,7 @@
 | Name | Contribution Summary | Hours | Total Hours |
 |:-----|:-------------|:------|:------------|
 | Jonathan Hope	| <ul><li>Began research on build deployment/automation</li><li>Began research on deployment tools (Ansible)</li><ul> | 2 | 4 |
-| Korbin Stich | Raspberry Pi Hardward Specifications | 3 | 4 |
+| Korbin Stich | Further researched hardware specifications for SCADA honepot system.  Set up device firewall using IP tables in Debian OS. | 4 | 8 |
 | Daniel Borgerding | Researched possible project redefinement for greater EE implementation | 4 | 10 |		
 | Jonathon Osborne |  | 1 | 2 |
 | Nik Kinkel | <ul><li>prototyped network architecture and firewall setup</li><li>designed and implemented prototype HTTP/HTTPS server honeypot</li><li>designed and implemented prototype SSH server honeypot</li><li>prototyped initial build automation and deployment infrastructure</li></ul> | 10 | 12 |
