@@ -32,7 +32,7 @@
 
 | Name | Contribution Summary | Hours | Total Hours |
 |:-----|:-------------|:------|:------------|
-| Jonathan Hope	| SCADA device & services research | 1 | 2 |
+| Jonathan Hope	| <ul><li>Began research on build deployment/automation</li><li>Began research on deployment tools (Ansible)</li><ul> | 2 | 4 |
 | Korbin Stich | Raspberry Pi Hardward Specifications | 3 | 4 |
 | Daniel Borgerding | Researched possible project redefinement for greater EE implementation | 4 | 10 |		
 | Jonathon Osborne |  | 1 | 2 |
