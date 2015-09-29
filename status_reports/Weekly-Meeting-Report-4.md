@@ -3,21 +3,29 @@
 ##### Status Report: 4
 
 ### Discussion Notes
-Goals:
+
+### Goals
+
 * Research and develop better understanding of project parameters. 
 * Get in touch with our contact at Alliant Energy to clarify some design specifications.
 * Research categories will be divided amongst team members and discussd further at next group meeting.
 
 ### Achievements
-Began 1st draft project design and implementation coding.
+
+1. Designed and implemented fake HTTP/HTTPS login honeypot
+2. Designed and implemented fake SSH server honeypot
+3. Drafted initial firewall and network architecture specifications.
+4. Researched build and deployment automation tools
+   * Initial prototype will use Ansible and (possibly) Docker
 
 ### Pending Issues
+
 * Discuss Integration into SCADA environment
 * Identify further EE implementation and possible contributions.
 * Client still needs to provide the following information at a future date:	
-* What protocol(s) is the honeypot using to communicate?
-* Identify what equipment configuration honeypot might be emulating.
-* Identify hardware requirements based on customers needs.
+   * What protocol(s) is the honeypot using to communicate?
+   * Identify what equipment configuration honeypot might be emulating.
+   * Identify hardware requirements based on customers needs.
 
 ### Weekly Personal Contributions
 
