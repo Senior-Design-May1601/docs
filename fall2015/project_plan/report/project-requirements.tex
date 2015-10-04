@@ -44,14 +44,24 @@ continue to research other potential options.
 
 \section{Validation and Acceptance Testing}
 
-The testing requirements for each project requirement are as follows.
-\begin{itemize}
-\item SSH, HTTP, HTTPS - Create test scripts in GoLang to emulate several clients in addition to end to end testing.
-\item Login - Observe successful end to end testing of Splunk parsing. Attempt site compromising attacks such as cross site scripting.
-\item Logging - Attempt a series of port scans through NMAP. Attempt a series of connections through a test script.
-\item Rule Set - Try all permutations of potential rule sets and test them.
-\item IDS - Run all services with IDS and ensure the device is still functional.
-\item Device - Check system requirements with client specifications. 
-\item Power - Test device power consumption and ensure specifications match client needs.
-\item Equipment - Monitor each device to ensure consistent uptime.
-\end{itemize}
+\begin{table}
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{l | p{10cm}}
+\textup{\Large {\bf Component}} & \textup{\Large {\bf Testing Plan}} \\
+\hline \hline
+\textbf{SSH, HTTP, HTTPS} & Create test scripts in GoLang to emulate several clients in addition to end to end testing. \\
+\textbf{Login} & Observe successful end to end testing of Splunk parsing. Attempt site compromising attacks such as cross site scripting. \\
+\textbf{Logging} & Attempt a series of port scans through NMAP. Attempt a series of connections through a test script. \\
+\textbf{Rule Set} & Try all permutations of potential rule sets and test them. \\
+\textbf{IDS} & Run all services with IDS and ensure the device is still functional. \\
+\textbf{Device} & Check system requirements with client specifications. \\
+\textbf{Power} & Test device power consumption and ensure specifications match client needs. \\
+\textbf{Equipment} & Monitor each device to ensure consistent uptime. \\
+\end{tabular}
+\caption{Validation and Acceptance Testing Plan}
+\label{table:vatest}
+\end{table}
+
+The testing requirements for each project requirement are summarized in
+Table \ref{table:vatest}.
