@@ -29,4 +29,4 @@
 | Korbin Stich | Further researched hardware specifications for SCADA honepot system.  Set up device firewall using IP tables in Debian OS. | 4 | 8 |
 | Daniel Borgerding | Researched possible project redefinement for greater EE implementation | 2 | 14 |		
 | Jonathan Osborne | Worked on Cost, Feasibility, and Project Requirements Testing for project plan. | 2 | 6 |
-| Nik Kinkel | <ul><li>prototyped network architecture and firewall setup</li><li>designed and implemented prototype HTTP/HTTPS server honeypot</li><li>designed and implemented prototype SSH server honeypot</li><li>prototyped initial build automation and deployment infrastructure</li></ul> | 10 | 12 |
+| Nik Kinkel | <ul><li>Started SPA daemon design</li><li>Wrote Interfaces and System Design section of project plan</li><li>formatted full project plan document</li></ul>| 8 | 20 |
