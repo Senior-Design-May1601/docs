@@ -25,7 +25,7 @@
 
 | Name | Contribution Summary | Hours | Total Hours |
 |:-----|:-------------|:------|:------------|
-| Jonathan Hope	| <ul><li>Began research on build deployment/automation</li><li>Began research on deployment tools (Ansible)</li><ul> | 2 | 4 |
+| Jonathan Hope	| <ul><li>Worked on project plan document</li><li>Began work on Ansible deployment for VPN</li><li>Finished up website updates</li><ul> | 3 | 7 |
 | Korbin Stich | Further researched hardware specifications for SCADA honepot system.  Set up device firewall using IP tables in Debian OS. | 4 | 8 |
 | Daniel Borgerding | Researched possible project redefinement for greater EE implementation | 2 | 14 |		
 | Jonathan Osborne | Worked on Cost, Feasibility, and Project Requirements Testing for project plan. | 2 | 6 |
