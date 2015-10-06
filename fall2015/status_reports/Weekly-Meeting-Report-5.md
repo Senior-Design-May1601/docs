@@ -26,7 +26,7 @@
 | Name | Contribution Summary | Hours | Total Hours |
 |:-----|:-------------|:------|:------------|
 | Jonathan Hope	| <ul><li>Worked on project plan document</li><li>Began work on Ansible deployment for VPN</li><li>Finished up website updates</li><ul> | 3 | 7 |
-| Korbin Stich | Wrote Project requirement and proposed solution section of the project plan | 2 | 10 |
+| Korbin Stich | Wrote project requirement and proposed solution section of the project plan | 2 | 10 |
 | Daniel Borgerding | Researched possible project redefinement for greater EE implementation | 2 | 14 |		
 | Jonathan Osborne | Worked on Cost, Feasibility, and Project Requirements Testing for project plan. | 2 | 6 |
 | Nik Kinkel | <ul><li>Started SPA daemon design</li><li>Wrote Interfaces and System Design section of project plan</li><li>formatted full project plan document</li></ul>| 8 | 20 |
