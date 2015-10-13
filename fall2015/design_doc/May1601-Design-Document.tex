@@ -1,0 +1,41 @@
+% Nik's template
+% nskinkel@iastate.edu
+% 2015
+
+\documentclass[12pt,a4paper]{report}
+\usepackage[pdftex]{graphicx}
+\usepackage{url}
+\usepackage[bookmarks,
+            colorlinks=false,
+            pdfborder={0 0 0},
+            pdftitle={May1601 Design Document}]{hyperref}
+\usepackage{appendix}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+% remove these two packages when blindtext no longer needed
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+\begin{document}
+\renewcommand\bibname{References}
+\renewcommand{\chaptername}{Section}
+
+\include{title}
+
+\pagenumbering{roman} %numbering before main content starts
+\tableofcontents
+\listoffigures
+\listoftables
+
+\newpage
+\pagenumbering{arabic} %reset numbering to normal for the main content
+
+\include{introduction}
+\include{system-level-design}
+\include{specifications}
+\include{testing-and-modeling}
+\include{conclusion}
+\include{appendix}
+\include{ref}
+
+\end{document}
