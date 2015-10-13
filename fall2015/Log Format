@@ -1,0 +1,23 @@
+{“event”:{					
+	“source address”:  //string		
+	“source port”: //int			
+	“service type”: //string	
+	
+	“ssh”:{					
+		“username”: //string, nullable	
+		“password”://string, nullable	
+		“key”://SSH key	?		
+	}
+	
+  “https”:{					
+		“method”: //string, nullable put, post, get	
+		“path”://string, nullable		
+		“parameters”:{example: username/password}
+	}					
+	
+  “http”:{					
+		“method”: //string, nullable put, post, get	
+		“path”://string, nullable		
+		“parameters”:{example: username/password}
+	}					
+}	
