@@ -9,13 +9,13 @@
 		“key”://SSH key	?		
 	}
 	
-  “https”:{					
+  	“https”:{					
 		“method”: //string, nullable put, post, get	
 		“path”://string, nullable		
 		“parameters”:{example: username/password}
 	}					
 	
-  “http”:{					
+  	“http”:{					
 		“method”: //string, nullable put, post, get	
 		“path”://string, nullable		
 		“parameters”:{example: username/password}
