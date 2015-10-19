@@ -1,19 +1,45 @@
 \chapter{Introduction}
 
-\blindtext
+The purpose of this document is to outline the specifications and validations for the ICS/SCADA Traffic Baseline and Honeypot project. This document will provided detailed systems level analysis and layout of the various components included in the proposed product, as well as descriptive explanations of the testing and verification methods used to show that this design will meet the specs put forth by the client. Should the need arise, this document may be used by the client in the future to better understand the product's construction and how to implement/modify the product after the design team has finished.
 
 \section{Project Statement}
 
-\Blindtext
+ The goal of this project is to create a standalone security device that can be placed in an industrial network to monitor traffic, looking for security-related deviations, and act as a low interaction Honeypot. The design team of May1601 will design this product according to the specifications put forth below.
 
 \section{Background}
 
-\Blindtext
+With the dependency of electricity in the modern world, defending the functionality and integrity of electrical power plants is integral to the preservation and protection of our daily lives. Power plants handle extremely volatile resources on a continuous round-the-clock basis. In order to keep these systems up and running without fault they are monitored and controlled by numerous components on a SCADA(Supervisory Control and Data Acquisition) network. The integrity of this network is of vital importance. Normally these networks are almost completely isolated from the outside world. However, should and intruder somehow gain access to this network, it is important that IT personal be notified immediately and that the cause of the intrusion be identified and closed as soon as possible. This is where Honeypots come in to play. Honeypots disguise themselves as systems on the SCADA network, mimicking the behavior other devices on the network while gathering information. Ideally, attackers on the network connect to the Honeypot unknowingly, and provide information to the IT staff allowing them to interpret the source of the attack. 
 
 \section{Deliverables}
 
-\Blindtext
+The product which will be produced for this project will be packaged within a Raspberry Pi microcontroller. We chose this device owing to its small physical footprint, small power consumption, its Linux based operating system, and relatively practical hardware capabilities. There will be (28) units delivered at the end of this project. Each unit will include:
+
+• RaspberryPi Model 2 B
+
+• 8GB MicroSD card
+
+• 2.5A Micro USB power supply(5ft cable) with noise filter.
+
+• USB 3.0 network adapter to RJ45 Ethernet connection.
+
+• RaspberryPi plastic hardcase.
+
+• A Docker container running Ansible for easy deployment.
 
 \section{Specifications}
 
-\Blindtext
+The device created by the May1601 design team shall be determined by the following specification rule set:
+
+• The device shall be capable of interaction via SSH, HTTP, and HTTPS protocols.
+
+• The HTTP and HTTPS protocols will be implemented via a fake login page with key logger to record attempts.
+
+• The device will record and transmit logs of all connection attempts to Splunk server and alert essential personal upon any irregularities such as increased ICMP traffic, port scans, or repeated URL attempt requests. 
+
+• The device rule set will be malleable and easily updated in order to accommodate future modifications to the system.
+
+• The device will be low maintenance, low power, and capable of standalone functionality. 
+
+• There will be (28) devices deployed in (28) electrical substations. 
+
+• The device will not interfere with other devices on the SCADA network. 
