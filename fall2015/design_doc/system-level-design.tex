@@ -8,7 +8,19 @@
 
 \section{Functional Decomposition}
 
-\Blindtext
+The SCADA honeypot to be built for twenty-eight of Alliant Energy's powerplant substation will have seven main components that allow it to mimic and log potential attacks.  These components consist of a public firewall, an SSH server, a local webserver, an Ansible configuration manager, a log generator, a localized intrusion detection system, and a centralized Splunk server.  To gain a more complete understanding of how data is processed through each honeypot the next few paragraphs will describe the purpose and functionality of each component.
+
+Public Firewall
+The public firewall also known as the public interface is one of two means of ingress to the system.  The firewall setup uses Linux IP tables to control the flow of traffic to only information coming in on ports 22(SSH), 80(HTTP), 443(HTTPS) and port 2222.  These ports are opened up for the reason that they are the bare minimum required to run the services of the onboard servers.  This give the illusion that the honeypot is a secure service and helps to obsucre its true intentions to a malicious user.  Note: The public firewall does not intereact with the second network interface card because it is monitored directly by the BRO Intrusion Detection System.
+
+SSH Server
+The SSH server setup after the public facing firewall is a mock server that only simulates the authentication process of the TCP/IP handshake where both parties exchange SYN and ACK packets to verify the user.  However the server setup on the honeypot is designed to terminate the handshake one the attempting user submits their credentials.  The SSH server then sends the username, password and other important information to the logger to be processed into one cohesive log.
+
+Local Webserver
+The local webserver implemented in the design of the honeypot system works in a similar fashion to the SSH server. Esentially if a malicious user attempts to connect via HTTP/HTTPS they will be directed to the webserver.  This false webserver acts as an inforamtion gathering tool for Alliants admin.  Once inside the firewall the user will be presented with a login page that asks for a username and password.  Once entered the information is logged and sent to the logger just like the SSH server.  Upon entering their credential the system will wait for a period of time before displaying that the credentials entered are not accepted.  This provides the ability to log mulitiple attempts to access the system through HTTP/HTTPS.
+
+Ansible Configuration Manager
+The Ansible Configuration Mangager is only designed for admininstrative interaction.  
 
 \section{System Analysis}
 
