@@ -2,9 +2,24 @@
 
 \blindtext
 
-\section{System Requirements}
+\subsection{Functional Requirements:}
+\begin{itemize}
+\item The system shall interface with SSH, HTTP, and HTTPS protocols.
+\item The system shall use a fake login page with key logger to record login attempts.
+\item The system shall record logs of all connection attempts.
+\item The system shall send alerts to administrative personnel upon detection irregularities that include, but are not limited to, increased ICMP traffic, port scans, and repeated attempts to connect to URLs.
+\item A rule set must be included that allows for fine-tuning to accommodate new or changed rules.
+\item The system shall contain a small intrusion detection system (IDS).
+\end{itemize}
 
-\Blindtext
+\subsection{Non-Functional Requirements:}
+\begin{itemize}
+\item The system must be low maintenance.
+\item The system must be a standalone device.
+\item The system must be low power.
+\item The system shall allow the support of no fewer than 28 devices.
+\item The system shall have an uptime of no less than 99%.
+\end{itemize}
 
 \section{Functional Decomposition}
 
