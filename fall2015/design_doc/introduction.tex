@@ -14,32 +14,25 @@ With the dependency of electricity in the modern world, defending the functional
 
 The product which will be produced for this project will be packaged within a Raspberry Pi microcontroller. We chose this device owing to its small physical footprint, small power consumption, its Linux based operating system, and relatively practical hardware capabilities. There will be (28) units delivered at the end of this project. Each unit will include:
 
-• RaspberryPi Model 2 B
-
-• 8GB MicroSD card
-
-• 2.5A Micro USB power supply(5ft cable) with noise filter.
-
-• USB 3.0 network adapter to RJ45 Ethernet connection.
-
-• RaspberryPi plastic hardcase.
-
-• A Docker container running Ansible for easy deployment.
+\begin{itemize} 
+\item RaspberryPi Model 2 B
+\item 8GB MicroSD card
+\item 2.5A Micro USB power supply(5ft cable) with noise filter.
+\item USB 3.0 network adapter to RJ45 Ethernet connection.
+\item RaspberryPi plastic hardcase.
+\item A Docker container running Ansible for easy deployment.
+\end{itemize}
 
 \section{Specifications}
 
 The device created by the May1601 design team shall be determined by the following specification rule set:
 
-• The device shall be capable of interaction via SSH, HTTP, and HTTPS protocols.
-
-• The HTTP and HTTPS protocols will be implemented via a fake login page with key logger to record attempts.
-
-• The device will record and transmit logs of all connection attempts to Splunk server and alert essential personal upon any irregularities such as increased ICMP traffic, port scans, or repeated URL attempt requests. 
-
-• The device rule set will be malleable and easily updated in order to accommodate future modifications to the system.
-
-• The device will be low maintenance, low power, and capable of standalone functionality. 
-
-• There will be (28) devices deployed in (28) electrical substations. 
-
-• The device will not interfere with other devices on the SCADA network. 
+\begin{itemize} 
+\item The device shall be capable of interaction via SSH, HTTP, and HTTPS protocols.
+\item The HTTP and HTTPS protocols will be implemented via a fake login page with key logger to record attempts.
+\item The device will record and transmit logs of all connection attempts to Splunk server and alert essential personal upon any irregularities such as increased ICMP traffic, port scans, or repeated URL attempt requests. 
+\item The device rule set will be malleable and easily updated in order to accommodate future modifications to the system.
+\item The device will be low maintenance, low power, and capable of standalone functionality. 
+\item There will be (28) devices deployed in (28) electrical substations. 
+\item The device will not interfere with other devices on the SCADA network.
+\end{itemize}
