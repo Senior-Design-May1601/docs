@@ -30,6 +30,7 @@ The SCADA honeypot to be built for twenty-eight of Alliant Energy's powerplant s
 \subsection{Parts Breakdown:}
 \begin{itemize}
 \item Public Firewall
+\end{itemize}
 \newline
 The public firewall also known as the public interface is one of two means of ingress to the system.  The firewall setup uses Linux IP tables to control the flow of traffic to only information coming in on ports 22(SSH), 80(HTTP), 443(HTTPS) and port 2222.  These ports are opened up for the reason that they are the bare minimum required to run the services of the on-board servers.  This give the illusion that the honeypot is a secure service and helps to obscure its true intentions to a malicious user.  Note: The public firewall does not interact with the second network interface card because it is monitored directly by the BRO Intrusion Detection System.
 
