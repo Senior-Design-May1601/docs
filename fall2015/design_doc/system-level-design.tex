@@ -37,9 +37,9 @@ The public firewall also known as the public interface is one of two means of in
 \newline
 The SSH server setup after the public facing firewall is a mock server that only simulates the authentication process of the TCP/IP handshake where both parties exchange SYN and ACK packets to verify the user.  However the server setup on the honeypot is designed to terminate the handshake one the attempting user submits their credentials.  The SSH server then sends the username, password and other important information to the logger to be processed into one cohesive log.
 
-\item Local Webserver
+\item Local Web-server
 \newline
-The local webserver implemented in the design of the honeypot system works in a similar fashion to the SSH server. Essentially if a malicious user attempts to connect via HTTP/HTTPS they will be directed to the webserver.  This false webserver acts as an information gathering tool for Alliants admin.  Once inside the firewall the user will be presented with a login page that asks for a username and password.  Once entered the information is logged and sent to the logger just like the SSH server.  Upon entering their credential the system will wait for a period of time before displaying that the credentials entered are not accepted.  This provides the ability to log multiple attempts to access the system through HTTP/HTTPS.
+The local web-server implemented in the design of the honeypot system works in a similar fashion to the SSH server. Essentially if a malicious user attempts to connect via HTTP/HTTPS they will be directed to the webserver.  This false web-server acts as an information gathering tool for Alliants admin.  Once inside the firewall the user will be presented with a login page that asks for a username and password.  Once entered the information is logged and sent to the logger just like the SSH server.  Upon entering their credential the system will wait for a period of time before displaying that the credentials entered are not accepted.  This provides the ability to log multiple attempts to access the system through HTTP/HTTPS.
 
 \item Ansible Configuration Manager
 \newline
