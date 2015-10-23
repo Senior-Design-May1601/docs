@@ -1,15 +1,278 @@
 \chapter{Specifications}
 
-\blindtext
-
 \section{I/O Specification}
 
-\Blindtext
+The system I/O is broken down into three sections, each with
+a particular set of inputs and outputs:
+
+\begin{enumerate}
+    \item Public Interface
+    \item Network Traffic
+    \item Administration
+\end{enumerate}
+
+Note that all references to ``Alert(s) to Splunk'' are output of the
+form summarized in Figure \ref{figure:alert-format}, along with
+context-specific details (for instance, in the case of an attempted SSH
+login, the username and password supplied by the attacker) as detailed in
+Appendix \ref{appendix:https-alert}.
+
+\subsection{Public Interface}
+
+The public interface is visible to normal actors on the internal network.
+It is the only interface that attackers targetting the system will
+\textit{directly} interact with (attackers may indirectly interact with
+the system through sniffed network traffic). Each honeypot service running
+on the system has a particular set of inputs defined by the underlying
+protocol specification for the particular service, as well as dual
+outputs: one output to the attacker (protocol-specific), and one output
+to the internal logging system (same format for all services).
+
+A summary of the protocol-specific inputs and outputs follows.
+
+\begin{table}
+\centering
+\begin{tabular}{l l l}
+Traffic Type & External Output & Internal Logged Output \\
+\hline
+SSH & Authentication Failed SSH Protocol Message & Alert to Splunk \\
+Non-SSH & No Output & No Output \\
+\end{tabular}
+\caption{SSH Honeypot Outputs}
+\label{table:ssh-output}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{l l l l}
+Traffic Type & Path & External Output & Internal Logged Output \\
+\hline
+HTTP & /login & Access Denied HTML Message & Alert to Splunk \\
+HTTP & Any other path & HTML Login Page & Alert to Splunk \\
+non-HTTP & N/A & No Output & No Output \\
+\end{tabular}
+\caption{HTTP Honeypot Outputs}
+\label{table:http-output}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{l l l l}
+Traffic Type & Path & External Output & Internal Logged Output \\
+\hline
+HTTPS & /login & Access Denied HTML Message & Alert to Splunk \\
+HTTPS & Any other path & HTML Login Page & Alert to Splunk \\
+non-HTTPS & N/A & No Output & No Output \\
+\end{tabular}
+\caption{HTTPS Honeypot Outputs}
+\label{table:https-output}
+\end{table}
+
+\begin{table}
+\centering
+\begin{tabular}{l l l l}
+Traffic Type & External Output & Internal Logged Output \\
+\hline
+Valid SCADA Protocol & Access Denied Protocol Message & Alert to Splunk \\
+Invalid SCADA Protocol & No Output & No Output \\
+\end{tabular}
+\caption{SCADA Honeypot Outputs}
+\label{table:scada-output}
+\end{table}
+
+\subsubsection{SSH Honeypot I/O}
+
+\paragraph{Input}
+
+All TCP traffic on port 22 sent to the device. The SSH Honeypot ignores
+non-SSH traffic on port 22.
+
+\paragraph{Output}
+
+The SSH Honeypot output is summarized in Table \ref{table:ssh-output}.
+
+\subsubsection{HTTP Honeypot I/O}
+
+\paragraph{Input}
+
+All TCP traffic on port 80 sent to the device. The HTTP Honeypot ignores
+non-HTTP traffic on port 80.
+
+\paragraph{Output}
+
+The HTTP Honeypot output is summarized in Table \ref{table:http-output}.
+
+\subsubsection{HTTPS Honeypot I/O}
+
+\paragraph{Input}
+
+All TCP traffic on port 443 sent to the device. The HTTPS Honeypot ignores
+non-HTTPS traffic on port 443.
+
+\paragraph{Output}
+
+The HTTPS Honeypot output is summarized in Table \ref{table:https-output}.
+
+\subsubsection{SCADA Honeypot I/O}
+
+This section summarizes the inputs and outputs for \textit{all} SCADA
+honeypot services. Note that particular SCADA protocols, while existing on
+the device as different services, will have logically equivalent I/O,
+simply formatted to conform to the particular SCADA protocol in use. SCADA
+honeypot I/O is thus summarized as a group.
+
+\paragraph{Input}
+
+Any SCADA traffic sent to the device on an open port.
+
+\paragraph{Output}
+
+The SCADA Honeypot service output is summarized in Table
+\ref{table:scada-output}.
+
+
+\subsection{Traffic}
+
+Traffic inputs to the system originate from two sources:
+
+\begin{enumerate}
+    \item Sniffed network traffic
+    \item High port traffic to device
+\end{enumerate}
+
+High port traffic to the device is traffic sent directly to an open port
+on the device on which there is honeypot service running.
+
+\subsubsection{Sniffed Network Traffic}
+
+\paragraph{Input}
+
+Sniffed network traffic is traffic observed by a network interface listening
+in promiscuous mode. This input is any ethernet traffic on the same network
+as the device.
+
+\paragraph{Output}
+
+In all cases, output is either none or an alert logged to Splunk. The decision
+of whether or not to send an alert is made by the system IDS.
+
+\subsection{Administration}
+
+Device administration is done through SSH. In all cases, administration
+traffic consists of SSH protocol messages.
+
 
 \section{Interface Specifications}
 
-\Blindtext
+The system deals with four primary interfaces:
+
+\begin{enumerate}
+    \item Administration Interface
+    \item Public Interface
+    \item Splunk Interface
+    \item Promiscuous Network Interface
+\end{enumerate}
+
+A brief description of each primary interface follows.
+
+\subsection{Administration Interface}
+
+All administration is done over SSH. The administration interface is
+simply an SSH server, listening on a \textit{different} network than
+the public interface (an internal wireless network, for instance).
+
+\subsection{Public Interface}
+
+The public interface is the interface other actors on the same network
+as the device are presented with. This interface is a set of open ports,
+one for each honeypot microservice, and a handful of open high ports with
+no services listening.
+
+Since the device will be deployment to numerous (around 30) different locations,
+and every device's configuration may vary slightly (i.e. a different set of
+high ports open, or a different SCADA protocol running), an exhaustive
+listing of open ports is not practical or possible at this design stage
+(the list of open ports is configurable by the client).
+
+However, every device follows the same pattern: one open port per honeypot
+microservice, and a handful of open high ports.
+
+\subsection{Splunk Interface}
+
+The Splunk interface is the interface the device uses to push alerts to
+administrators. The Splunk interface is interacted with through a
+REST API, the details of which are specified by Splunk itself\footnote{\url{http://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog}}.
+
+The alerts themselves are formatted JSON\footnote{\url{www.json.org}} using
+format specified in Figure \ref{figure:alert-format}, displayed in pseudo-JSON
+for convenience (format subject to change based on continuing feedback from
+client).
+
+Each "service type" entry is contains service-specific details (for instance,
+an SSH alert may contain a username field, a password field, and a key field).
+Additional data such as time of alert and originating device are handled
+through metadata inherent in a Splunk REST API call.
+
+See Appendix \ref{appendix:https-alert} for a full example of an alert from
+the HTTPS microservice honeypot.
+
+\begin{figure}
+\begin{lstlisting}[language=Python,frame=single,showstringspaces=false]
+{"event":{
+    "source address": string
+    "source port": int
+    "service type": string
+    "service type":{
+        "service specific field A": type,
+        "service specific field B": type,
+        "service specific field N": type,
+    }
+}
+\end{lstlisting}
+\caption{General Alert JSON Format}
+\label{figure:alert-format}
+\end{figure}
+
+\subsection{Promiscuous Network Interface}
+
+The final interface is the promiscuous network interface. This is simply
+a network interface listening in promiscous mode, and the system's IDS
+will interpret the traffic and, if appropriate, log an appropriate alert
+to Splunk using the REST API and an appropriate JSON format
+\ref{figure:alert-format}.
 
 \section{Hardware/Software Specifications}
 
-\Blindtext
+\subsubsection{Hardware Specification}
+
+The following components make up the hardware specification:
+
+\begin{itemize}
+    \item Raspberry Pi 2 Model B
+    \item Quad-Core 900 MHz Processor
+    \item 1 GB RAM
+    \item 8 GB Micro SD Card
+    \item 150 Mbps WiFi Adapter
+    \item 2.5A USB Power Supply with Micro USB Cable
+    \item CanaKit Raspberry Pi 2 Case
+\end{itemize}
+
+\subsubsection{Software Specification}
+
+All system components implemented by this development team will be written
+in the Go Programming Language\footnote{\url{https://golang.org/}}.
+
+Table \ref{table:tools} summarizes the free software tools the system will use.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l l l}
+Tool Name & Purpose & Brief Description \\
+\hline
+Raspbian\tablefootnote{\url{https://www.raspbian.org/}} & Operating System & Debian GNU/Linux ARM port \\
+Ansible\tablefootnote{\url{http://www.ansible.com/}} & Configuration and Setup & Build and deployment automation \\
+Docker\tablefootnote{\url{https://www.docker.com/}} & Isolated microservice environment & Linux container wrapper \\
+\end{tabular}
+\caption{Free Software Tools Used}
+\label{table:tools}
+\end{table}

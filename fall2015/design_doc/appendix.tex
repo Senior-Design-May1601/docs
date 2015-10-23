@@ -1,7 +1,29 @@
 \begin{appendices}
 
-\chapter{My First Appendix}
-\label{appendix:app-1}
+\chapter{Full HTTPS Alert}
+\label{appendix:https-alert}
 
-blah blah blah
+Figure \ref{figure:sample-alert} shows an example HTTPS alert. The alert is
+logged to Splunk's REST API in the listed JSON format using a POST request.
+
+\begin{figure}[h]
+\begin{lstlisting}[language=Python,frame=single,showstringspaces=false]
+{"event":{
+    "source address": "127.0.0.1",
+    "source port": "443",
+    "service type": "HTTPS",
+    "https":{
+        "method": "POST",
+        "path": "/login",
+        "parameters":{
+            "username": "root",
+            "password": "toor",
+        }
+    }
+}
+\end{lstlisting}
+\caption{A sample Splunk alert}
+\label{figure:sample-alert}
+\end{figure}
+
 \end{appendices}
