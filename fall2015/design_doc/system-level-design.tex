@@ -60,8 +60,7 @@ The Bro IDS software listens on a separate network interface card than the firew
 
 \section{System Analysis}
 This project is routinely implemented in industry with high success rates. Several software implementations of SCADA honeypots already exist in the open source community. However, our implementation will be custom because the client has a secondary goal of including an IDS on the system. Creating the honeypot software from scratch will minimize the resources required from the platform. This is important because the computer needs to be a small standalone device. A Raspberry PI only has 512MB of RAM for example and an IDS typically uses a lot of memory and process cycles. Most risk can be mitigated with proper contingency planning. Installing an IDS on a small platform such as a Raspberry PI may not be feasible. If this is the case, developing a custom platform with greater processing power and more memory will be explored. If this isn't feasible, then the secondary goal will have to be canceled. However, the overall honeypot implementation carries a low risk of failure.
-\newline
-\newline
+
 Alliant Energy requires service in twenty eight different locations. Each location will house a standalone minimal computer. At this stage of development, the Raspberry PI is the assumed device. This device is subject to change throughout the project development depending on implementation and client needs. However, as of the present date, the Raspberry PI is the best known device. An updated version of the plan may be submitted if a better hardware implementation is found. This cost analysis reflects an initial estimate. It does not reflect future maintenance costs.
 
 \section{Block Diagrams}
