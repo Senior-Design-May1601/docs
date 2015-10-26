@@ -28,34 +28,26 @@ When requirements are gathered, it is important to break them up into “functio
 The SCADA honeypot to be built for twenty-eight of Alliant Energy's powerplant substation will have seven main components that allow it to mimic and log potential attacks.  These components consist of a public firewall, an SSH server, a local webserver, an Ansible configuration manager, a log generator, a localized intrusion detection system, and a centralized Splunk server.  To gain a more complete understanding of how data is processed through each honeypot the next few paragraphs will describe the purpose and functionality of each component.
 
 \subsection{Parts Breakdown:}
-\begin{itemize}
-\item Public Firewall
-\end{itemize}
-\newline
+
+\subsubsection{Public Firewall}
 The public firewall also known as the public interface is one of two means of ingress to the system.  The firewall setup uses Linux IP tables to control the flow of traffic to only information coming in on ports 22(SSH), 80(HTTP), 443(HTTPS) and port 2222.  These ports are opened up for the reason that they are the bare minimum required to run the services of the on-board servers.  This give the illusion that the honeypot is a secure service and helps to obscure its true intentions to a malicious user.  Note: The public firewall does not interact with the second network interface card because it is monitored directly by the BRO Intrusion Detection System.
 
-\item SSH Server
-\newline
+\subsubsection{SSH Server}
 The SSH server setup after the public facing firewall is a mock server that only simulates the authentication process of the TCP/IP handshake where both parties exchange SYN and ACK packets to verify the user.  However the server setup on the honeypot is designed to terminate the handshake one the attempting user submits their credentials.  The SSH server then sends the username, password and other important information to the logger to be processed into one cohesive log.
 
-\item Local Web-server
-\newline
+\subsubsection{Local Web-server}
 The local web-server implemented in the design of the honeypot system works in a similar fashion to the SSH server. Essentially if a malicious user attempts to connect via HTTP/HTTPS they will be directed to the webserver.  This false web-server acts as an information gathering tool for Alliants admin.  Once inside the firewall the user will be presented with a login page that asks for a username and password.  Once entered the information is logged and sent to the logger just like the SSH server.  Upon entering their credential the system will wait for a period of time before displaying that the credentials entered are not accepted.  This provides the ability to log multiple attempts to access the system through HTTP/HTTPS.
 
-\item Ansible Configuration Manager
-\newline
+\subsubsection{Ansible Configuration Manager}
 The Ansible Configuration Manager is responsible for the setting up the initial configuration of each type of server and also pushing any patches that are necessary for the device to run properly.  Because of this it will only be accessible by network users with administrative rights.
 
-\item Log Generator
-\newline
+\subsubsection{Log Generator}
 The log generating component of the honeypot takes information from the all other components and formats them into an easy to read informative text file that can be sent to a central sever in Alliant Energy's data center.  These logs will consistently record normal network activity as well as any attacks that occur on the device.  The log format will be structured in accordance with Alliant Energy's choosing, but will contain information on the time the attack was initiated, what type of attack it was, the user name and password, and other credentials.  This data will then be relayed back to a Splunk server at Alliant's main data center for analysis.
 
-\item Splunk Server
-\newline
+\subsubsection{Splunk Server}
 The splunk server is a component in Alliant's data center that receives the logs generated in the honeypot and analyzes them to determine if an attack has happened according to Alliant's definition of an attack.  When an attack does occur the splunk server will contact an administrator via email to alert that an attack.  From this information the administrators can make  the appropriate response to keep the network secure.
 
-\item Bro Intrusion Detection System
-\newline
+\subsubsection{Bro Intrusion Detection System}
 The Bro IDS software listens on a separate network interface card than the firewall and the other servers within the honeypot.  This second NIC is unregulated and connects directly to the IDS, meaning that is allows all traffic in.  By doing this the honeypot will be able to capture any other attack/malicious traffic that occur within the SCADA system.  However none of the other systems will be compromised as a result of this because each NIC is physically separate from each other and only connect at the logger which works the same way for either system.  
 
 \section{System Analysis}
