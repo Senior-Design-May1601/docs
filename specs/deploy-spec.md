@@ -20,19 +20,19 @@ hardening, etc.
 The bootstrap phase requires the following tasks (in rough, but not final,
 order):
 
-   * Change root password (read from shared config file XXX is it ok for root
+   1 Change root password (read from shared config file XXX is it ok for root
      password to be shared across devices? I think so but am open to change)
-   * Add deploy user with password (XXX shared passwd again?)
-   * Upload deploy user SSH public key
-   * Remove default Rasbpian user
-   * Disable root login over SSH
-   * Disable password login
-   * Move SSH to new port (for SPA/disguised login)
-   * Other SSH hardening (e.g. disable X forwarding TODO: specifiy this
+   2 Add deploy user with password (XXX shared passwd again?)
+   3 Upload deploy user SSH public key
+   4 Remove default Rasbpian user
+   5 Disable root login over SSH
+   6 Disable password login
+   7 Move SSH to new port (for SPA/disguised login)
+   8 Other SSH hardening (e.g. disable X forwarding TODO: specifiy this
      completely)
-   * Upload IPTables ruleset
-   * Configure IPTables to come up on boot
-   * Bring up IPTables
+   9 Upload IPTables ruleset
+   10 Configure IPTables to come up on boot
+   11 Bring up IPTables
 
 
 TODO:
