@@ -6,10 +6,10 @@ device name?) honeypot device.
 
 These tasks are grouped into 4 major phases:
 
-   * The Bootstrap Phase
-   * The Package Install Phase
-   * The Service Startup Phase
-   * The Testing Phase
+   1. The Bootstrap Phase
+   2. The Package Install Phase
+   3. The Service Startup Phase
+   4. The Testing Phase
 
 #### Bootstrap Phase
 
@@ -20,19 +20,19 @@ hardening, etc.
 The bootstrap phase requires the following tasks (in rough, but not final,
 order):
 
-   1 Change root password (read from shared config file XXX is it ok for root
+   1. Change root password (read from shared config file XXX is it ok for root
      password to be shared across devices? I think so but am open to change)
-   2 Add deploy user with password (XXX shared passwd again?)
-   3 Upload deploy user SSH public key
-   4 Remove default Rasbpian user
-   5 Disable root login over SSH
-   6 Disable password login
-   7 Move SSH to new port (for SPA/disguised login)
-   8 Other SSH hardening (e.g. disable X forwarding TODO: specifiy this
+   2. Add deploy user with password (XXX shared passwd again?)
+   3. Upload deploy user SSH public key
+   4. Remove default Rasbpian user
+   5. Disable root login over SSH
+   6. Disable password login
+   7. Move SSH to new port (for SPA/disguised login)
+   8. Other SSH hardening (e.g. disable X forwarding TODO: specifiy this
      completely)
-   9 Upload IPTables ruleset
-   10 Configure IPTables to come up on boot
-   11 Bring up IPTables
+   9. Upload IPTables ruleset
+   10. Configure IPTables to come up on boot
+   11. Bring up IPTables
 
 
 TODO:
