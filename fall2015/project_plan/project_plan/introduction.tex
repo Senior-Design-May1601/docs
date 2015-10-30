@@ -2,13 +2,48 @@
 
 \section{Project Introduction}
 
-The internet can be a hazardous place. Every day an unfathomable amount of cyber-attacks are being perpetrated throughout the world. Being a target of these attacks can be detrimental to any entity that is intended to receive such attacks. It is imperative that countermeasures are constantly being taken to protect the integrity of any potential target. This is where this project begins.
+The internet can be a hazardous place. Every day an unfathomable amount of \todo[inline]{try to avoid using the term "cyber-attack"}cyber-attacks are being perpetrated throughout the world. Being a target of these attacks can be detrimental to any entity that is intended to receive such attacks. It is imperative that countermeasures are constantly being taken to protect the integrity of any potential target. This is where this project begins.
+\todo[inline]{I'd redo this introduction to focus more on the specific domain
+we're working in. This sounds like a very generic "attacks are bad"
+introduction you might read on some government form. Instead, focus on
+power systems, scaling, real-time alerts, and why use honeypots.}
 
-%\section{Background}
+\section{Background}
+\todo[inline]{Write a background section. You should be able to use a bunch
+of good references (so we'll start to have a real bib) here. I'd talk about
+things like (but not limited to):
+    (1) Real-world stats/stories of attacks on power systems (e.g. stuxnet,
+        duqu, etc.)
+    (2) Use this, and maybe other studies on attacks on power systems, to
+        motivate more advanced defenses
+    (3) Maybe mention reasons why just running an IDS is not enough and talk
+        about the need for fast response/reaction
+    (4) Introduce the concept of a honeypot
+    (5) Frame for the reader how a honeypot can help against energy-sector
+        attacks
+}
 
 \section{Overview}
-The goal of the project is to create a standalone security device that can be placed in an industrial network to monitor traffic, looking for security-related deviations, and act as a low interaction honeypot. A honeypot is a computer security mechanism that is set to detect, deflect, or counteract the unauthorized use of information systems. A honeypot is intended to appear as a part of some network, but is actually isolated and monitored, relaying the information it detects to a system administrator.
+The goal of the project is to create a standalone security device that can be placed in an industrial network to monitor traffic, \todo[inline]{we're not really looking for "security-related deviations". we're looking for attackers that have breached the perimiter and are in the internal network}looking for security-related deviations, and act as a low interaction honeypot. \todo[inline]{honeypot should be defined in background section}A honeypot is a computer security mechanism that is set to detect, deflect, or counteract the unauthorized use of information systems. A honeypot is intended to appear as a part of some network, but is actually isolated and monitored, relaying the information it detects to a system administrator.
 
-This specific device is intended to be implemented in an ICS/SCADA environment. SCADA (supervisory control and data acquisition) is a category of software application program for process control, the gathering of data in real time from remote locations in order to control equipment and conditions.
+This specific device is intended to be implemented in an ICS/SCADA environment. \todo[inline]{SCADA should be defined in background section}SCADA (supervisory control and data acquisition) is a category of software application program for process control, the gathering of data in real time from remote locations in order to control equipment and conditions.
 
-%\section{Literature Survey}
+\todo[inline]{By this point, you should have established the existence of
+ongoing attacks and motivated use of more advanced security devices. Instead
+of just redefining concepts here in the "Overview" section, I'd use it to give
+an actual overview of our project and goals. Talk about composition of
+pluggable microservices, cheap devices deployable in tons of substations,
+automated/instant deployment, centralized logging, etc. You can be *very*
+general and high-level here, but just try to touch on the major points and
+relate them to intro/background stuff. Maybe have a look at other people's
+section and try to give a (again, extremely general) intro for them here.}
+
+\section{Literature Survey}
+\todo[inline]{Do an actual literature survey; this is again a place where we
+can start to accumulate actual references. Lit survey should probably include
+at least (but not necessarily limited to):
+    (1) Papers about intrusion detection/response in industrial/power
+        networks
+    (2) Free software tools that do this (and why we're not currently using
+        them)
+}
