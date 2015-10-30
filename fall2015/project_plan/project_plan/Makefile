@@ -1,7 +1,7 @@
 TEX=$(wildcard *.tex)
-PDF=report.pdf
+PDF=May1601-Project-Plan.pdf
 BUILD=pdflatex
-SRC=report.tex
+SRC=May1601-Project-Plan.tex
 
 all: ${PDF}
 
@@ -10,6 +10,6 @@ ${PDF}: ${TEX}
 	${BUILD} ${SRC}
 
 clean:
-	rm -rf *.pdf *.aux *.log *.out
+	rm -rf *.pdf *.aux *.log *.out *.lof *.lot *.toc
 
 .PHONY: clean
