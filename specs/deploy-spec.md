@@ -4,12 +4,13 @@ This document aims to specify the set of tasks that take a device from a
 vanilla Raspbian install up to a fully functioning (TODO: what's the actual
 device name?) honeypot device.
 
-These tasks are grouped into 4 major phases:
+These tasks are grouped into 5 major phases:
 
    1. The Bootstrap Phase
    2. The Package Install Phase
-   3. The Service Startup Phase
-   4. The Testing Phase
+   3. The Build Phase
+   4. The Service Startup Phase
+   5. The Testing Phase
 
 #### Bootstrap Phase
 
@@ -39,10 +40,25 @@ TODO:
 
    * Justify security rationale for shared passwords.
    * Specify more hardening steps.
+   * Add daemon user.
 
 #### Package Install Phase
 
-TODO
+The package install phase installs/upgrades all packages required for
+(TODO: what's the project name?) the system. The package install phase
+installs the following packages:
+
+   1. golang
+   2. git
+
+
+#### Build Phase
+
+The build phase builds all necessary packages, at this point mainly our
+go services. Packages to be build:
+
+    1. webauth
+    2. fssh
 
 #### Service Startup Phase
 
