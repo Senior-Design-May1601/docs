@@ -1,4 +1,4 @@
-### Intro
+## Intro
 
 This document aims to specify the set of tasks that take a device from a
 vanilla Raspbian install up to a fully functioning (TODO: what's the actual
@@ -6,63 +6,169 @@ device name?) honeypot device.
 
 These tasks are grouped into 5 major phases:
 
-   1. The Bootstrap Phase
+   1. The Bootstrap Phase (TODO: this is maybe a bad name)
    2. The Package Install Phase
    3. The Build Phase
    4. The Service Startup Phase
    5. The Testing Phase
 
-#### Bootstrap Phase
+### Bootstrap Phase
 
 The bootstrap phase configures initial system administrative-type stuff,
 such as setting up initial user accounts, uploading SSH keys, basic
 hardening, etc.
 
-The bootstrap phase requires the following tasks (in rough, but not final,
-order):
 
-   1. Change root password (read from shared config file XXX is it ok for root
-     password to be shared across devices? I think so but am open to change)
-   2. Add deploy user with password (XXX shared passwd again?)
-   3. Upload deploy user SSH public key
-   4. Remove default Rasbpian user
-   5. Disable root login over SSH
-   6. Disable password login
-   7. Move SSH to new port (for SPA/disguised login)
-   8. Other SSH hardening (e.g. disable X forwarding TODO: specifiy this
-     completely)
-   9. Upload IPTables ruleset
-   10. Configure IPTables to come up on boot
-   11. Bring up IPTables
+##### Role: config-root-user
 
 
-TODO:
+Tasks:
 
-   * Justify security rationale for shared passwords.
-   * Specify more hardening steps.
-   * Add daemon user.
+   1. Hash root password using `mkpasswd` (read from ansible-vault)
+   2. Change the root password
 
-#### Package Install Phase
+
+##### Role: config-deploy-user
+
+
+Tasks:
+
+   1. Hash deploy password using `mkpasswd` (read from ansible-vault)
+   2. Create deploy user with password
+   3. Add deploy user authorized SSH key
+
+
+##### Role: unprivileged-user
+
+
+Tasks:
+
+   1. Create unprivileged user to run services
+
+
+Run for:
+
+   * webauth
+
+
+##### Role: lockdown-ssh
+
+
+Tasks:
+
+   1. Disable root login
+   2. Disable password login
+   3. Set authentication to publickey
+   4. Set privilege separation to sandbox
+   5. Disable X11 forwarding
+   6. Only allow deploy user to use ssh
+   7. Set modern ciphers
+   8. Set modern MACs
+   9. Restart ssh
+
+
+##### Role: iptables
+
+Tasks:
+
+   1. Install iptables-persistent
+   2. Copy iptables file
+   3. Reload iptables
+
+
+### Package Install Phase
+
 
 The package install phase installs/upgrades all packages required for
-(TODO: what's the project name?) the system. The package install phase
-installs the following packages:
+(TODO: what's the project name?) the system.
 
-   1. golang
-   2. git
+
+##### Role: golang
+
+
+Tasks:
+
+   1. Install golang with apt
+
+
+TODO: set GOPATH?
+
+
+##### Role: git
+
+   
+Tasks:
+
+   1. Install git with apt
+
+
+##### Role: clone
+
+
+Tasks:
+
+   1. Create src directory
+   2. Clone a git repo
+
+
+Run for:
+
+    * webauth
 
 
 #### Build Phase
 
+
 The build phase builds all necessary packages, at this point mainly our
-go services. Packages to be build:
+go services.
 
-    1. webauth
-    2. fssh
 
-#### Service Startup Phase
+##### Role: build-go
 
-TODO
+
+Tasks:
+
+   1. Create bin directory.
+   2. Build package.
+   3. Copy executable to bin.
+
+
+Run for:
+
+   * webauth
+
+
+##### Role: config-webauth
+
+
+Tasks:
+
+   1. Copy webauth config to (TODO: name?) device
+
+
+TODO: we should abstract this out to a reuseable role.
+
+
+### Service Startup Phase
+
+
+The service startup phase brings up all honeypot services.
+
+
+##### Role: start-service
+
+
+Tasks:
+
+   1. Copy service config file to (TODO: name?) device
+   2. Enable service to start at boot.
+   3. Start service
+
+
+Run for:
+
+   * webauth
+
 
 #### Testing Phase
 
