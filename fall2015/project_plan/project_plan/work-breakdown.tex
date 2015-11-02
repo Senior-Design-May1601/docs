@@ -58,19 +58,19 @@ Product Delivery & 2016-05-06 & 1 & 2016-05-07 \\
 
 \section{Risks and Feasability Assessment}
 
-This project is routinely implemented in industry with high success rates. Several software implementations of SCADA honeypots already exist in the open source community. However, our implementation will be custom because the client has a secondary goal of including an IDS on the system. Creating the honeypot software from scratch will minimize the resources required from the platform. This is important because the computer needs to be a small standalone device. A Raspberry PI only has 512MB of RAM for example and an IDS typically uses a lot of memory and process cycles. Most risk can be mitigated with proper contingency planning, as summarized in Table \ref{table:risk}.
+This project is routinely implemented in industry with high success rates. Several software implementations of SCADA honeypots already exist in the open source community. However, our implementation will be custom because the client has a secondary goal of including an IDS on the system. Creating the honeypot software from conception will minimize the resources required from the platform. This is important because the computer needs to be a small standalone device. A standard Raspberry PI only has 512MB of RAM for example. An IDS typically uses a lot of memory and process cycles. Most risk can be mitigated with proper contingency planning, as summarized in Table \ref{table:risk}.
 
 
 \vspace{0.5cm}
 \begin{table}[h]
 \centering
 \begin{tabular}{l  c  r}
-Component & Risk & Contigency Plan \\
+Component & Risk & Contingency Plan \\
 \hline
 Web Server Honeypot & Low & Utilize open source nginx\footnotemark \\
 SSH Server Honeypot & Low & Use open source Kippo SSH\footnotemark \\
 Event Alerts & Medium & Switch from REST API to SMTP \\
-SCADA Honepot & Medium & Use open source Conpot\footnotemark \\
+SCADA Honeypot & Medium & Use open source Conpot\footnotemark \\
 Intrusion Detection System & High &  Use IPTables Logging \\
 \end{tabular}
 \caption{Summary of project components and implementation risk}
@@ -92,7 +92,7 @@ Installing an IDS on a small platform such as a Raspberry PI may not be feasible
 
 \section{Cost Considerations}
 
-Alliant Energy requires service in twenty eight different locations. Each location will house a standalone minimal computer. At this stage of development, the Raspberry PI is the assumed device. A model description is listed in Table \ref{table:cost}.
+Alliant Energy requires service in twenty eight different locations. Each location will house a standalone minimal computer. The CanaKit Raspberry PI was chosen because it is customizable and holds more memory than standard versions. An additional network interface will also be provided from an external network adapter. \ref{table:cost}.
 
 \vspace{0.5cm}
 \begin{table}[h]
@@ -100,11 +100,17 @@ Alliant Energy requires service in twenty eight different locations. Each locati
 \begin{tabular}{l l l l}
 Model & Unit Cost & Vendor & Total Cost \\
 \hline
-Raspberry PI B+ & \$30 Plus Tax & Allied Electronics & \$840 Plus Tax \\
+Raspberry PI B+ & \$69.99 Plus Tax & CanaKit & \$1960 Plus Tax\footnotemark \\
+\hline
+USB 3.0 Gigabit Ethernet Adapter & \$16.99 Plus Tax & Anker & \$476 Plus Tax\footnotemark\\
 \end{tabular}
 \caption{Summary of implementation costs}
 \label{table:cost}
 \end{table}
 \vspace{0.5cm}
 
-This device is subject to change throughout the project development depending on implementation and client needs. However, as of the present date, the Raspberry PI is the best known device. An updated version of the plan may be submitted if a better hardware implementation is found. This cost analysis reflects an initial estimate. It does not reflect future maintenance cost.
+\addtocounter{footnote}{-1}
+\footnotetext{\url{http://www.amazon.com/CanaKit-Raspberry-Complete-Original-Preloaded/dp/B008XVAVAW/ref=sr_1_1?s=pc&ie=UTF8&qid=1444258362&sr=1-1&keywords=raspberry+pi}}
+
+\addtocounter{footnote}{1}
+\footnotetext{\url{http://www.amazon.com/Anker-Gigabit-Ethernet-Adapter-Supporting/dp/B00NOP70EC/ref=sr_1_4?ie=UTF8&qid=1444258449&sr=8-4&keywords=usb+to+nici}}

@@ -50,14 +50,14 @@ continue to research other potential options.
 \begin{tabular}{l | p{10cm}}
 \textup{\Large {\bf Component}} & \textup{\Large {\bf Testing Plan}} \\
 \hline \hline
-\textbf{SSH, HTTP, HTTPS} & Create test scripts in GoLang to emulate several clients in addition to end to end testing. \\
-\textbf{Login} & Observe successful end to end testing of Splunk parsing. Attempt site compromising attacks such as cross site scripting. \\
-\textbf{Logging} & Attempt a series of port scans through NMAP. Attempt a series of connections through a test script. \\
+\textbf{SSH, HTTP, HTTPS} & Create scripts in GoLang using the test library to emulate several clients in addition to end to end testing. \\
+\textbf{Login} & Observe successful end to end testing of Splunk logging with Base64 encoded username and password.\\
+\textbf{Logging} & Attempt a series of port scans through NMAP. Attempt connections through SSH, HTTP and HTTPS. Validate the logging format. Unit test caching ability.  \\
 \textbf{Rule Set} & Try all permutations of potential rule sets and test them. \\
 \textbf{IDS} & Run all services with IDS and ensure the device is still functional. \\
 \textbf{Device} & Check system requirements with client specifications. \\
-\textbf{Power} & Test device power consumption and ensure specifications match client needs. \\
-\textbf{Equipment} & Monitor each device to ensure consistent uptime. \\
+\textbf{Power} & Select a device that is suitable for the power constraints.  Potentially provide power of Ethernet capability \\
+\textbf{Equipment} & Monitor each device to ensure consistent uptime. Provide proper support for environmental factors\\
 \end{tabular}
 \caption{Validation and Acceptance Testing Plan}
 \label{table:vatest}
