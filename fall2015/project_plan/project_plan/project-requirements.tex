@@ -1,7 +1,16 @@
 \chapter{Requirements}
 
 \section{Overall Project Requirements}
+\todo[inline]{
 
+2.1	Environmental impacts and or concerns. Casing required, POE.
+
+2.2	Paragraph 2, TCP handshake. Is it SSH handshake? Are we going to actually sandbox data for capture? 
+	The Splunk server is on the parent network. It's a parser for various log formats which auto identifies logs that come in. We're
+	reporting JSON that's structured in the way that we identified during our meeting.
+
+2.2.1	Disposition of this section. Since we've resolved this since last completed.
+}
 The project we received from Alliant Energy was to create a low interaction SCADA honeypot system for 28 of their power plants.  The system requirements for the device were as follows:
 
 \begin{itemize}
@@ -13,6 +22,7 @@ The project we received from Alliant Energy was to create a low interaction SCAD
     \item Must be a low maintenance standalone device.
     \item Must be low power.
     \item Each of the 28 substations must be equipped with one.
+
 \end{itemize}
 
 
@@ -23,7 +33,7 @@ microcontroller.  The Raspberry Pi is our preferred choice of hardware for the t
 microcontroller that is low in cost and power requirements.  However, we would like to have multiple network interface cards in
 order to have one port for implementing SSH and HTTP/S and one for listening on the network.
 
-To accommodate Alliant’s need for SSH as well as HTTP services we have decided the best course of action would be to set up an
+To accommodate Alliant’s need for SSH as well as HTTP services, we have decided the best course of action would be to set up an
 SSH server as well as a web server on the hardware device.  The SSH server will serve as a false gateway to inside the SCADA 
 system.  The illegitimate user will be able to enter in a username and password at which time the TCP handshake will be terminated
 and a log will be filed with the relevant information and passed on to a network administrator for handling.  The web server will
