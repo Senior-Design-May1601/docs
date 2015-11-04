@@ -5,7 +5,7 @@
 The system will be composed of layered services, with communication done
 through a standardized interface (see Figure \ref{figure:device} for a
 simplified diagram).
-
+%TODO: Elaborate more on the different services and give a brief description of what to expect from the upcoming section they are about to read.
 \subsection{Layer 1: The External Interface}
 
 The outermost layer of the device is external interface and the only point at
@@ -24,7 +24,9 @@ ports (for instance, 8022 for SSH and 8080 for HTTP).
 Firewall rules forward traffic from the open standard port (e.g. 22 for SSH)
 to the high, non-standard port on localhost where the actual honeypot
 is listening.
-
+%TODO:Are we using 8022 for SSH or 2222?  I saw in your fssh.go file you used a default port of 2222.
+%TODO:When explaining the that the firewall forwards the standard ports to non-standard ports possibly explain the security benefits of doing so.
+%TODO:Possibly mention that the public interface will have two means of ingress through two separate NICs?  Just bring up the concept of the promiscuous interface.
 \subsubsection{The Administration Interface}
 
 Devices must be updated and configurable, so there needs to be a way for
@@ -37,7 +39,8 @@ Therefore, the device will use Single Packet Authorization
 to disguise the administration interface, only opening the port for a single
 connection to a particular IP address when presented with valid cryptographic
 credentials.
-
+%TODO:Explain what program we will use to accomplish the task of Single Packet Authorization?
+%TODO:Should this section talk about Ansible and its remote administration capabilities?
 \subsubsection{The Promiscuous Interface}
 
 The device will run an IDS in order to pick up anomolies and attacks on
@@ -90,7 +93,9 @@ can send them on to a configured Splunk endpoint.
 - "Low interaction", so not possible to actually log in. We'll just catch
   any uname/passwd/key pairs.
 - Actual SCADA service emulation
-
+%TODO:Might not be using Bro IDS use generic IDS
+%TODO:Define what SPA is either here or when you first mentioned it in the "Administrative Interface" section.
+%TODO:Try to avoid using words such as “we’ll” since it makes the document feel less formal.
 \subsection{Layer 3: The Logger}
 
 The logger is a module that receives alerts from the honeypot microservices
@@ -106,7 +111,7 @@ online, at which point all cached alerts are pushed.
 
 Our design and implementation strategy is guided by a handful of core
 technical principles.
-
+%TODO:Expand upon this sentence to make it seem more like an intro to a section and not just brief description.
 \subsubsection{Automation}
 
 Since our goal is to deploy \textit{multiple} devices at many different
@@ -117,7 +122,8 @@ multiple devices. We will also use Docker
 \footnote{\url{https://www.docker.com/}} to configure the individual
 honeypot microservices. This setup will allow for very simple device rollouts
 and updates.
-
+%TODO:Again try to avoid using we when talking about the implementation process.
+%TODO:Avoid using the word very.
 \subsubsection{Safe Languages}
 
 As much as possible, we will only deploy services written in a ``safe''
@@ -147,7 +153,7 @@ Since we aim to both trick an attacker into believing the services running
 on the device are legitimate, as well as restrict access to \textit{actual}
 services on the device, the administration interface will only be
 accessible using Single Packet Authorization.
-
+%TODO:Possibly elaborate more on the administration interface.
 \section{Design and Implementation Stages}
 
 Design and implementation is broken up into three logical and somewhat
@@ -273,7 +279,7 @@ component is functioning as specified. The device testing plan is specified
 in Table \ref{table:test-plan}. Note that all microservice testing procedures
 will follow the same strategy, so they have been collapsed to one table
 entry.
-
+%TODO: First sentence worded oddly, consider using sentence fragments.
 \begin{table}
 \centering
 \begin{tabular}{l  c  c}
@@ -289,3 +295,5 @@ Promiscuous Interface & \xmark & Verify Bro receives traffic \\
 \caption{Functional Testing Plan}
 \label{table:test-plan}
 \end{table}
+
+%TODO: Be sure to change all the instances  where you talk about the Bro IDS specifically toa more generic form since we are not sure if we will be using it or not.
