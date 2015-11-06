@@ -1,0 +1,13 @@
+need like 6-8 slides
+
+Section 1: Problem statement/project description, background
+
+    - 2 slides
+
+Section 2: System design/deliverable description, interfaces, approach
+
+    - 3 slides
+
+Secton 3: Testing Plan
+
+    - 2 slides
