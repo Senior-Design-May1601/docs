@@ -2,7 +2,7 @@
 
 \section{Overall Project Requirements}
 
-The project we received from Alliant Energy was to create a low interaction SCADA honeypot system for 28 of their power plants.  The system requirements for the device were as follows:
+The project we received from Alliant Energy was to create a low interaction SCADA honeypot system for 28 of their power plants.  The system requirements for the device are as follows:
 
 \begin{itemize}
     \item Capable of interfacing with SSH, HTTP and HTTPS
@@ -23,17 +23,16 @@ microcontroller.  The Raspberry Pi is our preferred choice of hardware for the t
 microcontroller that is low in cost and power requirements.  However, we would like to have multiple network interface cards in
 order to have one port for implementing SSH and HTTP/S and one for listening on the network.
 
-To accommodate Alliant’s need for SSH as well as HTTP services we have decided the best course of action would be to set up an
-SSH server as well as a web server on the hardware device.  The SSH server will serve as a false gateway to inside the SCADA 
-system.  The illegitimate user will be able to enter in a username and password at which time the TCP handshake will be terminated
-and a log will be filed with the relevant information and passed on to a network administrator for handling.  The web server will
-offer similar services for HTTP and HTTPS.  We plan to implement a fake login page visible to the unknown user.  At this time the
+To accommodate Alliant’s needs we have decided to implement a plugin architecture that allows for easy customization of the device to suit Alliant Energy's needs. By doing this any micro-service can be easily added and reemoved, the current default plugins are SSH and HTTP/S protocols.  The SSH server plugin will serve as a false gateway to inside the SCADA 
+system.  The illegitimate user will be able to enter in a username and password at which time the SSH handshake will be terminated
+and a log will be filed with the relevant information and passed on to a network administrator for handling.  The web server plugin will
+offer similar services for HTTP and HTTPS.  We plan to implement a fake login page visible to the unknown user.  The
 login page will always return invalid credentials and will be protecting nothing.  Later, if we wish to make the honeypot more
 interactive we could make the username and password vulnerable to cracking methods and have it protect false data to see how the
-user is tampering with it.  This information would be gathered and reported to the network administrator via an outside Splunk
+user is tampering with it.  This information will be gathered and reported to the network administrator via an outside Splunk
 server in Alliant’s datacenter.  The benefits of using a SPLUNK server is that it is a tested and proven utility that performs
 the exact function necessary to efficiently alert the necessary employees.  The Splunk services are also configurable to capture
-logs of ICMP ping sweeps, port scans and unwanted URL attempts.   
+logs of ICMP ping sweeps, port scans and unwanted URL attempts via an onbored intrusion detection system listening on an open network interface card.   
 
 \subsection{Assessment of Proposed Solution}
 
@@ -42,7 +41,9 @@ Raspberry Pi’s also provide a limited amount of RAM which presents a potential
 intrusion detection system.  For this reason we are keeping the Raspberry Pi as our number one option for the time being but
 continue to research other potential options.
 
+The decision to update the device to a plugin architecture is a choice we believe will make the honeypot much more valuable to Alliant Energy.  Switching to this new architecture allows Alliant the ability to easily add and remove micro-services at will to fully costomize the device to perfectly suit their needs.
 \section{Validation and Acceptance Testing}
+
 
 \begin{table}
 \renewcommand{\arraystretch}{1.5}
