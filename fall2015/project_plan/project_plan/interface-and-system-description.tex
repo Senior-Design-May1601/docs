@@ -8,7 +8,7 @@ technical principles.
 \subsubsection{Pluggable Architecture}
 
 To accomodate evolving client needs and future maintainability and utility,
-our core deliverable will consist of a (TODO: ref) plugin architecture
+our core deliverable will consist of a plugin architecture
 for microservices and logging modules, along with a default set of honeypot
 plugins and a Splunk logging module. By deploying a flexible plugin
 architecture, additional logging backends and honeypot protocols can be
@@ -154,9 +154,9 @@ The plugin architecture has two important interfaces.
 
 \paragraph{A Structured Public Plugin Interface}
 The plugin architecture defines a small, public interface that all plugins
-must implement. See (TODO: ref honeypot plugin app) for details of the
-honeypot plugin interface and (TODO: ref logger plugin app) for details of
-the logger plugin interface.
+must implement. See Appendix \ref{appendix:honeypot-iface} for details of the
+honeypot plugin interface and Appendix \ref{appendix:logger-iface} for details
+of the logger plugin interface.
 
 \paragraph{An IPC Mechanism}
 Since plugins are isolated programs, they communicate using IPC. Specifically,
@@ -183,7 +183,7 @@ will have the core plugin architecture implemented, run a few small honeypot
 microservices for common protocols, run a very minimal IDS rulset,
 and have a minimal build automation procedure.
 
-\subsubsecton{Core Plugin Architecture}
+\subsubsection{Core Plugin Architecture}
 
 The core plugin architecture, including all public interfaces and the RPC
 and plugin registration mechanism, will be implemented in this early stage.
@@ -291,7 +291,7 @@ in Table \ref{table:test-plan}. Note that all microservice testing procedures
 will follow the same strategy, so they have been collapsed to one table
 entry.
 
-\begin{table}
+\begin{table}[h]
 \centering
 \begin{tabular}{l  c  c}
 Component & Unit Tests & Integration Tests \\
