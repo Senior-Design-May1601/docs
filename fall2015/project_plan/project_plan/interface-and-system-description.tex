@@ -1,46 +1,108 @@
 \chapter{Interface and System Description}
 
+\section{Technical Approach}
+
+Our design and implementation strategy is guided by a handful of core
+technical principles.
+
+\subsubsection{Pluggable Architecture}
+
+To accomodate evolving client needs and future maintainability and utility,
+our core deliverable will consist of a (TODO: ref) plugin architecture
+for microservices and logging modules, along with a default set of honeypot
+plugins and a Splunk logging module. By deploying a flexible plugin
+architecture, additional logging backends and honeypot protocols can be
+integrated easily into the full system.
+
+\subsubsection{Automation}
+
+Since our goal is to deploy \textit{many} devices at different
+locations, we aim to automate as much of the build and configuration process
+as possible. Therefore, we will use Ansible
+\footnote{\url{http://www.ansible.com/}} for easy remote setup for
+multiple devices. We will also use Docker
+\footnote{\url{https://www.docker.com/}} to configure the individual
+honeypot microservices. This setup will allow for simple and flexible device
+rollouts and updates.
+
+\subsubsection{Safe Languages}
+
+The device will only deploy honeypot services written in a
+safe\footnote{Used informally here to mean languages that enforce type
+safety, memory safety, and provide built-in or standard library mechanisms to
+write safe concurrent code.} language.
+
+The core plugin architecture and the default plugins themselves will be written
+in Go \footnote{\url{https://golang.org/}}.
+
+\subsubsection{Honeypots Don't Get Real Capabilities}
+
+Unlike medium- and high-interaction honeypots such as Kippo
+\footnote{\url{https://github.com/desaster/kippo}}, our default honeypot
+microservices will not provide any real system capabilities. Since the device will be
+running in an internal, protected environment, \textit{any} traffic should
+be considered an attack, and by only mimicking protocol initiation handshakes
+without providing actual program capabilities, we gain some protection
+against unknown exploits.
+
+\subsubsection{Heavily Restrict Traffic}
+
+The device will heavily restrict both ingress and egress traffic to a set of
+known, trusted servers. This will help mitigate any damage a compromised
+microservice on the device can cause.
+
+\subsubsection{Disguise Administration Interface}
+
+Since we aim to both trick an attacker into believing the services running
+on the device are legitimate, as well as restrict access to \textit{functional}
+services on the device, the administration interface will only be
+accessible using Single Packet Authorization (SPA) 
+\footnote{\url{http://www.blackhat.com/presentations/bh-usa-05/bh-us-05-madhat.pdf}}.
+
 \section{Design Specification}
 
-The system will be composed of layered services, with communication done
-through a standardized interface (see Figure \ref{figure:device} for a
-simplified diagram).
-%TODO: Elaborate more on the different services and give a brief description of what to expect from the upcoming section they are about to read.
+The system has 2 primary layers of interfaces:
+
+\begin{enumerate}
+    \item The External Interface, including components exposed to attackers and administrators as well as the alert logging interface
+    \item The Internal Component Interface, through which honeypot services communicate with each other
+\end{enumerate}
+
+Each layer has a particular interface for each component. See Figure
+\ref{figure:device} for a simplified diagram of the major device components.
+
 \subsection{Layer 1: The External Interface}
 
-The outermost layer of the device is external interface and the only point at
+The outermost layer of the device, the external interface, is the only point at
 which \textit{incoming} network traffic is accepted. Access is controlled
-by a set up an IPTables\footnote{\url{http://linux.die.net/man/8/iptables}}
+by an IPTables\footnote{\url{http://linux.die.net/man/8/iptables}}
 ruleset.
 
 \subsubsection{The Public Interface}
 
 The public interface, visible to anyone on the device's network, is the
-interface through which attackers interact with the various honeypots. Since
-honeypot services are designed to run unprivileged and without any additional
-capabilities, the services themselves run on high, non-standard
-ports (for instance, 8022 for SSH and 8080 for HTTP).
+interface through which attackers interact with the various honeypot
+microsevices. Since the microservices are designed to run as unprivileged,
+isolated processes, the honeypots themselves run on high, non-standard
+ports (e.g. 8022 for SSH and 8080 for HTTP).
 
-Firewall rules forward traffic from the open standard port (e.g. 22 for SSH)
+Firewall rules forward traffic from the open, standard port (e.g. 22 for SSH)
 to the high, non-standard port on localhost where the actual honeypot
 is listening.
-%TODO:Are we using 8022 for SSH or 2222?  I saw in your fssh.go file you used a default port of 2222.
-%TODO:When explaining the that the firewall forwards the standard ports to non-standard ports possibly explain the security benefits of doing so.
-%TODO:Possibly mention that the public interface will have two means of ingress through two separate NICs?  Just bring up the concept of the promiscuous interface.
+
 \subsubsection{The Administration Interface}
 
-Devices must be updated and configurable, so there needs to be a way for
-administrators to log in and perform routine maintenance. However, the device
-also should not expose a public SSH service with real login capabilities, and
-the honeypot SSH service can't be used for real system tasks.
+Devices must be updated and individually configurable, so there needs to be a
+way for administrators (or automated processes) to log in and perform routine 
+maintenance. However, the device also should not expose a public SSH service
+with real login capabilities, and the honeypot SSH service can't be used for
+real system tasks.
 
 Therefore, the device will use Single Packet Authorization
-\footnote{\url{http://www.blackhat.com/presentations/bh-usa-05/bh-us-05-madhat.pdf}}
 to disguise the administration interface, only opening the port for a single
-connection to a particular IP address when presented with valid cryptographic
-credentials.
-%TODO:Explain what program we will use to accomplish the task of Single Packet Authorization?
-%TODO:Should this section talk about Ansible and its remote administration capabilities?
+connection to a particular internal IP address when presented with valid
+cryptographic credentials.
+
 \subsubsection{The Promiscuous Interface}
 
 The device will run an IDS in order to pick up anomolies and attacks on
@@ -60,9 +122,14 @@ promiscuous interface.
 
 \subsection{Layer 2: Low-Interaction Honeypot Microservices}
 
-The honeypots themselves will be implemented as isolated and unprivileged
-microservices. They will not have full program capabilities and will only
-allow enough interaction to determine:
+We will provide a structured plugin architecture that can run clearly defined
+plugins for both arbitrary honeypot services as well as logging backends.
+The plugins then run as isolated and unprivileged processes, using interprocess
+communication over a well-defined protocol to communicate.
+
+Each default honeypot microsevice plugin set will be a low-interaction
+honeypot, without full protocol capabilities for its emulated service and
+with just enough functionality to discern:
 
 \begin{itemize}
     \item If a passive attacker is accessing the device
@@ -71,88 +138,36 @@ allow enough interaction to determine:
     \item Metadata about the attacker (IP address, MAC address, date/time, etc.)
 \end{itemize}
 
-For example, the SSH honeypot is \textit{not} a real SSH server. It is simply
-a small program that steps through the SSH authentication handshake and
-\textit{always} returns an ``authentication failed'' protocol message. This
-way, enough information is collected to analyze the attack, but it is not
-possible for the attacker to actually login or exploit the underlying
-SSH service.
+\subsubsection{Honeypot Plugin Architecture}
 
-Each honeypot will push alerts to a logging module, which
-can send them on to a configured Splunk endpoint.
+Since the Go programming language does not support dynamic linking,
+and thus compiling multiple plugins into a single executable becomes a messy
+procedure, plugins themselves are implemented as independent programs
+that each implement our structured plugin interface. We define two types of
+recognized plugins:
+\begin{itemize}
+    \item Honeypot microservice plugins
+    \item Logging plugins
+\end{itemize}
 
-- Build automation (Ansible, Docker)
-- Layers of micro-services
-- Report back to a centralized logger
-- Logger pushes alerts to Splunk
-- IDS (Bro) running on device, interface in promiscuous mode
-    - pick up high port traffic
-- SPA on high, non-standard SSH port for administration purposes
-- External ports forwarded to localhost high ports so no micro services
-  run as root
-- "Low interaction", so not possible to actually log in. We'll just catch
-  any uname/passwd/key pairs.
-- Actual SCADA service emulation
-%TODO:Might not be using Bro IDS use generic IDS
-%TODO:Define what SPA is either here or when you first mentioned it in the "Administrative Interface" section.
-%TODO:Try to avoid using words such as “we’ll” since it makes the document feel less formal.
-\subsection{Layer 3: The Logger}
+The plugin architecture has two important interfaces.
 
-The logger is a module that receives alerts from the honeypot microservices
-and the IDS. The logger has access to the Splunk authentication credentials
-and server details.
+\paragraph{A Structured Public Plugin Interface}
+The plugin architecture defines a small, public interface that all plugins
+must implement. See (TODO: ref honeypot plugin app) for details of the
+honeypot plugin interface and (TODO: ref logger plugin app) for details of
+the logger plugin interface.
 
-If the Splunk server is reachable, the logger pushes device alerts to it,
-possibly after augmenting the alerts with additional metadata. If the Splunk
-server is not reachable, the logger caches alerts until Splunk comes back
-online, at which point all cached alerts are pushed.
+\paragraph{An IPC Mechanism}
+Since plugins are isolated programs, they communicate using IPC. Specifically,
+plugins use Go's net/rpc library to communicate. Note however that this
+communication is handled transparently by the plugin architecture:
+plugin implementers do not perform RPC with other components. The
+plugin controller itself performs RPC behind the scenes to coordinate
+plugin execution and communication, and by implementing the standard
+plugin interface, individual plugins get RPC behind the scenes for free.
 
-\section{Technical Approach}
 
-Our design and implementation strategy is guided by a handful of core
-technical principles.
-%TODO:Expand upon this sentence to make it seem more like an intro to a section and not just brief description.
-\subsubsection{Automation}
-
-Since our goal is to deploy \textit{multiple} devices at many different
-locations, we aim to automate as much of the build and configuration process
-as possible. Therefore, we will use Ansible
-\footnote{\url{http://www.ansible.com/}} for easy remote setup for
-multiple devices. We will also use Docker
-\footnote{\url{https://www.docker.com/}} to configure the individual
-honeypot microservices. This setup will allow for very simple device rollouts
-and updates.
-%TODO:Avoid using the word very.
-\subsubsection{Safe Languages}
-
-As much as possible, we will only deploy services written in a ``safe''
-language. To support this goal, the initial prototypes of the HTTP, HTTPS,
-and SSH microservice honeypots have been written in Golang
-\footnote{\url{https://golang.org/}}.
-
-\subsubsection{Honeypots Don't Get Real Capabilities}
-
-Unlike medium- and high-interaction honeypots such as Kippo
-\footnote{\url{https://github.com/desaster/kippo}}, our honeypot microservices
-will not provide any real system capabilities. Since the device will be
-running in an internal, protected environment, \textit{any} traffic should
-be considered an attack, and by only mimicking protocol initiation handshakes
-without providing actual program capabilities, we gain some protection
-against unknown exploits.
-
-\subsubsection{Heavily Restrict Traffic}
-
-The device will heavily restrict \textit{all} traffic, including outbound
-traffic, to a set of known and trusted servers. This will help mitigate any
-damage a compromised microservice on the device could cause.
-
-\subsubsection{Disguise Administration Interface}
-
-Since we aim to both trick an attacker into believing the services running
-on the device are legitimate, as well as restrict access to \textit{actual}
-services on the device, the administration interface will only be
-accessible using Single Packet Authorization.
-%TODO:Possibly elaborate more on the administration interface.
 \section{Design and Implementation Stages}
 
 Design and implementation is broken up into three logical and somewhat
@@ -164,9 +179,14 @@ implements a particular subset of the desired functionality.
 
 Design and Implementation Stage 1 will consist of a number of initial tasks,
 design iterations, and prototyping. By completion of stage 1, the device
-should be running a few small honeypot microservices for common protocols,
-running a very minimal IDS rulset, and have a minimal build automation
-procedure.
+will have the core plugin architecture implemented, run a few small honeypot
+microservices for common protocols, run a very minimal IDS rulset,
+and have a minimal build automation procedure.
+
+\subsubsecton{Core Plugin Architecture}
+
+The core plugin architecture, including all public interfaces and the RPC
+and plugin registration mechanism, will be implemented in this early stage.
 
 \subsubsection{Minimal Build Automation}
 
@@ -184,7 +204,7 @@ The device will be running an SSH honeypot.
 \subsubsection{Pushing to Splunk}
 
 Both the HTTP/HTTPS honeypot and the SSH honeypot should be able to push
-alerts to an external Splunk server.
+alerts to an external Splunk server using a default Splunk logging plugin.
 
 \subsubsection{Open High Ports}
 
@@ -193,7 +213,7 @@ for incoming traffic.
 
 \subsubsection{Minimal IDS}
 
-Bro IDS will be used to push alerts to Splunk if any incoming traffic is seen
+An IDS will be used to push alerts to Splunk if any incoming traffic is seen
 on the 3 high ports.
 
 \subsubsection{Unit Testing and Bug Fixes}
@@ -203,34 +223,28 @@ Each component of Stage 1 will have full unit tests (where applicable).
 
 \subsection{Stage 2}
 
-Design and Implementation Stage 2 will extend the work done in Stage 1,
-standardize module communication, and provide the first real SCADA protocol
-emulation.
+Design and Implementation Stage 2 will extend the work done in Stage 1
+and provide the first SCADA protocol honeypot microservice plugin.
 
 \subsubsection{Better Deployment Automation}
 
-In Stage 2, general system hardening, custom firewall setup, and Bro
+In Stage 2, general system hardening, custom firewall setup, and IDS
 configuration will be automated as part of the deployment step.
-
-\subsubsection{Standardized Logging Module}
-
-A standardized logging module will be implemented, through which all honeypot
-microservices can push logs to Splunk.
 
 \subsubsection{Promiscuous Network Interface}
 
 A second network interface will be added to listen in promiscuous mode, used
-by Bro IDS to pick up alerts from the greater internal network.
+by an IDS to pick up alerts from the greater internal network.
 
 \subsubsection{Custom IDS Configuration}
 
-Bro will be configured to alert on domain-specific and network-specific
+The IDS will be configured to alert on domain-specific and network-specific
 indicators, such as known energy-sector malware and internal ping sweeps.
 
 \subsubsection{OPC Honeypot}
 
-A microservice will be implemented to emulate the OPC protocol, the first
-SCADA protocol used on the device.
+A honeypot microservice plugin will be implemented to emulate the OPC protocol,
+the first SCADA protocol used on the device.
 
 \subsubsection{Unit Testing and Bug Fixes}
 
@@ -239,11 +253,10 @@ Each component of Stage 2 will have full unit tests (where applicable).
 
 \subsection{Stage 3}
 
-Design and Implementation Stage 3 will finalize module communication and
-build automation, provide a full integration testing suite, and allow time
-to tweak the design to fit the client's particular needs, including adding
-additional SCADA protocols and customizing the build process to the client's
-needs.
+Design and Implementation Stage 3 will finalize build automation, provide a
+full integration testing suite, and allow time to add additional, custom
+honeypot plugins to fit the client's partcular needs at different deployment
+sites.
 
 \subsubsection{Finalize Build and Deployment Automation}
 
@@ -258,8 +271,8 @@ device for remote administration.
 \subsubsection{Custom SCADA Protocols}
 
 By working closely with the client, any additional SCADA protocols needed will
-be implemented using the microservice pattern established in design stages 1
-and 2.
+be implemented using the plugin microservice pattern established in design
+stages 1 and 2.
 
 \subsubsection{Unit Testing and Bug Fixes}
 
@@ -272,27 +285,25 @@ system and, when possible, work to verify system correctness.
 
 \section{Functional Testing Plan}
 
-Each primary device componenet will have both unit tests, when applicable,
-as well as integration tests to determine, as well as possible, if the
-component is functioning as specified. The device testing plan is specified
+Each primary device componenet will have both unit tests and, when applicable,
+integration tests. The device testing plan is specified
 in Table \ref{table:test-plan}. Note that all microservice testing procedures
 will follow the same strategy, so they have been collapsed to one table
 entry.
-%TODO: First sentence worded oddly, consider using sentence fragments.
+
 \begin{table}
 \centering
 \begin{tabular}{l  c  c}
 Component & Unit Tests & Integration Tests \\
 \hline
+Plugin Architecture & \xmark & Tested with plugins \\
 Build Automation & \xmark & Test deployment on virtual machines \\
-Bro IDS & \xmark & Perform attacks and verify alerting \\
+IDS & \xmark & Script attacks and verify alerting \\
 Microservices & \cmark & Attempt to login to active service \\
 Logger & \cmark & Verify logging correct on Splunk instance \\
 Single Packet Authorization & \cmark & Verify login succeeds/fails \\
-Promiscuous Interface & \xmark & Verify Bro receives traffic \\
+Promiscuous Interface & \xmark & Verify IDS receives traffic \\
 \end{tabular}
 \caption{Functional Testing Plan}
 \label{table:test-plan}
 \end{table}
-
-%TODO: Be sure to change all the instances  where you talk about the Bro IDS specifically toa more generic form since we are not sure if we will be using it or not.
