@@ -1,17 +1,40 @@
 \section{Testing Plan}
 
 \subsection{Testing Individual Components}
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Testing Individual Components}
+	\textbf{GoLang}
+	
+	The GoLang "testing" library is an easy to use unit testing platform with the following features.
+	\begin{itemize} % Elaborate on each item
+	\item Time complexity analysis
+	\item Code output verification
+	\end{itemize}
 
-% TODO: write your slide here
-
+	\begin{example}[Benchmark Code] % Explain Code & Elaborate on output testing
+	\begin{verbatim}
+	func BenchmarkSplunk (b *testing.B){
+		m := map[string]string{"username":"user","password":"pass"}
+		http:=Http{Method:"POST",Path:"index.html",Parameters:m}
+		ev := Event{...,Http: &http}
+		for i := 0 ; i< b.N; i++{
+			ev.Send();
+		}
+	}
+	\end{verbatim}
+	\end{example}
+	\textbf{Output}
+	BenchmarkSplunk    10000000    282 ns/op
 \end{frame}
 
 \subsection{Integration Testing}
 \begin{frame}
 \frametitle{Integration Testing}
+Integration testing can be completed by combining multiple unit tests into a larger framework with the "testing" package. 
+What about multiple configurations or platforms though?\\~\\
+\textbf {Vagrant} allows for easy replication of test environments through virtual machines. This provides a method for plugin end-end testing for any device setup. \\~\\
 
-% TODO: write your slide here
+
+Vagrant allows for \textbf{Provisioning}. This means that a newly created VM can be give startup tasks that will run as an automated script.
 
 \end{frame}
