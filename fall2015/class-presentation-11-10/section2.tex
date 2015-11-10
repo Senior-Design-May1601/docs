@@ -4,8 +4,16 @@
 \begin{frame}
 \frametitle{The Deliverable: Functional Decomposition}
 
-% TODO: deliverable + design approach
-
+\begin{tabular}{l | l}
+\toprule
+\textbf{Component} & \textbf{Function} \\
+\midrule
+Honeypot Plugin Framework & Core, extensible interfaces \\
+Default Plugin Set & Client-specific functionality \\
+Automated Deployment System & Flexible rollouts/updates \\
+Device & Components installed on device(s) \\
+\bottomrule
+\end{tabular}
 \end{frame}
 
 \subsection{Technical Constraints}
@@ -21,37 +29,78 @@
 
 \begin{frame}
 \frametitle{Conceptual Sketch}
-
-% TODO: diagram from interfaces
-
+\begin{figure}
+\centering
+{\scalefont{0.75}
+\scalebox{.7}{\input{figures/device.tex}}
+}
+\caption{Simplified Device Internals}
+\end{figure}
 \end{frame}
 
 \subsection{Detailed Design}
-\begin{frame}
+\begin{frame}[fragile]
 \frametitle{Plugin Framework Interfaces}
 
-% TODO: framework interface
+\begin{columns}[c]
 
+\column{0.45\textwidth}
+\begin{figure}
+\begin{lstlisting}[language=go,showstringspaces=false]
+        type Honeypot interface {
+            Start()     error
+            Stop()      error
+            Restart()   error
+        }
+\end{lstlisting}
+\caption{Honeypot Plugin Interface}
+\end{figure}
+
+\column{0.55\textwidth}
+\begin{figure}
+\begin{lstlisting}[language=go,showstringspaces=false]
+        type Logger interface {
+            LogEvent(event *Event)      error
+            LogEvents(events []Event)   error
+        }
+\end{lstlisting}
+\caption{Logger Plugin Interface}
+\end{figure}
+
+\end{columns}
 \end{frame}
 
-\begin{frame}
-\frametitle{User Interface}
-
-% TODO: ansible
-
-\end{frame}
-
-\subsection{Prototype and Future Work}
+\subsection{Prototype and Work for Next Semester}
 \begin{frame}
 \frametitle{Current Prototype}
 
-% TODO: prototype spec/table
+\begin{columns}[c]
 
-\end{frame}
+\column{0.5\textwidth}
 
-\begin{frame}
-\frametitle{Plan for Next Semester}
+\begin{table}
+\begin{tabular}{l l}
+\toprule
+\textbf{Component} & \textbf{Status}  \\
+\midrule
+Plugin Framework & Functonal-ish \\
+Default Plugin Set & Done \\
+Automated Deployment & Done \\
+Physical Install & TODO \\
+Testing & TODO \\
+\bottomrule                                                                   
+\end{tabular}
+\caption{Current Prototype Status}
+\end{table}
 
-% TODO: plan for next semester
+\column{0.25\textwidth}
+Next semester:
+\begin{itemize}
+    \item Finalize plugin framework
+    \item Develop any additional plugins client wants
+    \item Install on physical device
+    \item Testing
+\end{itemize}
+\end{columns}
 
 \end{frame}
