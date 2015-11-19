@@ -1,0 +1,31 @@
+Currently, Industrial Controls Systems across the US are being probed by potential threats every day. These SCADA networks can be extremely important to the US infrastructure and cannot be allowed to be tampered with by foreign threats. However the current state of the industry is one where equipment is often run for stringent, long term schedules with very little down time allotted. This can make keeping a SCADA network up to date difficult without opening access to the net. Concurrently, allowing any kind of outside access puts the systems at greater risk. In order to find and prevent these infiltrations, Honeypots are placed inside SCADA networks across the US to gather information about potential attackers. The complexity of the HoneyNet system can range from simply leaving a few ports open and probing for common connection types to full device emulation. Our design of a low interaction honeypot doesn’t implement the kind of mass data collection a high interaction pot might, but by keeping our system simple, we’ll keep maintenance time to a minimum while still providing useful information about potential threats to IT personal. Our small standalone device will also allow for easy installation and be kept out of the way of working personal. Further development of our project could lead to some high interaction features in the Spring. 
+
+
+Tentative Fall Semester Schedule			
+| Task | Start Date | Duration | End | Date
+|:-----|:-------------|:------|:------------|
+Project Formation	9/1/15	7	9/8/15
+Scope Development	9/8/15	28	9/15/15
+Web Development	9/25/15	45	10/2/15
+Emulation Debugging	10/15/15	7	10/22/15
+Software Coding	10/19/15	21	10/26/15
+Project Formation	10/26/15	21	11/2/15
+Hardware Orders	11/19/15	14	11/26/15
+Hardware Debugging	11/25/15	14	12/2/15
+Final Presentation	12/7/15	3	12/14/15
+
+
+Tentative Sprint Semester Schedule			
+Task	Start Date	Duration	End Date
+Revisit Project	1/12/16	7	1/19/16
+Discuss Possible New Features	1/19/16	21	2/9/16
+Design Revision	2/9/16	28	3/8/16
+Prototype Emulation V2	3/8/16	21	3/29/16
+Debugging/Testing	3/29/16	14	4/12/16
+Final Project Construction	4/12/16	21	5/3/16
+Final Project Presentation	5/3/16	3	5/6/16
+Product Delivery	5/6/16	1	5/7/16
+
+
+
+
