@@ -179,16 +179,16 @@ A brief description of each primary interface follows.
 
 All administration is done over SSH. The administration interface is
 simply an SSH server, listening on a \textit{different} network than
-the public interface (an internal wireless network, for instance).
+the public interface (an internal wireless network, for instance).  Administrators confirm access with each device through Single Packet Authentication to validate they have administrative rights to the device.
 
 \subsection{Public Interface}
 
-The public interface is the interface other actors on the same network
+The public interface is the interface other users/hackers on the same network
 as the device are presented with. This interface is a set of open ports,
-one for each honeypot microservice, and a handful of open high ports with
+one for each honeypot micro-service, and a handful of open high ports with
 no services listening.
 
-Since the device will be deployment to numerous (around 30) different locations,
+Since the device will be deployment to numerous (28) different locations,
 and every device's configuration may vary slightly (i.e. a different set of
 high ports open, or a different SCADA protocol running), an exhaustive
 listing of open ports is not practical or possible at this design stage
