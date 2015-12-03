@@ -7,17 +7,17 @@ technical principles.
 
 \subsubsection{Pluggable Architecture}
 
-To accomodate evolving client needs and future maintainability and utility,
-our core deliverable will consist of a plugin architecture
-for microservices and logging modules, along with a default set of honeypot
-plugins and a Splunk logging module. By deploying a flexible plugin
-architecture, additional logging backends and honeypot protocols can be
+To accommodate evolving client needs and future maintainability and utility,
+our core deliverable will consist of a plug-in architecture
+for micro-services and logging modules, along with a default set of honeypot
+plug-ins and a Splunk logging module. By deploying a flexible plug-in
+architecture, additional logging back-ends and honeypot protocols can be
 integrated easily into the full system.
 
 \subsubsection{Automation}
 
 Since our goal is to deploy \textit{many} devices at different
-locations, we aim to automate as much of the build and configuration process
+locations. We aim to automate as much of the build and configuration process
 as possible. Therefore, we will use Ansible
 \footnote{\url{http://www.ansible.com/}} for easy remote setup for
 multiple devices. We will also use Docker
@@ -82,12 +82,12 @@ ruleset.
 
 The public interface, visible to anyone on the device's network, is the
 interface through which attackers interact with the various honeypot
-microsevices. Since the microservices are designed to run as unprivileged,
+micro-sevices. Since the micro-services are designed to run as unprivileged,
 isolated processes, the honeypots themselves run on high, non-standard
 ports (e.g. 8022 for SSH and 8080 for HTTP).
 
 Firewall rules forward traffic from the open, standard port (e.g. 22 for SSH)
-to the high, non-standard port on localhost where the actual honeypot
+to the high, non-standard port on local host where the actual honeypot
 is listening.
 
 \subsubsection{The Administration Interface}
@@ -105,7 +105,7 @@ cryptographic credentials.
 
 \subsubsection{The Promiscuous Interface}
 
-The device will run an IDS in order to pick up anomolies and attacks on
+The device will run an IDS in order to pick up anomalies and attacks on
 the greater internal network. The IDS will watch both incoming traffic to
 the device as well as sniff traffic on the internal network through a
 promiscuous interface.
@@ -120,14 +120,14 @@ promiscuous interface.
 \end{figure}
  
 
-\subsection{Layer 2: Low-Interaction Honeypot Microservices}
+\subsection{Layer 2: Low-Interaction Honeypot Micro-services}
 
-We will provide a structured plugin architecture that can run clearly defined
-plugins for both arbitrary honeypot services as well as logging backends.
-The plugins then run as isolated and unprivileged processes, using interprocess
+We will provide a structured plug-in architecture that can run clearly defined
+plug-ins for both arbitrary honeypot services as well as logging back-ends.
+The plug-ins then run as isolated and unprivileged processes, using inter-process
 communication over a well-defined protocol to communicate.
 
-Each default honeypot microsevice plugin set will be a low-interaction
+Each default honeypot micro-service plug-in set will be a low-interaction
 honeypot, without full protocol capabilities for its emulated service and
 with just enough functionality to discern:
 
@@ -138,19 +138,19 @@ with just enough functionality to discern:
     \item Metadata about the attacker (IP address, MAC address, date/time, etc.)
 \end{itemize}
 
-\subsubsection{Honeypot Plugin Architecture}
+\subsubsection{Honeypot Plug-in Architecture}
 
 Since the Go programming language does not support dynamic linking,
-and thus compiling multiple plugins into a single executable becomes a messy
-procedure, plugins themselves are implemented as independent programs
-that each implement our structured plugin interface. We define two types of
-recognized plugins:
+and thus compiling multiple plug-ins into a single executable becomes a messy
+procedure, plug-ins themselves are implemented as independent programs
+that each implement our structured plug-in interface. We define two types of
+recognized plug-ins:
 \begin{itemize}
-    \item Honeypot microservice plugins
-    \item Logging plugins
+    \item Honeypot micro-service plug-ins
+    \item Logging plug-ins
 \end{itemize}
 
-The plugin architecture has two important interfaces.
+The plug-in architecture has two important interfaces.
 
 \paragraph{A Structured Public Plugin Interface}
 The plugin architecture defines a small, public interface that all plugins
@@ -159,10 +159,10 @@ honeypot plugin interface and Appendix \ref{appendix:logger-iface} for details
 of the logger plugin interface.
 
 \paragraph{An IPC Mechanism}
-Since plugins are isolated programs, they communicate using IPC. Specifically,
+Since plugins are isolated programs, they communicate using IPC (Inter-Process Communication). Specifically,
 plugins use Go's net/rpc library to communicate. Note however that this
 communication is handled transparently by the plugin architecture:
-plugin implementers do not perform RPC with other components. The
+plugin implementers do not perform RPC (Remote Procedure Call) with other components. The
 plugin controller itself performs RPC behind the scenes to coordinate
 plugin execution and communication, and by implementing the standard
 plugin interface, individual plugins get RPC behind the scenes for free.

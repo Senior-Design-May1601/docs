@@ -2,7 +2,7 @@
 
 \section{Overall Project Requirements}
 
-The project we received from Alliant Energy was to create a low interaction SCADA honeypot system for 28 of their power plants.  The system requirements for the device are as follows:
+The project we received from Alliant Energy was to create a low interaction SCADA honeypot system for 28 of their power substations.  The system requirements for the device are as follows:
 
 \begin{itemize}
     \item Capable of interfacing with SSH, HTTP and HTTPS
@@ -19,29 +19,30 @@ The project we received from Alliant Energy was to create a low interaction SCAD
 \section{Proposed Solution}
 
 To house the necessary software to meet these expectations we have decided to create a standalone system using a Raspberry Pi
-microcontroller.  The Raspberry Pi is our preferred choice of hardware for the time being since it is a small Linux based
-microcontroller that is low in cost and power requirements.  However, we would like to have multiple network interface cards in
-order to have one port for implementing SSH and HTTP/S and one for listening on the network.
+micro-controller.  The Raspberry Pi is our preferred choice of hardware since it is a small Linux based
+micro-controller that is low in cost and power requirements.  However, we would like to have multiple network interface cards in
+order to have one port for implementing SSH, HTTP/S and other services and one for our intrusion detection system to listen on the network.
 
-To accommodate Alliant’s needs we have decided to implement a plugin architecture that allows for easy customization of the device to suit Alliant Energy's needs. By doing this any micro-service can be easily added and reemoved, the current default plugins are SSH and HTTP/S protocols.  The SSH server plugin will serve as a false gateway to inside the SCADA 
-system.  The illegitimate user will be able to enter in a username and password at which time the SSH handshake will be terminated
-and a log will be filed with the relevant information and passed on to a network administrator for handling.  The web server plugin will
-offer similar services for HTTP and HTTPS.  We plan to implement a fake login page visible to the unknown user.  The
+To accommodate Alliant’s needs we have decided to implement a plugin architecture that allows for easy customization of the device to suit Alliant Energy's needs. By doing this any micro-service can be easily added and removed based on the needs of the company. The current default plugins are SSH and HTTP/S protocols. The SSH server plugin will serve as a false gateway to inside the SCADA 
+system.  The illegitimate user will be able to enter in a username and password at which time the SSH verification handshake will be terminated,
+and a log will be filed with the relevant information to be passed on to a network administrator for handling.  The web server plugin will
+offer similar services for HTTP and HTTPS.  We have implemented a fake login page visible to the unknown user.  The
 login page will always return invalid credentials and will be protecting nothing.  Later, if we wish to make the honeypot more
 interactive we could make the username and password vulnerable to cracking methods and have it protect false data to see how the
 user is tampering with it.  This information will be gathered and reported to the network administrator via an outside Splunk
-server in Alliant’s datacenter.  The benefits of using a SPLUNK server is that it is a tested and proven utility that performs
+server in Alliant’s central data center.  The benefits of using a Splunk server is that it is a tested and proven utility that performs
 the exact function necessary to efficiently alert the necessary employees.  The Splunk services are also configurable to capture
-logs of ICMP ping sweeps, port scans and unwanted URL attempts via an onbored intrusion detection system listening on an open network interface card.   
+logs of ICMP ping sweeps, port scans and unwanted URL attempts via an on-board intrusion detection system listening on an open network interface card.   
 
 \subsection{Assessment of Proposed Solution}
 
-The Raspberry Pi only comes with one interface card so we are currently looking at alternatives such as a USB interface or a different microcontroller.
-Raspberry Pi’s also provide a limited amount of RAM which presents a potential problem for the implementation of a complex
-intrusion detection system.  For this reason we are keeping the Raspberry Pi as our number one option for the time being but
-continue to research other potential options.
+A Raspberry Pi is an ideal component for the Alliant Energy Honeypot because of it's small footprint and low power requirements. However the Raspberry Pi only comes with one interface card. In order to properly implement any kind of intrusion detection system it was necessary to add at least one network interface card. The remedy for this is simply adding another aftermarket USB NIC for the IDS to run on. Using this configuration any direct attacks will go through the integrated NIC on the Raspberry Pi while while indirect attacks such as ping sweeps will go through the the USB NIC.
 
-The decision to update the device to a plugin architecture is a choice we believe will make the honeypot much more valuable to Alliant Energy.  Switching to this new architecture allows Alliant the ability to easily add and remove micro-services at will to fully costomize the device to perfectly suit their needs.
+Raspberry Pi’s also provide only 1GB of RAM which makes implementing a detailed intrusion detection system very difficult.  However we are of the understanding that the IDS required by Alliant will only be used for simple network attacks and should be able to run flawlessly on the Raspberry Pi hardware.
+
+Originally the design to accommodate the emulated services on the honeypot were hard coded onto every device. This process works, but does have the fatal flaw of being very difficult to change if the needs of Alliant change.  To account for any unforeseen changes to our design we decided to implement the services in the form of plugins. The decision to update the device to a plugin architecture is a choice we believe will make the honeypot much more valuable to Alliant Energy.  Switching to this new architecture allows Alliant the ability to easily add and remove micro-services at will to fully customize the device to perfectly suit their needs.
+
+This plugin architecture works seamlessly with our original Splunk design which will still receive logs generated on the device which constantly capture device information. When an suspicious log is seen by the logger the log is sent outbound to the Splunk server located in the Alliant's data center which will then be configured to alert essential IT personnel based on the requirements Alliant sees fit.
 \section{Validation and Acceptance Testing}
 
 

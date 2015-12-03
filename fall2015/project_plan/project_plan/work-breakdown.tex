@@ -3,7 +3,7 @@
 \section{Project Schedule}
 
 
-This section will outline the assumed tentative schedule for this Senior Design project. Gantt charts will be used to show the progress of this project over several revisions of this Project Plan and serve as a visual timeline of the projects accomplishments upon completion in May. The schedules below are subject to change as the need arises. 
+This section will outline the assumed tentative schedule for this Senior Design project. Gantt charts will be used to show the progress of this project over several revisions of this Project Plan and serve as a visual time line of the projects accomplishments upon completion in May. The schedules below are subject to change as the need arises. 
 
 \begin{figure}[!ht]
 \centering
@@ -61,7 +61,7 @@ Product Delivery & 2016-05-06 & 1 & 2016-05-07 \\
 
 \section{Risks and Feasability Assessment}
 
-This project is routinely implemented in industry with high success rates. Several software implementations of SCADA honeypots already exist in the open source community. However, our implementation will be custom because the client has a secondary goal of including an IDS on the system. Creating the honeypot software from conception will minimize the resources required from the platform. This is important because the computer needs to be a small standalone device. A standard Raspberry PI only has 512MB of RAM for example. An IDS typically uses a lot of memory and process cycles. Most risk can be mitigated with proper contingency planning, as summarized in Table \ref{table:risk}.
+This project is routinely implemented in industry with high success rates. Several software implementations of SCADA honeypots already exist in the open source community. However, our implementation will be custom because the client has a secondary goal of including an IDS on the system. Creating the honeypot software from conception will minimize the resources required from the platform. This is important because the computer needs to be a small standalone device. A standard Raspberry PI only has 1GB of RAM for example. An IDS typically uses a lot of memory and process cycles. Most risk can be mitigated with proper contingency planning, as summarized in Table \ref{table:risk}.
 
 
 \vspace{0.5cm}
@@ -91,11 +91,10 @@ Intrusion Detection System & High &  Use IPTables Logging \\
 \addtocounter{footnote}{1}
 \footnotetext{\url{http://conpot.org/}}
 
-Installing an IDS on a small platform such as a Raspberry PI may not be feasible. If this is the case, developing a custom platform with greater processing power and more memory will be explored. If this isn't feasible, then the secondary goal will have to be canceled. However, the overall honeypot implementation carries a low risk of failure.
-
+Installing an IDS on a small platform such as a Raspberry PI poses a significant challenge. Typically and IDS requires a lot of processing power and memory consumption.  However after confronting our client at Alliant we have decided to go with an minimal  IDS system to reduce resource consumption.
 \section{Cost Considerations}
 
-Alliant Energy requires service in twenty eight different locations. Each location will house a standalone minimal computer. The CanaKit Raspberry PI was chosen because it is customizable and holds more memory than standard versions. An additional network interface will also be provided from an external network adapter. \ref{table:cost}.
+Alliant Energy requires service in twenty eight different locations. Each location will house a standalone minimal computer. The CanaKit Raspberry PI was chosen because it is customizable and holds more memory than standard versions. An additional network interface will also be provided from an external network adapter to accommodate the need for an IDS system. \ref{table:cost}.
 
 \vspace{0.5cm}
 \begin{table}[h]
