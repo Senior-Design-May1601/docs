@@ -1,0 +1,37 @@
+\begin{appendices}
+
+\chapter{Plugin Interface Details}
+
+The public plugin interface description follows for both recognized types
+of plugins. Note that code is in Go.
+
+\section{Honeypot Plugin Interface}
+\label{appendix:honeypot-iface}
+
+\begin{figure}[h]
+\begin{lstlisting}[language=go,frame=single,showstringspaces=false]
+type Honeypot interface {
+	Start()		error
+   	Stop() 		error
+    	Restart() 	error
+}
+\end{lstlisting}
+\caption{Honeypot microservice plugin interface}
+\label{figure:honeypot-plugin-iface}
+\end{figure}
+
+\section{Logger Plugin Interface}
+\label{appendix:logger-iface}
+
+\begin{figure}[h]
+\begin{lstlisting}[language=go,frame=single,showstringspaces=false]
+type Logger interface {
+    	LogEvent(event *Event) 		error
+    	LogEvents(events []Event)	error
+}
+\end{lstlisting}
+\caption{Logging plugin interface}
+\label{figure:honeypot-plugin-iface}
+\end{figure}
+
+\end{appendices}
