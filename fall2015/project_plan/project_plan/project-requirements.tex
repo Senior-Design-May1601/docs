@@ -23,7 +23,7 @@ micro-controller.  The Raspberry Pi is our preferred choice of hardware since it
 micro-controller that is low in cost and power requirements.  However, we would like to have multiple network interface cards in
 order to have one port for implementing SSH, HTTP/S and other services and one for our intrusion detection system to listen on the network.
 
-To accommodate Alliant’s needs we have decided to implement a plugin architecture that allows for easy customization of the device to suit Alliant Energy's needs. By doing this any micro-service can be easily added and removed based on the needs of the company. The current default plugins are SSH and HTTP/S protocols. The SSH server plugin will serve as a false gateway to inside the SCADA 
+To accommodate Alliant’s needs we have decided to implement a plugin architecture that allows for easy customization of the device. By doing this any micro-service can be easily added and removed based on the needs of the company. The current default plugins are SSH and HTTP/S protocols. The SSH server plugin will serve as a false gateway to inside the SCADA 
 system.  The illegitimate user will be able to enter in a username and password at which time the SSH verification handshake will be terminated,
 and a log will be filed with the relevant information to be passed on to a network administrator for handling.  The web server plugin will
 offer similar services for HTTP and HTTPS.  We have implemented a fake login page visible to the unknown user.  The
