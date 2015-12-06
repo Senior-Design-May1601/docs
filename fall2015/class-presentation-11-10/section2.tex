@@ -1,25 +1,106 @@
-\section{Design}
+\section{System Design}
 
 \subsection{The Deliverable}
 \begin{frame}
-\frametitle{The Deliverable}
+\frametitle{The Deliverable: Functional Decomposition}
 
-% TODO: deliverable + design approach
-
+\begin{tabular}{l | l}
+\toprule
+\textbf{Component} & \textbf{Function} \\
+\midrule
+Honeypot Plugin Framework & Core, extensible interfaces \\
+Default Plugin Set & Client-specific functionality \\
+Automated Deployment System & Flexible rollouts/updates \\
+Device & Components installed on device(s) \\
+\bottomrule
+\end{tabular}
 \end{frame}
 
-\subsection{System Design}
+\subsection{Technical Constraints}
 \begin{frame}
-\frametitle{System Design}
+\frametitle{Technical Constraints}
 
-% TODO: system design
-
+\begin{itemize}
+\item \textbf{Low Memory Device: }Systems must be optimized and efficient in order to run on the device.
+\item \textbf{Localized Debris: }The device may come in contact with large amounts of dust and so must be properly housed to avoid damage/degradation.
+\item \textbf{Temperature Concerns: }Facilities may be subject to a wide temperature range. 
+\end{itemize}
 \end{frame}
 
-\subsection{Component Interfaces}
 \begin{frame}
-\frametitle{Component Interfaces}
+\frametitle{Conceptual Sketch}
+\begin{figure}
+\centering
+{\scalefont{0.75}
+\scalebox{.7}{\input{figures/device.tex}}
+}
+\caption{Simplified Device Internals}
+\end{figure}
+\end{frame}
 
-% TODO: component interfaces
+\subsection{Detailed Design}
+\begin{frame}[fragile]
+\frametitle{Plugin Framework Interfaces}
+
+\begin{columns}[c]
+
+\column{0.45\textwidth}
+\begin{figure}
+\begin{lstlisting}[language=go,showstringspaces=false]
+        type Honeypot interface {
+            Start()     error
+            Stop()      error
+            Restart()   error
+        }
+\end{lstlisting}
+\caption{Honeypot Plugin Interface}
+\end{figure}
+
+\column{0.55\textwidth}
+\begin{figure}
+\begin{lstlisting}[language=go,showstringspaces=false]
+        type Logger interface {
+            LogEvent(event *Event)      error
+            LogEvents(events []Event)   error
+        }
+\end{lstlisting}
+\caption{Logger Plugin Interface}
+\end{figure}
+
+\end{columns}
+\end{frame}
+
+\subsection{Prototype and Work for Next Semester}
+\begin{frame}
+\frametitle{Current Prototype}
+
+\begin{columns}[c]
+
+\column{0.5\textwidth}
+
+\begin{table}
+\begin{tabular}{l l}
+\toprule
+\textbf{Component} & \textbf{Status}  \\
+\midrule
+Plugin Framework & Functonal-ish \\
+Default Plugin Set & Done \\
+Automated Deployment & Done \\
+Physical Install & TODO \\
+Testing & TODO \\
+\bottomrule                                                                   
+\end{tabular}
+\caption{Current Prototype Status}
+\end{table}
+
+\column{0.25\textwidth}
+Next semester:
+\begin{itemize}
+    \item Finalize plugin framework
+    \item Develop any additional plugins client wants
+    \item Install on physical device
+    \item Testing
+\end{itemize}
+\end{columns}
 
 \end{frame}

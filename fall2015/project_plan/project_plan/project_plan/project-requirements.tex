@@ -1,0 +1,68 @@
+\chapter{Requirements}
+
+\section{Overall Project Requirements}
+
+The project we received from Alliant Energy was to create a low interaction SCADA honeypot system for 28 of their power plants.  The system requirements for the device are as follows:
+
+\begin{itemize}
+    \item Capable of interfacing with SSH, HTTP and HTTPS
+    \item Have a fake login page with key logger to record login attempts 
+    \item Record logs of all connection attempts and send an alert to essential personnel upon irregularities such as increased ICMP traffic, port scans, and repeated attempts to connect to URLs.
+    \item Rule set must be able to be fine-tuned to accommodate new/changed rules.
+    \item Potential for a small intrusion detection system.
+    \item Must be a low maintenance standalone device.
+    \item Must be low power.
+    \item Each of the 28 substations must be equipped with one.
+\end{itemize}
+
+
+\section{Proposed Solution}
+
+To house the necessary software to meet these expectations we have decided to create a standalone system using a Raspberry Pi
+microcontroller.  The Raspberry Pi is our preferred choice of hardware for the time being since it is a small Linux based
+microcontroller that is low in cost and power requirements.  However, we would like to have multiple network interface cards in
+order to have one port for implementing SSH and HTTP/S and one for listening on the network.
+
+To accommodate Alliant’s needs we have decided to implement a plugin architecture that allows for easy customization of the device to suit Alliant Energy's needs. By doing this any micro-service can be easily added and reemoved, the current default plugins are SSH and HTTP/S protocols.  The SSH server plugin will serve as a false gateway to inside the SCADA 
+system.  The illegitimate user will be able to enter in a username and password at which time the SSH handshake will be terminated
+and a log will be filed with the relevant information and passed on to a network administrator for handling.  The web server plugin will
+offer similar services for HTTP and HTTPS.  We plan to implement a fake login page visible to the unknown user.  The
+login page will always return invalid credentials and will be protecting nothing.  Later, if we wish to make the honeypot more
+interactive we could make the username and password vulnerable to cracking methods and have it protect false data to see how the
+user is tampering with it.  This information will be gathered and reported to the network administrator via an outside Splunk
+server in Alliant’s datacenter.  The benefits of using a SPLUNK server is that it is a tested and proven utility that performs
+the exact function necessary to efficiently alert the necessary employees.  The Splunk services are also configurable to capture
+logs of ICMP ping sweeps, port scans and unwanted URL attempts via an onbored intrusion detection system listening on an open network interface card.   
+
+\subsection{Assessment of Proposed Solution}
+
+The Raspberry Pi only comes with one interface card so we are currently looking at alternatives such as a USB interface or a different microcontroller.
+Raspberry Pi’s also provide a limited amount of RAM which presents a potential problem for the implementation of a complex
+intrusion detection system.  For this reason we are keeping the Raspberry Pi as our number one option for the time being but
+continue to research other potential options.
+
+The decision to update the device to a plugin architecture is a choice we believe will make the honeypot much more valuable to Alliant Energy.  Switching to this new architecture allows Alliant the ability to easily add and remove micro-services at will to fully costomize the device to perfectly suit their needs.
+\section{Validation and Acceptance Testing}
+
+
+\begin{table}
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{l | p{10cm}}
+\textup{\Large {\bf Component}} & \textup{\Large {\bf Testing Plan}} \\
+\hline \hline
+\textbf{SSH, HTTP, HTTPS} & Create scripts in GoLang using the test library to emulate several clients in addition to end to end testing. \\
+\textbf{Login} & Observe successful end to end testing of Splunk logging with Base64 encoded username and password.\\
+\textbf{Logging} & Attempt a series of port scans through NMAP. Attempt connections through SSH, HTTP and HTTPS. Validate the logging format. Unit test caching ability.  \\
+\textbf{Rule Set} & Try all permutations of potential rule sets and test them. \\
+\textbf{IDS} & Run all services with IDS and ensure the device is still functional. \\
+\textbf{Device} & Check system requirements with client specifications. \\
+\textbf{Power} & Select a device that is suitable for the power constraints.  Potentially provide power of Ethernet capability \\
+\textbf{Equipment} & Monitor each device to ensure consistent uptime. Provide proper support for environmental factors\\
+\end{tabular}
+\caption{Validation and Acceptance Testing Plan}
+\label{table:vatest}
+\end{table}
+
+The testing requirements for each project requirement are summarized in
+Table \ref{table:vatest}.
