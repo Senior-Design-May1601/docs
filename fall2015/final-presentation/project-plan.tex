@@ -20,7 +20,13 @@
 \begin{frame}
 \frametitle{Functional Requirements}
 
-% TODO
+\begin{itemize}
+\item Interface with SSH, HTTP, HTTPS and necessary SCADA 
+\item Keep a record of all connection attempts
+\item Be able to capture attacker information, log the information  and send it to the necessary personnel 
+\item The ability to fine tune the rule set for multiple and individual devices remotely 
+\item A small passive intrusion detection system 
+\end{itemize}
 
 \end{frame}
 
@@ -28,7 +34,13 @@
 \begin{frame}
 \frametitle{Non-functional Requirements}
 
-% TODO
+\begin{itemize}
+\item System must be low maintenance
+\item Simple stand alone device
+\item Consume as little power as possible
+\item Support for at least 28 individual devices
+\item No less than 99 percent up time
+\end{itemize}
 
 \end{frame}
 
@@ -36,7 +48,28 @@
 \begin{frame}
 \frametitle{Technical/Other Constraints and Considerations}
 
-% TODO
+\begin{itemize}
+\item Hardware:
+\begin{itemize}
+\item System will run on a standard Raspberry Pi with 1 GB of random access memory.  
+\item An additional USB 2.0 Network Interface Card added to accommodate Intrusion detection system
+\end{itemize}
+
+\item Software:
+\begin{itemize}
+\item IP Table controls access to the system
+\item Flexible plugin architecture to accommodate future services
+\item Logging service for information consolidation
+\item Splunk service to relay information to IT administrator
+\end{itemize}
+
+\item Constraints:
+\begin{itemize}
+\item Intrusion detection system used with little RAM
+\end{itemize}
+
+
+\end{itemize}
 
 \end{frame}
 
