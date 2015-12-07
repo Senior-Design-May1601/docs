@@ -82,21 +82,18 @@ System Performance
 % Slide 6
 \begin{frame}
 \frametitle{Market Survey}
-
 \begin{center}
 \textbf{Open Source Honeypots}
-\end{center}
-
-\begin{tabular}{l | l}
+\begin{tabular}{1 | l}
 \toprule
-\textbf{ConPot} & \textbf{HoneyD} \\
+\textbf{ConPot} & \textbf{Kippo} \\
 \midrule
-Low Interaction & Virtual Hosts(Thousands) \\
-Siemens s7-200 PLC & Fully customizable services \\
-MODBUS, HTTP, SNMP, s7comm & Network Protection \\
+Low Interaction & Medium Interaction \\
+Siemens s7-200 PLC & Fake file system \\
+MODBUS, HTTP, SNMP, s7comm & SSH \\
 \bottomrule
 \end{tabular}
-
+\end{center}
 
 \end{frame}
 
@@ -107,13 +104,12 @@ MODBUS, HTTP, SNMP, s7comm & Network Protection \\
 % TODO: security stuff and diagram in right column?
 %       maybe use a table with risk/mitigation?
 
+\textbf{Environmental Concerns}
 \begin{itemize}
-    \item ESD, RFI, EMI.
-    \item Ethernet Cable
+    \item ESD, EMI
     \item Ingress Protection
-    \item Limited Memory
 \end{itemize}
-
+\textbf{Limited Memory}
 \end{frame}
 
 % Slide 8

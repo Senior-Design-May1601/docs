@@ -3,15 +3,17 @@
 % Slide 10
 \begin{frame}
 \frametitle{Functional Decomposition}
+\centering
 
 \begin{tabular}{l | l}
 \toprule
-\textbf{Component} & \textbf{Function} \\
+\textbf{Function} & \textbf{Component} \\
 \midrule
-Honeypot Plugin Framework & Core, extensible interfaces \\
-Default Plugin Set & Client-specific functionality \\
-Automated Deployment System & Flexible rollouts/updates \\
-Device & Components installed on device(s) \\
+SSH, HTTP, etc. & Default plugin set \\
+Minimized IDS & TBD \\
+Interaction Logs & Splunk Logger \\
+Deployment/Management & Ansible\\
+
 \bottomrule
 \end{tabular}
 
