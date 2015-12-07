@@ -3,17 +3,17 @@
 % Slide 10
 \begin{frame}
 \frametitle{Functional Decomposition}
-
-\todo[inline]{This feels badly laid out and incompletely described.}
+\centering
 
 \begin{tabular}{l | l}
 \toprule
-\textbf{Component} & \textbf{Function} \\
+\textbf{Function} & \textbf{Component} \\
 \midrule
-Honeypot Plugin Framework & Core, extensible interfaces \\
-Default Plugin Set & Client-specific functionality \\
-Automated Deployment System & Flexible rollouts/updates \\
-Device & Components installed on device(s) \\
+SSH, HTTP, etc. & Default plugin set \\
+Minimized IDS & TBD \\
+Interaction Logs & Splunk Logger \\
+Deployment/Management & Ansible\\
+
 \bottomrule
 \end{tabular}
 
@@ -34,18 +34,11 @@ Device & Components installed on device(s) \\
 \begin{table}
 \centering
 \small
-\begin{tabularx}{\linewidth}{X X}
+\begin{tabularx}{\linewidth}{l l}
 \textbf{Modular, Extensible} & \textbf{Secure by Design} \\
 \midrule
-\begin{itemize}[leftmargin=-0.3mm,after=\vspace{-\baselineskip},noitemsep,nolistsep]
-    \item 2 plugin types: Honeypot \& Logger
-    \item Communicate via lo unix socket RPC
-\end{itemize}
-&
-\begin{itemize}[leftmargin=-0.3mm,after=\vspace{-\baselineskip},noitemsep,nolistsep]
-    \item Isolated, non-privileged processes
-    \item Minimal protocol functionality
-\end{itemize} \\
+2 plugin types: Honeypot \& Logger & Isolated, non-privileged processes \\
+Communicate via lo unix socket RPC & Minimal protocol functionality \\
 \end{tabularx}
 \end{table}
 \end{frame}
@@ -53,11 +46,6 @@ Device & Components installed on device(s) \\
 % Slide 12
 \begin{frame}
 \frametitle{Technology Platform}
-
-\todo[inline]{Citations? Is it actually Canakit? Ansible is for deployment
-not really provisioning I think...We're not actually using vagrant. This
-could probably be done better with a table, I think.}
-
 \textbf{CanaKit Raspberry PI}
 \begin{itemize}
 \item Quad-Core 900 MHz Processor

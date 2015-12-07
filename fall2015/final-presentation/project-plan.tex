@@ -5,10 +5,6 @@
 \frametitle{Problem Statement}
 
 The goal of the project is to create a standalone security device that can be placed in an industrial network to monitor traffic, looking for security-related deviations, and act as a low interaction honeypot.
-\todo[inline]{Need a better problem statement here, or at least more
-descriptive with what you say. We need to really introduce this, explain
-a honeypot and IDS, etc. Deviations is a weird word and doesn't fit imo. Also, just a paragraph on a slide looks
-bad.}
 
 \end{frame}
 
@@ -35,8 +31,6 @@ System Behavior
 \item The ability to fine tune the rule set for multiple and individual devices remotely 
 \item A small passive intrusion detection system 
 \end{itemize}
-\todo[inline]{Interface is a weird word don't say that. I'd reword the
-"keep a record of" section too.}
 
 \end{frame}
 
@@ -51,18 +45,12 @@ System Performance
 \item Support for at least 28 individual devices
 \item No less than 99 percent up time
 \end{itemize}
-\todo[inline]{Is power actually an issue? Is uptime really an issue
-we're concerned about? Punctuation in second point. What about updates
-and initial configuration? What about extensibility? What about system
-secuity?}
 
 \end{frame}
 
 % Slide 5
 \begin{frame}
 \frametitle{Technical/Other Constraints and Considerations}
-
-\todo[inline]{Most of these items aren't constraints...}
 
 \begin{itemize}
 \item Hardware:
@@ -94,50 +82,42 @@ secuity?}
 % Slide 6
 \begin{frame}
 \frametitle{Market Survey}
-
-\todo[inline]{What about kippo ssh? Seems like we're missing a lot of stuff
-here. Where are the citations? Footnotes/urls?}
-
 \begin{center}
 \textbf{Open Source Honeypots}
-\end{center}
-
-\begin{tabular}{l | l}
+\begin{tabular}{1 | l}
 \toprule
-\textbf{ConPot} & \textbf{HoneyD} \\
+\textbf{ConPot} & \textbf{Kippo} \\
 \midrule
-Low Interaction & Virtual Hosts(Thousands) \\
-Siemens s7-200 PLC & Fully customizable services \\
-MODBUS, HTTP, SNMP, s7comm & Network Protection \\
+Low Interaction & Medium Interaction \\
+Siemens s7-200 PLC & Fake file system \\
+MODBUS, HTTP, SNMP, s7comm & SSH \\
 \bottomrule
 \end{tabular}
+\end{center}
+
 \end{frame}
 
 % Slide 7
 \begin{frame}
 \frametitle{Potential Risks \& Mitigation}
 
-\todo[inline]{Security?!? I don't even know what some of this stuff means tbh.}
-
 % TODO: security stuff and diagram in right column?
 %       maybe use a table with risk/mitigation?
 
+\textbf{Environmental Concerns}
 \begin{itemize}
-    \item ESD, RFI, EMI.
-    \item Ethernet Cable
+    \item ESD, EMI
     \item Ingress Protection
-    \item Limited Memory
 \end{itemize}
-
+\textbf{Limited Memory}
 \end{frame}
 
 % Slide 8
 \begin{frame}
 \frametitle{Resource Cost Estimate}
 
-\todo[inline]{Case included? Should mention this is per-installation...}
-
 \begin{center}
+
 \begin{tabular}{l | l}
 \toprule
 \textbf{Item} & \textbf{Price} \\
@@ -159,6 +139,6 @@ USB 3.0 Gigabit Ethernet Adapter & \$16.99 (plus tax) \\
 \frametitle{Project Milestones \& Schedule}
 
 **need help putting spring-timeline.png in here correctly
-\todo[inline]{Do we even want to use that?}
+% TODO
 
 \end{frame}
