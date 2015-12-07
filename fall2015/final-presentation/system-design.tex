@@ -46,18 +46,18 @@ Communicate via lo unix socket RPC & Minimal protocol functionality \\
 % Slide 12
 \begin{frame}
 \frametitle{Technology Platform}
-\textbf{CanaKit Raspberry PI}
+\textbf{Raspberry PI} \footnote{http://www.amazon.com/CanaKit-Raspberry-Complete-Original-Preloaded}
 \begin{itemize}
 \item Quad-Core 900 MHz Processor
 \item 1GB Ram
-\item Rasbian OS
+\item Rasbian OS (Debian Based) 
 \end{itemize}
 
 \textbf{Software}
 \begin{itemize}
-\item Ansible (Provisioning)
-\item Vagrant (Provisioned Testing)
-\item Golang (Google Programming Language)
+\item Ansible \footnote{www.ansible.com}
+\item Vagrant (Provisioned Testing) \footnote{www.vagrantup.com}
+\item Go Programming Language \footnote{https://golang.org}
 \end{itemize}
 
 
@@ -67,7 +67,7 @@ Communicate via lo unix socket RPC & Minimal protocol functionality \\
 \begin{frame}
 
 \frametitle{Test Plan}
-\textbf{GoLang}
+\textbf{Go Programming Language}
 
 Integration testing can be completed by combining multiple unit tests into a larger framework with the "testing" package. 
 What about multiple configurations or platforms though?\\~\\
@@ -86,22 +86,20 @@ Vagrant allows for \textbf{Provisioning}. This means that a newly created VM can
 	\item Code output verification
 	\end{itemize}
 
-\begin{example}[Benchmark Code] % Explain Code & Elaborate on output testing
+\begin{example}[Unit Testing] % Explain Code & Elaborate on output testing
 \begin{verbatim}
-	func BenchmarkSplunk (b *testing.B){
-		m := map[string]string{"username":"user","password":"pass"}
+	func TestSplunk (t *testing.T){
+		m := map[string]string{"username":"bob","password":"1234"}
 		http:=Http{Method:"POST",Path:"index.html",Parameters:m}
 		ev := Event{...,Http: &http}
-		for i := 0 ; i< b.N; i++{
-			ev.Send();
-		}
+		fmt.Println(event)
+		//Output: [username: bob password: 1234 Method: POST Path: index.html]	
 	}
+	$ go test -v
+	=== RUN TestSplunk
+	--- PASS: TestSplunk (0.00s)
 \end{verbatim}
 \end{example}
-	\textbf{Output}
-	BenchmarkSplunk    10000000    282 ns/op
-
-
 \end{frame}
 
 % Slide 14
