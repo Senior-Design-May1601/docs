@@ -83,6 +83,7 @@ Vagrant allows for \textbf{Provisioning}. This means that a newly created VM can
 \frametitle{Test Plan Continued}
 \begin{itemize} % Elaborate on each item
 	\item Time complexity analysis
+    \item Unit Testing, Integration Testing
 	\item Code output verification
 	\end{itemize}
 
@@ -93,7 +94,8 @@ Vagrant allows for \textbf{Provisioning}. This means that a newly created VM can
 		http:=Http{Method:"POST",Path:"index.html",Parameters:m}
 		ev := Event{...,Http: &http}
 		fmt.Println(event)
-		//Output: [username: bob password: 1234 Method: POST Path: index.html]	
+		//Output: [username: bob password: 1234 \
+           Method: POST Path: index.html]	
 	}
 	$ go test -v
 	=== RUN TestSplunk
