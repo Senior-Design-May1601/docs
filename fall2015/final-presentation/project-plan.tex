@@ -4,7 +4,7 @@
 \begin{frame}
 \frametitle{Problem Statement}
 
-% TODO
+The goal of the project is to create a standalone security device that can be placed in an industrial network to monitor traffic, looking for security-related deviations, and act as a low interaction honeypot.
 
 \end{frame}
 
@@ -23,7 +23,7 @@
 % Slide 3
 \begin{frame}
 \frametitle{Functional Requirements}
-
+System Behavior
 \begin{itemize}
 \item Interface with SSH, HTTP, HTTPS and necessary SCADA 
 \item Keep a record of all connection attempts
@@ -37,7 +37,7 @@
 % Slide 4
 \begin{frame}
 \frametitle{Non-functional Requirements}
-
+System Performance
 \begin{itemize}
 \item System must be low maintenance
 \item Simple stand alone device
@@ -70,6 +70,8 @@
 \item Constraints:
 \begin{itemize}
 \item Intrusion detection system used with little RAM
+\item Unclear SCADA protocols
+\item Dealing with sensitive information
 \end{itemize}
 
 
@@ -118,7 +120,21 @@ MODBUS, HTTP, SNMP, s7comm & Network Protection \\
 \begin{frame}
 \frametitle{Resource Cost Estimate}
 
-% TODO
+\begin{center}
+
+\begin{tabular}{l | l}
+\toprule
+\textbf{Item} & \textbf{Price} \\
+\midrule
+Raspberry PI B+ & \$69.99 (plus tax) \\
+USB 3.0 Gigabit Ethernet Adapter & \$16.99 (plus tax) \\
+\bottomrule
+\end{tabular}
+
+\hfill \break
+\textbf{Total Cost: \$89.98 (plus tax)}
+\end{center}
+
 
 \end{frame}
 
@@ -126,6 +142,7 @@ MODBUS, HTTP, SNMP, s7comm & Network Protection \\
 \begin{frame}
 \frametitle{Project Milestones \& Schedule}
 
+**need help putting spring-timeline.png in here correctly
 % TODO
 
 \end{frame}
