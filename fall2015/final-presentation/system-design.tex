@@ -19,10 +19,33 @@ Device & Components installed on device(s) \\
 
 % Slide 11
 \begin{frame}
-\frametitle{Detailed Design}
+\frametitle{Detailed Design: Honeypot Framework}
 
-% TODO
+\begin{figure}
+\centering
+\caption{Plugin Framework Architecture}
+{\scalefont{0.70}
+\scalebox{0.7}{\input{figures/plugins.tex}}
+}
+\end{figure}
 
+\begin{table}
+\centering
+\small
+\begin{tabularx}{\linewidth}{X X}
+\textbf{Modular, Extensible} & \textbf{Secure by Design} \\
+\midrule
+\begin{itemize}[leftmargin=-0.3mm,after=\vspace{-\baselineskip},noitemsep,nolistsep]
+    \item 2 plugin types: Honeypot \& Logger
+    \item Communicate via lo unix socket RPC
+\end{itemize}
+&
+\begin{itemize}[leftmargin=-0.3mm,after=\vspace{-\baselineskip},noitemsep,nolistsep]
+    \item Isolated, non-privileged processes
+    \item Minimal protocol functionality
+\end{itemize} \\
+\end{tabularx}
+\end{table}
 \end{frame}
 
 % Slide 12
@@ -45,6 +68,30 @@ Device & Components installed on device(s) \\
 \begin{frame}
 \frametitle{Prototype Implementation}
 
-% TODO
-
+\begin{table}
+\centering
+\small
+\begin{tabularx}{\linewidth}{c X X}
+\toprule
+\textbf{Component} & \textbf{Code} & \textbf{Status} \\
+\midrule
+Default Plugin Set & \begin{itemize}[leftmargin=-0.3mm,after=\vspace{-\baselineskip},noitemsep,nolistsep]
+                         \item[] \href{https://github.com/Senior-Design-May1601/webauth}{HTTP}
+                         \item[] \href{https://github.com/Senior-Design-May1601/webauth}{HTTPS}
+                         \item[] \href{https://github.com/Senior-Design-May1601/fssh}{SSH}
+                         \item[] \href{https://github.com/Senior-Design-May1601/Splunk}{Splunk Logger}
+                     \end{itemize} &
+                    \begin{itemize}[leftmargin=-0.3mm,after=\vspace{-\baselineskip},noitemsep,nolistsep]
+                         \item[] \textcolor{ao(english)}{Done}
+                         \item[] \textcolor{ao(english)}{Done}
+                         \item[] \textcolor{ao(english)}{Done}
+                         \item[] \textcolor{ao(english)}{Done}
+                     \end{itemize} \\ \hline
+Auto Deployment and Provisioning & \href{https://github.com/Senior-Design-May1601/config}{Ansible playbooks} & \textcolor{ao(english)}{Done} \\ \hline
+Plugin Core & \href{https://github.com/Senior-Design-May1601/projectmain}{Framework} & \textcolor{aureolin}{Work-in-progress} \\ \hline
+Physical Install & N/A & \textcolor{bostonuniversityred}{TODO} \\ \hline
+Testing & N/A & \textcolor{bostonuniversityred}{TODO} \\
+\bottomrule
+\end{tabularx}
+\end{table}
 \end{frame}

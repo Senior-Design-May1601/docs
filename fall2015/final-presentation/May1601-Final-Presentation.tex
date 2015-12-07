@@ -56,6 +56,17 @@
 \usepackage{scalefnt}
 \usepackage{listings}
 \usepackage{todonotes}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
+\definecolor{aureolin}{rgb}{0.99, 0.93, 0.0}
+\definecolor{bostonuniversityred}{rgb}{0.8, 0.0, 0.0}
+
+\renewcommand{\tabularxcolumn}[1]{>{\small}m{#1}}
+\renewcommand{\arraystretch}{2}
 
 %% Listings definition for Go language
 %% Go language reference : http://www.golang.org
@@ -113,7 +124,7 @@ Korbin Stich \\
 \begin{document}
 
 \include{title}
-\include{overiew} % <-- includes TOC
+%\include{overview} % <-- includes TOC
 \include{project-plan}
 \include{system-design}
 \include{conclusion}

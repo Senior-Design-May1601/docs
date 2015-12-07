@@ -11,9 +11,13 @@
 % Slide 2
 \begin{frame}
 \frametitle{Conceptual Sketch}
-
-% TODO
-
+\begin{figure}
+\centering
+{\scalefont{0.75}
+\scalebox{0.7}{\input{figures/device.tex}}
+}
+\caption{Simplified Device Internals}
+\end{figure}
 \end{frame}
 
 % Slide 3
@@ -98,19 +102,16 @@ MODBUS, HTTP, SNMP, s7comm & Network Protection \\
 \begin{frame}
 \frametitle{Potential Risks \& Mitigation}
 
-\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+% TODO: security stuff and diagram in right column?
+%       maybe use a table with risk/mitigation?
 
-\column{.5\textwidth} % Left column and width
 \begin{itemize}
-\item ESD, RFI, EMI.
-\item Ethernet Cable
-\item Ingress Protection
-\item Limited Memory
+    \item ESD, RFI, EMI.
+    \item Ethernet Cable
+    \item Ingress Protection
+    \item Limited Memory
 \end{itemize}
 
-\column{.5\textwidth} % Right column and width
-%TODO
-\end{columns}
 \end{frame}
 
 % Slide 8
