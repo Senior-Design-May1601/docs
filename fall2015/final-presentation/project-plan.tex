@@ -25,11 +25,11 @@ The goal of the project is to create a standalone security device that can be pl
 \frametitle{Functional Requirements}
 System Behavior
 \begin{itemize}
-\item Interface with SSH, HTTP, HTTPS and necessary SCADA 
-\item Keep a record of all connection attempts
-\item Be able to capture attacker information, log the information  and send it to the necessary personnel 
-\item The ability to fine tune the rule set for multiple and individual devices remotely 
-\item A small passive intrusion detection system 
+\item Provide SSH, HTTP, HTTPS and necessary SCADA protocols 
+\item A minimized passive intrusion detection system
+\item Log attempted intrusion attempts and alert necessary personnel 
+\item Automatic deployment and remote management
+\item Easily customizable protocols
 \end{itemize}
 
 \end{frame}
@@ -39,11 +39,11 @@ System Behavior
 \frametitle{Non-functional Requirements}
 System Performance
 \begin{itemize}
+\item Secure system design
+\item Environmental considerations
 \item System must be low maintenance
 \item Simple stand alone device
-\item Consume as little power as possible
-\item Support for at least 28 individual devices
-\item No less than 99 percent up time
+\item Capable of expansion beyond scope of project
 \end{itemize}
 
 \end{frame}
@@ -53,28 +53,11 @@ System Performance
 \frametitle{Technical/Other Constraints and Considerations}
 
 \begin{itemize}
-\item Hardware:
-\begin{itemize}
-\item System will run on a standard Raspberry Pi with 1 GB of random access memory.  
-\item An additional USB 2.0 Network Interface Card added to accommodate Intrusion detection system
-\end{itemize}
-
-\item Software:
-\begin{itemize}
-\item IP Table controls access to the system
-\item Flexible plugin architecture to accommodate future services
-\item Logging service for information consolidation
-\item Splunk service to relay information to IT administrator
-\end{itemize}
-
-\item Constraints:
-\begin{itemize}
-\item Intrusion detection system used with little RAM
+\item ARM architecture
+\item Work with Alliant's existing logging architecture
+\item Limited RAM provided by hardware
 \item Unclear SCADA protocols
 \item Dealing with sensitive information
-\end{itemize}
-
-
 \end{itemize}
 
 \end{frame}
@@ -82,21 +65,18 @@ System Performance
 % Slide 6
 \begin{frame}
 \frametitle{Market Survey}
-
 \begin{center}
 \textbf{Open Source Honeypots}
-\end{center}
-
 \begin{tabular}{l | l}
 \toprule
-\textbf{ConPot} & \textbf{HoneyD} \\
+\textbf{ConPot} & \textbf{Kippo} \\
 \midrule
-Low Interaction & Virtual Hosts(Thousands) \\
-Siemens s7-200 PLC & Fully customizable services \\
-MODBUS, HTTP, SNMP, s7comm & Network Protection \\
+Low Interaction & Medium Interaction \\
+Siemens s7-200 PLC & Fake file system \\
+MODBUS, HTTP, SNMP, s7comm & SSH \\
 \bottomrule
 \end{tabular}
-
+\end{center}
 
 \end{frame}
 
@@ -113,7 +93,7 @@ MODBUS, HTTP, SNMP, s7comm & Network Protection \\
     \item Limited Memory
     \item Security Concerns
 \end{itemize}
-    
+
 \end{frame}
 
 % Slide 8
