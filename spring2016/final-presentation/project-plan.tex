@@ -1,0 +1,131 @@
+\section{Project Plan}
+
+% Slide 1
+\begin{frame}
+\frametitle{Problem Statement}
+The goal of the project is to create a standalone security device that can be placed in an industrial network to monitor traffic, looking for security-related irregularities, and act as a low interaction honeypot.
+
+\hfill
+
+\textbf{Deliverable}
+\begin{itemize}
+\item Raspberry Pi (Raspbian)
+\item Hardened System
+\item Honeypot \& Logging Framework
+\item Small, passive IDS
+\item Automated deployment process
+\end{itemize}
+
+\end{frame}
+
+% Slide 2
+\begin{frame}
+\frametitle{Conceptual Sketch}
+\begin{figure}
+\centering
+{\scalefont{0.75}
+\scalebox{0.7}{\input{figures/device.tex}}
+}
+\caption{Simplified Device Internals}
+\end{figure}
+\end{frame}
+
+% Slide 3
+\begin{frame}
+\frametitle{Functional Requirements}
+System Behavior
+\begin{itemize}
+\item Provide SSH, HTTP, HTTPS and necessary SCADA protocols 
+\item A minimized passive intrusion detection system
+\item Log attempted intrusion attempts and alert necessary personnel 
+\item Automatic deployment and remote management
+\item Easily customizable protocols
+\end{itemize}
+
+\end{frame}
+
+% Slide 4
+\begin{frame}
+\frametitle{Non-functional Requirements}
+System Performance
+\begin{itemize}
+\item Secure system design
+\item Environmental considerations
+\item System must be low maintenance
+\item Simple stand alone device
+\item Capable of expansion beyond scope of project
+\end{itemize}
+
+\end{frame}
+
+% Slide 5
+\begin{frame}
+\frametitle{Technical/Other Constraints and Considerations}
+
+\begin{itemize}
+\item ARM architecture
+\item Work with Alliant's existing logging architecture
+\item Limited RAM provided by hardware
+\item Unclear SCADA protocols
+\item Dealing with sensitive information
+\end{itemize}
+
+\end{frame}
+
+% Slide 6
+\begin{frame}
+\frametitle{Market Survey}
+\begin{center}
+\textbf{Open Source Honeypots}
+\begin{tabular}{l | l}
+\toprule
+\textbf{ConPot} & \textbf{Kippo} \\
+\midrule
+Low Interaction & Medium Interaction \\
+Siemens s7-200 PLC & Fake file system \\
+MODBUS, HTTP, SNMP, s7comm & SSH \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% Slide 7
+\begin{frame}
+\frametitle{Potential Risks \& Mitigation}
+
+\huge Potential Risks \medskip
+\normalsize
+\begin{itemize}
+    \item ESD, RFI, EMI.
+    \item Ethernet Cable
+    \item Physical Ingress Protection
+    \item Limited Memory
+    \item Security Concerns
+\end{itemize}
+
+\end{frame}
+
+% Slide 8
+\begin{frame}
+\frametitle{Resource Cost Estimate}
+
+\begin{center}
+
+\begin{tabular}{l | l}
+\toprule
+\textbf{Item} & \textbf{Price} \\
+\midrule
+Raspberry PI B+ & \$69.99 (plus tax) \\
+USB 2.0 Gigabit Ethernet Adapter & \$16.99 (plus tax) \\
+\bottomrule
+\end{tabular}
+
+\hfill \break
+\textbf{Total Device Cost: \$89.98 (plus tax)}
+\break
+\textbf{Total System Cost: \$2,519.44 (plus tax)\footnote{Assuming 28 devices}}
+\end{center}
+
+
+\end{frame}

@@ -1,0 +1,137 @@
+\section{System Design}
+
+% Slide 10
+\begin{frame}
+\frametitle{Functional Decomposition}
+\centering
+
+\begin{tabular}{l | l}
+\toprule
+\textbf{Function} & \textbf{Component} \\
+\midrule
+SSH, HTTP, etc. & Default plugin set \\
+Monitor internal network traffic & IDS \\
+Interaction Logs & Splunk Logger \\
+Deployment/Management & Ansible\\
+
+\bottomrule
+\end{tabular}
+
+\end{frame}
+
+% Slide 11
+\begin{frame}
+\frametitle{Detailed Design: Honeypot Framework}
+
+\begin{figure}
+\centering
+\caption{Plugin Framework Architecture}
+{\scalefont{0.70}
+\scalebox{0.7}{\input{figures/plugins.tex}}
+}
+\end{figure}
+
+\begin{table}
+\centering
+\small
+\begin{tabularx}{\linewidth}{l l}
+\textbf{Modular, Extensible} & \textbf{Secure by Design} \\
+\midrule
+2 plugin types: Honeypot \& Logger & Isolated, non-privileged processes \\
+Communicate via unix socket RPC & Minimal protocol functionality \\
+\end{tabularx}
+\end{table}
+\end{frame}
+
+% Slide 12
+\begin{frame}
+\frametitle{Technology Platform}
+\textbf{Raspberry PI} \footnote{http://www.amazon.com/CanaKit-Raspberry-Complete-Original-Preloaded}
+\begin{itemize}
+\item Quad-Core 900 MHz Processor
+\item 1GB Ram
+\item Rasbian OS (Debian Based) 
+\end{itemize}
+
+\textbf{Software}
+\begin{itemize}
+\item Ansible \footnote{www.ansible.com}
+\item Vagrant (Provisioned Testing) \footnote{www.vagrantup.com}
+\item Go Programming Language \footnote{https://golang.org}
+\end{itemize}
+
+
+\end{frame}
+
+% Slide 13
+\begin{frame}
+
+\frametitle{Test Plan}
+\textbf{Go Programming Language}
+
+Integration testing can be completed by combining multiple unit tests into a larger framework with the "testing" package. 
+What about multiple configurations or platforms though?\\~\\
+
+\textbf {Vagrant} allows for easy replication of test environments through virtual machines. This provides a method for plugin end-end testing for any device setup. \\~\\
+
+Vagrant allows for \textbf{Provisioning}. This means that a newly created VM can be give startup tasks that will run as an automated script.
+
+\end{frame}
+
+% Slide 13.1
+\begin{frame}[fragile]
+\frametitle{Test Plan Continued}
+\begin{itemize} % Elaborate on each item
+	\item Time complexity analysis
+    \item Unit Testing, Integration Testing
+	\item Code output verification
+	\end{itemize}
+
+\begin{example}[Unit Testing] % Explain Code & Elaborate on output testing
+\begin{verbatim}
+	func TestSplunk (t *testing.T){
+		m := map[string]string{"username":"bob","password":"1234"}
+		http:=Http{Method:"POST",Path:"index.html",Parameters:m}
+		ev := Event{...,Http: &http}
+		fmt.Println(event)
+		//Output: [username: bob password: 1234 \
+           Method: POST Path: index.html]	
+	}
+	$ go test -v
+	=== RUN TestSplunk
+	--- PASS: TestSplunk (0.00s)
+\end{verbatim}
+\end{example}
+\end{frame}
+
+% Slide 14
+\begin{frame}
+\frametitle{Prototype Implementation}
+
+\begin{table}
+\centering
+\small
+\begin{tabularx}{\linewidth}{c X X}
+\toprule
+\textbf{Component} & \textbf{Code} & \textbf{Status} \\
+\midrule
+Default Plugin Set & \begin{itemize}[leftmargin=-0.3mm,after=\vspace{-\baselineskip},noitemsep,nolistsep]
+                         \item[] \href{https://github.com/Senior-Design-May1601/webauth}{HTTP}
+                         \item[] \href{https://github.com/Senior-Design-May1601/webauth}{HTTPS}
+                         \item[] \href{https://github.com/Senior-Design-May1601/fssh}{SSH}
+                         \item[] \href{https://github.com/Senior-Design-May1601/Splunk}{Splunk Logger}
+                     \end{itemize} &
+                    \begin{itemize}[leftmargin=-0.3mm,after=\vspace{-\baselineskip},noitemsep,nolistsep]
+                         \item[] \textcolor{ao(english)}{Done}
+                         \item[] \textcolor{ao(english)}{Done}
+                         \item[] \textcolor{ao(english)}{Done}
+                         \item[] \textcolor{ao(english)}{Done}
+                     \end{itemize} \\ \hline
+Automatic Deployment and Updates & \href{https://github.com/Senior-Design-May1601/config}{Ansible playbooks} & \textcolor{ao(english)}{Done} \\ \hline
+Plugin Core & \href{https://github.com/Senior-Design-May1601/projectmain}{Framework} & Work-in-progress \\ \hline
+Physical Install & N/A & \textcolor{bostonuniversityred}{TODO} \\ \hline
+Testing & N/A & \textcolor{bostonuniversityred}{TODO} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{frame}
