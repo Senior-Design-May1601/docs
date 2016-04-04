@@ -31,7 +31,7 @@ For this second meeting, you will have to present using your own machine (please
 
 # Slides
 
-1. Energy Section Security Threat Overview (**jon h**)
+1. Energy Sector Security Threat Overview (**jon h**)
 
 2. Defense Strategies (**korbin + dan**)
    * what is a honeypot
