@@ -1,3 +1,5 @@
+# Requirements
+
 In the second meeting, you will have to make a 20-minute presentation with
 slides and satisfying all of the following 9 requirements, simultaneously:
 
@@ -26,3 +28,39 @@ Try to stick to light-colored backgrounds (light colored backgrounds look better
 
 
 For this second meeting, you will have to present using your own machine (please do not bring me memory sticks).
+
+# Slides
+
+1. Energy Section Security Threat Overview
+
+2. Defense strategies
+   * what is a honeypot
+   * what is the goal?
+   * etc.
+
+3. Project Goals and Requirements
+
+4. Risks & Mitigations
+
+5. Tech Challenge 1: Dealing with lots of different protocols at once
+
+6. Design 1: Honeypot Plugin Architecture
+
+7. Tech Challenge 2: Implementing obscure DNP3 protocol
+
+8. Design 2: Device Architecture (iptables, ssh, etc.)
+
+9. Test plan 1: Unit Testing
+
+10. Test plan 2: Integration Testing
+
+11. Live Deployment & Integrating with Multiple Logging Backends
+
+12. Tech Challenge 3: Simultaneous deployment/update to lots of substations
+
+13. Demo: honeypot interface, splunk results
+
+14. Long-term support, administration, and maintenance
+
+15. Questions
+
