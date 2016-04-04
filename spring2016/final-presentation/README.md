@@ -31,36 +31,38 @@ For this second meeting, you will have to present using your own machine (please
 
 # Slides
 
-1. Energy Section Security Threat Overview
+1. Energy Section Security Threat Overview (**jon h**)
 
-2. Defense strategies
+2. Defense Strategies (**korbin + dan**)
    * what is a honeypot
    * what is the goal?
    * etc.
 
-3. Project Goals and Requirements
+3. Project Goals and Requirements (**jon h + jon o**)
 
-4. Risks & Mitigations
+4. Risks & Mitigations (**korbin + nik**)
 
-5. Tech Challenge 1: Dealing with lots of different protocols at once
+5. Tech Challenge 1: Dealing with lots of different protocols at once (**nik**)
 
-6. Design 1: Honeypot Plugin Architecture
+6. Design 1: Honeypot Plugin Architecture (**nik + jon o**)
+    * how we reached this design
+    * alternatives considered
+    * how it works
 
-7. Tech Challenge 2: Implementing obscure DNP3 protocol
+7. Tech Challenge 2: Implementing obscure DNP3 protocol (**jon o**)
 
-8. Design 2: Device Architecture (iptables, ssh, etc.)
+8. Design 2: Device Architecture (iptables, ssh, etc.) (**dan + nik**)
 
-9. Test plan 1: Unit Testing
+9. Test plan 1: Unit Testing (**ash**)
 
-10. Test plan 2: Integration Testing
+10. Test plan 2: Integration Testing (**ash + dan**) (dan talk about vagrant)
 
-11. Live Deployment & Integrating with Multiple Logging Backends
+11. Live Deployment & Integrating with Multiple Logging Backends (**jon o**)
 
-12. Tech Challenge 3: Simultaneous deployment/update to lots of substations
+12. Tech Challenge 3: Simultaneous deployment/update to lots of substations (**dan**)
 
-13. Demo: honeypot interface, splunk results
+13. Demo: honeypot interface, splunk results (**video**)
 
-14. Long-term support, administration, and maintenance
+14. Long-term support, administration, and maintenance (**dan + nik**)
 
 15. Questions
-
