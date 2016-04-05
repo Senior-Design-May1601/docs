@@ -49,20 +49,22 @@ For this second meeting, you will have to present using your own machine (please
     * alternatives considered
     * how it works
 
-7. Tech Challenge 2: Implementing obscure DNP3 protocol (**jon o**)
+7. Demo 1: Honeypot interface + splunk results (**nik and jon o**)
 
-8. Design 2: Device Architecture (iptables, ssh, etc.) (**dan + nik**)
+8. Tech Challenge 2: Implementing obscure DNP3 protocol (**jon o**)
 
-9. Test plan 1: Unit Testing (**ash**)
+9. Design 2: Device Architecture (iptables, ssh, etc.) (**dan + nik**)
 
-10. Test plan 2: Integration Testing (**ash + dan**) (dan talk about vagrant)
+10. Test plan 1: Unit Testing (**ash**)
 
-11. Live Deployment & Integrating with Multiple Logging Backends (**jon o**)
+11. Test plan 2: Integration Testing (**ash + dan**) (dan talk about vagrant)
 
-12. Tech Challenge 3: Simultaneous deployment/update to lots of substations (**dan**)
+12. Live Deployment & Integrating with Multiple Logging Backends (**jon o**)
 
-13. Demo: honeypot interface, splunk results (**video**)
+13. Tech Challenge 3: Simultaneous deployment/update to lots of substations (**dan**)
 
-14. Long-term support, administration, and maintenance (**dan + nik**)
+14. Demo 2: Ansible (**dan and korbin**)
 
-15. Questions
+15. Long-term support, administration, and maintenance (**dan + nik**)
+
+16. Questions
