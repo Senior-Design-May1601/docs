@@ -2,27 +2,24 @@
 \begin{frame}
 \frametitle{Risks}
 
-\begin{columns}[c]
-
-\column{0.5\textwidth}
 \begin{table}
 \begin{center}
-\begin{tabular}{l l}
-\textbf{Risk} & \textbf{Severity} \\
+\begin{tabular}{l l | l l}
+\textbf{Risk} & \textbf{Severity} & \textbf{Risk} & \textbf{Severity} \\
 \midrule
-Honeypot exploitation & Critical \\
-Infrequent maintenance & High \\
-Device fragility & Medium \\
-Limited hardware options & Low \\
+Honeypot exploitation & Critical & Device fragility & Medium \\
+Infrequent maintenance & High & Limited hardware options & Low \\
 \bottomrule
 \end{tabular}
 \end{center}
 \end{table}
 
-\column{0.5\textwidth}
 
-TODO: image of network perimeter w/ honeypot inside
-
-\end{columns}
+\begin{figure}                                                                 
+\centering
+{\scalefont{0.75}
+\scalebox{0.35}{\input{figures/internal-hpot.tex}}
+}
+\end{figure}
 
 \end{frame}
