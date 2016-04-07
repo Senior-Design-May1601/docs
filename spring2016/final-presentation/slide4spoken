@@ -1,0 +1,11 @@
+When designing any device it is important to keep in mind the risks devices placed within them will face.
+
+With SCADA systems, devices will often be exposed to a variety of different adverse condtions that could affect the overall operation of the device.
+
+We choose a Raspberry Pi based on the fact that they are rugged machines that can stand up to these conditions, they can be easyily protected via cases and they are easily replacable if they do become damaged.
+
+However this convienece comes with some limited hardware features that must be considered during design and future upgrades.
+
+ First the standard Raspberry 2 comes with 1gb of RAM which limits many software features and only supports one onboard network interface card. 
+
+This means all communication must occur through one card or another must be added via USB at the cost of speed.  

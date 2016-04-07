@@ -1,0 +1,11 @@
+To counteract these threats,
+
+there area a multitude of security measures that can be put in place.  One common tactic is to implement what is known as a honeypot.  A honeypot is a device that sits within a network and emulates the operation and network footprint of an existing device in order to confuse and trap potential intruders into revealing their methods of attack and credentials. 
+
+ There are two main types of honeypots, low interaction and high interaction. 
+
+A Low interaction Honeypot has no functional information on it and simply mimics the outward facing inface of a device one could typically find in that network
+
+A high interaction Honeypot usally allows attackers to access the device in some way and tamper with or steal data. This gives administrators the ability to discern knowledge of their intent.
+
+Regardless of type, the main purpose of a honeypot is first and foremost to trick intruders into attacking a false entity on the network. Once an attack has been initiated, the system should alert the administrative personel as to what type of attack took place. All of these are ways to prevent data loss and corruption of vital information that could cause wide spread harm.
