@@ -1,7 +1,20 @@
 % Slide 6
 \begin{frame}
-\frametitle{Design: Honeypot Plugin Architecture}
+\frametitle{Design: Honeypot Plugin Framework}
 
-TODO: nice big image showing plugin architecture
+\begin{figure}
+\centering
+\caption{Multi-process, message-passing architecture}
+{%\scalefont{0.75}
+\scalebox{0.53}{\input{figures/hpot-arch.tex}}
+}
+\end{figure}
+
+%\begin{table}
+\centering
+\begin{tabular}{l l l l l l l}
+pluggable & $\cdot$ & concurrent & $\cdot$ & separate address space & $\cdot$ & easy testing \\
+\end{tabular}
+%\end{table}
 
 \end{frame}
