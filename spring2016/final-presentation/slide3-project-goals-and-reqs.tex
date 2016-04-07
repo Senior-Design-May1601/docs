@@ -1,24 +1,19 @@
 % Slide 3
 \begin{frame}
-\frametitle{Goals and Requirements}
+\frametitle{The Deliverable}
 
-System Behavior
+\begin{columns}
+\column{.4\textwidth}
 \begin{itemize}
-\item Provide SSH, HTTP, HTTPS and necessary SCADA protocols 
-\item A minimized passive intrusion detection system
-\item Log attempted intrusion attempts and alert necessary personnel 
-\item Automatic deployment and remote management
-\item Easily customizable protocols
+    \item Support for multiple protocols
+    \item Minimized IDS (Snort)
+    \item Automated deployment \& management
+    \item Log \& alert on intrusion detections
 \end{itemize}
-
-
-System Performance
-\begin{itemize}
-\item Secure system design
-\item Environmental considerations
-\item System must be low maintenance
-\item Simple stand alone device
-\item Capable of expansion beyond scope of project
-\end{itemize}
-
+\column{.6\textwidth}
+\begin{figure}[pi]
+\frame{\includegraphics[width=.6\linewidth]{figures/raspi.png}}
+\caption{Raspberry Pi 2}
+\end{figure}
+\end{columns}
 \end{frame}
