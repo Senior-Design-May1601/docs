@@ -1,7 +1,26 @@
-% Slide 10
-\begin{frame}
-\frametitle{Unit Testing}
+\begin{frame}[fragile]
+\frametitle{Test Plan Continued}
+\begin{itemize} % Elaborate on each item
+        \item Time complexity analysis
+    \item Unit Testing, Integration Testing
+        \item Code output verification
+        \end{itemize}
 
-% TODO
-
+\begin{example}[Unit Testing] % Explain Code & Elaborate on output testing
+\begin{verbatim}
+        func TestSplunk (t *testing.T){
+                m := map[string]string{"username":"bob","password":"1234"}
+                http:=Http{Method:"POST",Path:"index.html",Parameters:m}
+                ev := Event{...,Http: &http}
+                fmt.Println(event)
+                //Output: [username: bob password: 1234 \
+           Method: POST Path: index.html]       
+        }
+        $ go test -v
+        === RUN TestSplunk
+        --- PASS: TestSplunk (0.00s)
+\end{verbatim}
+\end{example}
 \end{frame}
+
+
