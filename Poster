@@ -1,0 +1,51 @@
+\begin{document}
+
+\section{The Problem}
+SCADA (Supervisory Control and Dada Acquisition) Systems play a vital role in the infrastructure of modern day society.  They provide a convenient way to control and a multitude of systems that make everyday life possible.  These systems include water treatment facilities, oil pipelines, electrical power transmission and HVAC systems.  Many of these systems however are run on older technology that have been customized to meet the specific needs of the facility or company they reside in.  Because of this SCADA systems are often prone to attack due to the impact disrupting even one could bring to a company or region of a country.  Because of this threat Alliant Energy has reached out to ISU to provide a way of monitoring 28 of their power substations via a low-interaction SCADA honeypot system.
+
+\section{Proposed Solution}
+In order to mitigate the threat as much as possible our solution was to make a SCADA honeypot combined with an intrusion detection System (IDS).  A honeypot is a device that sits within a network and mimics the appearance of another device that would appear in the network.  This is done in attempt to confuse potential intruders and trick them into revealing their means of ingress into a system, their identification and or their methods of attacking.  What we decided to do was to create a low-interaction Honeypot out of a Raspberry and a variety of software in order to facilitate easy remote management, easy configuration and easy expansion to further protocols if needed.  By default our honeypot will simulate Secure Shell (SSH), HTTP/HTTPS (Hypertext Transfer Protocol/Secure) and DNP3 (Distributed Network Protocol).  The intrusion detection system will be used to detect any other attacks that occur within the network not specifically directed at the honeypot itself.
+
+\section{Functional Requirements}
+\begin{itemize}
+    \item The system must interface with SSH, HTTP, HTTPS and DNP3 protocols
+    \item HTTP and HTTPS will have a fake login page with key logger to record login attempts
+    \item Must have the ability to record logs of all connection attempts
+    \item Each device must come equipped with a small Intrusion Detection System (IDS)
+    \item System sends alerts to administrative personnel upon detection of irregularities which include but are not limited to increased ICMP traffic, port scans and repeated attempts to connect to URL’s
+    \item The system must be easy to remotely configure and modify to accommodate new rules
+\end{itemize}
+
+\section{Non-Functional Requirements}
+\begin{itemize}
+	\item The system must be low-maintenance
+	\item Needs to be a standalone device
+	\item Must have low power consumption
+	\item Ability to be implemented on no fewer than 28 devices
+\end{itemize}
+
+\section{Operating Environment}
+SCADA systems are often located in extremely hostile environments for electronic devices.  In these systems hardware can be exposed to a variety of different physical threats that would impact the performance and safety of the device.  These threats include extreme temperatures, vibrations, dust and extreme voltages.  For Aliant’s purpose the main concerns will be high temperatures and dust particles as they will be operating in power plant substations and coal mines.  To account for these situations we chose to use a standard raspberry pi as our main hardware.  The benefits of the Raspberry Pi re that is low cost, low maintenance fairly durable and easily replaceable if something were to happen to it.  There are also several cases readily available for a low price to help further ruggedize the Pi.
+
+\section{Ansible}
+Ansible is a tool used in the IT community that allows administrators to effectively setup, provision, and update multiple network devices remotely and simultaneously.  The core concept behind Ansible is its’ simplicity.  By removing the need to automatically update individual components much of the time consuming process of manual configuration is removed and can be done with a higher degree of accuracy.  This makes Ansible ideal for remote SCADA honeypot systems since they are often in remote inaccessible areas.
+
+\section{Vagrant}
+Vagrant is a tool that uses Virtual Box to build and test development environments.  By simplifying the process of setting up a test environment Vagrant makes writing and testing modules within the network much quicker.  This is ideal when creating a honeypot, since in order to test the functionality a full network is required.  By having a full network it is possible to insure that the system has the ability to remotely setup, provision and update the device through standard network protocols.
+
+\section{Splunk}
+TODO
+
+\section{Go Lang}
+TODO
+
+\section{Technical Details}
+TODO
+
+Details of each function module
+For software modules: programming languages, libraries, development tools and environment.
+
+Not sure if we need to add this section since the tools we used have been defined
+
+\section{Testing}
+TODO
