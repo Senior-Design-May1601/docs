@@ -2,36 +2,36 @@
 
 #### Introduction
 
-**File**: `introduction.tex`
+File: `introduction.tex`
 
-**Assigned to**: Dan (+ maybe Nik)
+Assigned to: Dan (+ maybe Nik)
 
 #### Requirements
 
-**File**: `requirements.tex`
+File: `requirements.tex`
 
-**Assigned to**: Korbin
+Assigned to: Korbin
 
 #### Conceptual Sketch
 
-**File**: `concept.tex`
+File: `concept.tex`
 
-**Assigned to**: Jon O.
+Assigned to: Jon O.
 
 #### Design
 
-**File**: `design.tex`
+File: `design.tex`
 
-**Assigned to**: Nik
+Assigned to: Nik
 
 #### Functional Modules
 
-**File**: `modules.tex`
+File: `modules.tex`
 
-**Assigned to**: Nik
+Assigned to: Nik
 
 #### Testing
 
-**File**: `testing.tex`
+File: `testing.tex`
 
-**Assigned to**: Aash + Jon H
+Assigned to: Aash + Jon H
