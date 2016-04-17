@@ -8,13 +8,19 @@
 {\scalefont{0.30}
 \scalebox{1.75}{\input{figures/hpot-arch.tex}}
 }
+\captionof{figure}{\color{NavyBlue}Pluggable Honeypot and Logging Framework}
+\label{fig:design}
 \end{center}
 
 \vspace{2cm}
 
-Sed fringilla tempus hendrerit. Vestibulum ante ipsum primis in faucibus orci
-luctus et ultrices posuere cubilia Curae; Etiam ut elit sit amet metus lobortis
-consequat sit amet in libero. Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Phasellus vel sem magna. Nunc at convallis urna. isus ante.
-Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. 
-Donec et dui non massa tristique adipiscing.
+Figure \ref{fig:design} shows the basic architecture of the honeypot plugin
+framework. Both honeypot and logging plugins run as separate processes
+and are completely isolated from one another. Communication is done via a
+message passing protocol, where honeypots submit events to the controller,
+and the controller then broadcasts the event to all logger plugins.
+
+New plugins need only implement a simple, 2-function interface to be
+automatically integrated into the broader plugin system. This approach
+means that plugins for new protocols and logging backends can be developed
+rapidly, tested in isolation, and integrated into the whole system easily.
