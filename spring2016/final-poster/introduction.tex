@@ -16,23 +16,33 @@
 \subsection*{Background}
 
 Supervisory Control and Data Acquisition (SCADA) systems play a vital role in
-societal infrastructure, controlling a multitude of systems/services such as:
+maintaining and controlling critical infrastructure such as
+water treatment plants, oil pipelines, HVAC Systems, and the power grid.
+The societal importance of these services makes them a high-value target
+for well-funded, highly-skilled adversaries who increasingly turn to digital
+and electronic attack vectors, exploiting old and outdated protocols that
+were never designed to be exposed to the public internet.
+Thus, rapid intrusion detection and response is crucial for safeguarding
+SCADA networks.
 
-Sed fringilla tempus hendrerit. Vestibulum ante ipsum primis in faucibus orci
-luctus et ultrices posuere cubilia Curae; Etiam ut elit sit amet metus lobortis
-consequat sit amet in libero. Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Phasellus vel sem magna. Nunc at convallis urna. isus ante.
-Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. 
-Donec et dui non massa tristique adipiscing.
+A \textit{honeypot} (a system designed to mimic a legitimate protocol, e.g.
+SSH, coerce an attacker into interacting with it, and then report attacker
+activity  to an administrator) is an old and well-understood approach to
+detecting network intruders. Our client, Alliant Energy, requested many
+small honeypot systems, each capable of speaking multiple protocols, to place
+inside their electrical substations.
 
 \subsection*{Problem}
 
-Sed fringilla tempus hendrerit. Vestibulum ante ipsum primis in faucibus orci
-luctus et ultrices posuere cubilia Curae; Etiam ut elit sit amet metus lobortis
-consequat sit amet in libero. Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Phasellus vel sem magna. Nunc at convallis urna. isus ante.
-Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. 
-Donec et dui non massa tristique adipiscing.
+- Designed to run on a single box.
+- not written in memory safe/type safe languages
+- Most don't speak many protocols.
+- Can't run on embedded/small/cheap system.
+- Need to coordinate central logs.
+- Roll out all at the same time.
+- most can't do scada.
+- not pluggable/maintainable.
+- etc. just put some shit that really motivates our project.
 
 \subsection*{Solution}
 
