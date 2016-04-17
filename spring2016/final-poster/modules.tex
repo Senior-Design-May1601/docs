@@ -3,14 +3,16 @@
 \large
 
 \begin{center}
-\begin{tabularx}{\linewidth}{X | X | X}
+\begin{tabularx}{\linewidth}{X | X}
 \toprule
-\textbf{Component} & \textbf{System Interface} & \textbf{Technology} \\
+\textbf{Component} & \textbf{Technical Details} \\
 \midrule
-Plugin Framework & &  \\ \hline
-Honeypot Plugins & &  \\ \hline
-Logger Plugins & & \\ \hline
-Configuration Management & & \\
+Plugin Framework Controller & Go programming language. Manages child honeypot and logger subprocesses, coordinates communication over messaging interface (localhost TCP or UNIX sockets).\\ \hline
+Honeypot Plugins & Go programming language. Mimics legitimate network protocol handshakes (e.g. SSH, DNP3), collects network activity metadata, and sends to controller. \\ \hline
+Logger Plugins & Go programming language. Receives alerts from controller as a byte string and submits to particular backend (e.g. local database, remote logging endpoint).\\ \hline
+Intrusion Detection System & Industry-standard Snort IDS. Configured with custom ruleset designed for small substation SCADA network. Pushes alerts to remote
+endpoint. \\ \hline
+Configuration Management & Ansible\\
 \bottomrule
 \end{tabularx}
 \end{center}

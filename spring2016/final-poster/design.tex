@@ -20,7 +20,7 @@ and are completely isolated from one another. Communication is done via a
 message passing protocol, where honeypots submit events to the controller,
 and the controller then broadcasts the event to all logger plugins.
 
-New plugins need only implement a simple, 2-function interface to be
+New plugins need only implement a simple, two-function interface to be
 automatically integrated into the broader plugin system. This approach
 means that plugins for new protocols and logging backends can be developed
 rapidly, tested in isolation, and integrated into the whole system easily.
