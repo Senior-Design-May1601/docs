@@ -90,10 +90,10 @@
    \setlength{\textwidth}{81.44cm} %% paperwidth - (5cm + 5cm)
    \setlength{\textheight}{111.92cm} %% paperheight - (5cm + 5cm)
 \else\ifanull
-        \setlength{\paperwidth}{118.82cm}
-        \setlength{\paperheight}{83.96cm}
-        \setlength{\textwidth}{108.82cm} %% paperwidth - (5cm + 5cm)
-        \setlength{\textheight}{73.96cm} %% paperheight - (5cm + 5cm)
+        \setlength{\paperwidth}{121.92cm}
+        \setlength{\paperheight}{91.44cm}
+        \setlength{\textwidth}{111.92cm} %% paperwidth - (5cm + 5cm)
+        \setlength{\textheight}{81.44cm} %% paperheight - (5cm + 5cm)
      \else\ifaeins
              \setlength{\paperwidth}{83.96cm}
              \setlength{\paperheight}{59.4cm}
