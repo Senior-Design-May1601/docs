@@ -7,10 +7,6 @@
 \scalebox{1.65}{\input{figures/device2.tex}}
 }
 \end{center}
+\vspace{2cm}
 
-\begin{itemize}
-\item[] Honeypot Framework - Process manager to start services in public interface
-\item[] Public Interface - Network provided services SSH, Web, and DNP3
-\item[] Snort IDS - Minimized intrusion detection for network
-\item[] SSH Admin - Protocol for honeypot management
-\end{itemize}
+In the figure above, the public interface is created from two components.  A framework for providing imitations of various TCP/IP  services and a SSH server for administrative access. The honeypot framework acts as a process manager. It starts services that will appear as publicly available to the network. When there is an attempt to connect to one of these services, an event notification will be created and sent to Alliant Energy through the Splunk data platform. An instance of Snort IDS is provided in conjunction. It is an open source intrusion detection system used to monitor network traffic and will also notify Alliant Energy of any network intrusions through Splunk.
