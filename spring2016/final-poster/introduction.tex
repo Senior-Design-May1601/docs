@@ -1,16 +1,4 @@
 \section*{\color{NavyBlue}Introduction}
-%SCADA (Supervisory Control and Dada Acquisition) Systems play a vital role in
-%the infrastructure of modern day society. They provide a convenient way to
-%control and a multitude of systems/data that make everyday life possible. These
-%systems include water treatment facilities, oil pipelines, electrical power
-%transmission stations and HVAC systems. Many of these systems however are run
-%on older technology that have been customized to meet the specific needs of the
-%facility or company they reside in. Because of this, SCADA systems are often
-%prone to attack due to the impact disrupting even one could bring to a company 
-%or region of a country. Due to this threat Alliant Energy has reached out to
-%ISU to provide a way of monitoring 28 of their power substations via a
-%low-interaction SCADA honeypot system.
-
 \large
 
 \subsection*{Background}
@@ -33,25 +21,35 @@ small honeypot systems, each capable of speaking multiple protocols, to place
 inside their electrical substations.
 
 \subsection*{Problem}
+While there exist many open-source honeypot designs which we could have pulled from for this project, most available options face shortcomings that our project would need to overcome, such as:
 
-- Designed to run on a single box.
-- not written in memory safe/type safe languages
-- Most don't speak many protocols.
-- Can't run on embedded/small/cheap system.
-- Need to coordinate central logs.
-- Roll out all at the same time.
-- most can't do scada.
-- not pluggable/maintainable.
-- etc. just put some shit that really motivates our project.
+                \begin{itemize}
+                \setlength{\columnsep}{0cm}
+                \def\columnseprulecolor{\color{white}}
+                \begin{centering}
+                \begin{multicols}{2}
+                \raggedright\item\large{\textbf{Memory Safe Language: }Most honeypot designs run on fully function computers or servers. Our device will have limited processing power.}
+                \raggedright\item\large{\textbf{Multi-Protocol: }Many systems only implement a single SCADA protocol. Our device will use several protocols and have the ability to add new ones as needed.}
+                \raggedright\item\large{\textbf{Multi-Device-Deployment: }Honeypot systems which implement multiple units would require complex deployment strategies. Dozens of our device should be easily deployed into a number of different locations with little added effort.}
+                \raggedright\item\large{\textbf{Expensive Hardware costs: }Honeypot hardware can be expensive. Our hardware should be cheap and easily obtainable, as well as simple to install.}
+                \end{multicols}
+                \end{centering}
+                \end{itemize}
 
+%- Designed to run on a single box.
+%- not written in memory safe/type safe languages
+%- Most don't speak many protocols.
+%- Can't run on embedded/small/cheap system.
+%- Need to coordinate central logs.
+%- Roll out all at the same time.
+%- most can't do scada.
+%- not pluggable/maintainable.
+%- etc. just put some shit that really motivates our project.
+
+                
 \subsection*{Solution}
 
-Sed fringilla tempus hendrerit. Vestibulum ante ipsum primis in faucibus orci
-luctus et ultrices posuere cubilia Curae; Etiam ut elit sit amet metus lobortis
-consequat sit amet in libero. Lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Phasellus vel sem magna. Nunc at convallis urna. isus ante.
-Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. 
-Donec et dui non massa tristique adipiscing.
+Create a low cost, stand-alone, configurable security device which can be easily deployed in a wide range of SCADA environments. The device will be based upon a plugin style architecture so that new SCADA protocols can be readily implemented without rewriting the existing core structure. Adminstrators will be able to easily modify device firewalls and IDS(Intrusion Detection System) rulesets and to suit their needs. Once the devices are in place they will be simple to update and should any device malfunction/become damaged they can easily be replaced.
 
 \iffalse
 

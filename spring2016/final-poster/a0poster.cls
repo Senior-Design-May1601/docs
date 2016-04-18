@@ -87,8 +87,8 @@
 \ifanullb
    \setlength{\paperwidth}{91.44cm} %% 36 in
    \setlength{\paperheight}{121.92cm} %% 48 in
-   \setlength{\textwidth}{81.44cm} %% paperwidth - (5cm + 5cm)
-   \setlength{\textheight}{111.92cm} %% paperheight - (5cm + 5cm)
+   \setlength{\textwidth}{85.44cm} %% paperwidth - (5cm + 5cm)
+   \setlength{\textheight}{115.92cm} %% paperheight - (5cm + 5cm)
 \else\ifanull
         \setlength{\paperwidth}{121.92cm}
         \setlength{\paperheight}{91.44cm}
@@ -141,9 +141,9 @@
 
 \setlength{\headheight}{0 cm}
 \setlength{\headsep}{0 cm}
-\setlength{\topmargin}{5 cm} %% 3 cm for unprintable at top
+\setlength{\topmargin}{3 cm} %% 3 cm for unprintable at top
 			     %% (landscape) + 2 cm from border
-\setlength{\oddsidemargin}{5 cm} %% 3 cm for unprintable at left
+\setlength{\oddsidemargin}{3 cm} %% 3 cm for unprintable at left
 			    	 %% (landscape) + 2 cm from border
 \setlength{\topskip}{0 cm}
 

@@ -6,11 +6,14 @@
 {\scalefont{0.35}
 \scalebox{1.65}{\input{figures/device2.tex}}
 }
-\end{center}
+\captionof{figure}{\color{NavyBlue}High Level Design}
+\label{fig:concept}
 
-\begin{itemize}
-\item[] Honeypot Framework - Process manager to start services in public interface
-\item[] Public Interface - Network provided services SSH, Web, and DNP3
-\item[] Snort IDS - Minimized intrusion detection for network
-\item[] SSH Admin - Protocol for honeypot management
-\end{itemize}
+\end{center}
+\vspace{2cm}
+
+Each device has two network interfaces: one in promiscuous mode forwarding
+local network traffic to an internal IDS, and another forwarding incoming
+traffic to the honeypot plugin system. Local device firewalls, administrator
+keys, package dependencies, and other site-specific artifacts are setup
+globally through the Ansible configuration management system.
