@@ -16,69 +16,43 @@ SCADA networks.
 A \textit{honeypot} (a system designed to mimic a legitimate protocol, e.g.
 SSH, coerce an attacker into interacting with it, and then report attacker
 activity  to an administrator) is an old and well-understood approach to
-detecting network intruders. Our client, Alliant Energy, requested many
-small honeypot systems, each capable of speaking multiple protocols, to place
-inside their electrical substations.
+detecting network intruders.
 
-\subsection*{Problem}
-While there exist many open-source honeypot designs which we could have pulled from for this project, most available options face shortcomings that our project would need to overcome, such as:
+\subsection*{The Problem}
 
-                \begin{itemize}
-                \setlength{\columnsep}{0cm}
-                \def\columnseprulecolor{\color{white}}
-                \begin{centering}
-                \begin{multicols}{2}
-                \raggedright\item\large{\textbf{Memory Safe Language: }Most honeypot designs run on fully function computers or servers. Our device will have limited processing power.}
-                \raggedright\item\large{\textbf{Multi-Protocol: }Many systems only implement a single SCADA protocol. Our device will use several protocols and have the ability to add new ones as needed.}
-                \raggedright\item\large{\textbf{Multi-Device-Deployment: }Honeypot systems which implement multiple units would require complex deployment strategies. Dozens of our device should be easily deployed into a number of different locations with little added effort.}
-                \raggedright\item\large{\textbf{Expensive Hardware costs: }Honeypot hardware can be expensive. Our hardware should be cheap and easily obtainable, as well as simple to install.}
-                \end{multicols}
-                \end{centering}
-                \end{itemize}
+Our client, Alliant Energy, requested many small, low-maintenance honeypot
+systems,
+each capable of speaking multiple network protocols (both SCADA and non-SCADA),
+able to log to many different backends, and able to sniff local network traffic
+for anomalies, to place inside each of their 28 electrical substations.
 
-%- Designed to run on a single box.
-%- not written in memory safe/type safe languages
-%- Most don't speak many protocols.
-%- Can't run on embedded/small/cheap system.
-%- Need to coordinate central logs.
-%- Roll out all at the same time.
-%- most can't do scada.
-%- not pluggable/maintainable.
-%- etc. just put some shit that really motivates our project.
-
-                
-\subsection*{Solution}
-
-Create a low cost, stand-alone, configurable security device which can be easily deployed in a wide range of SCADA environments. The device will be based upon a plugin style architecture so that new SCADA protocols can be readily implemented without rewriting the existing core structure. Adminstrators will be able to easily modify device firewalls and IDS(Intrusion Detection System) rulesets and to suit their needs. Once the devices are in place they will be simple to update and should any device malfunction/become damaged they can easily be replaced.
-
-\iffalse
+Unfortunately, many mainstream honeypot implementations have a number of
+problems that make them unsuitable for deployment in Alliant's substations,
+including:
 
 \begin{itemize}
-\item\Large{\color{Blue}\textbf{Background Information}}
-	\begin{itemize}
-	\centering\large{SCADA (Supervisory Control and Data Acquisition) systems play a vital role in the infrastructure of modern day society, controlling a multitude of systems/services such as:}
-		\begin{itemize}
-		\setlength{\columnsep}{-5cm}
-		\def\columnseprulecolor{\color{white}}
-		\begin{centering}
-		\begin{multicols}{2}
-		\raggedright\item\large{Water Treatment Plants}
-		\raggedright\item\large{Oil Pipelines}
-		\raggedright\item\large{HVAC Systems}
-		\raggedright\item\large{Elctrical Substations}
-		\end{multicols}
-		\end{centering}
-		\end{itemize}
-	\large{Unfortunately, these systems often run on dated, customized technology which can be prone to malicious network attack.}
-	\end{itemize}
-\item\Large{\color{Blue}\textbf{The Problem}}
-	\begin{itemize}
-	\item\large{TODO: Our Problem Statement. Maybe: Design and build a Low-Interaction honeypot device which monitor network traffic and look for security related deviations.}
-	\end{itemize}
-\item\Large{\color{Blue}\textbf{The Solution}}
-	\begin{itemize}
-	\item\large{Create a low cost, stand-alone, configurable security device which can be easily deployed in a wide range of SCADA environments.}
-	\end{itemize}
+\setlength{\columnsep}{0cm}
+\def\columnseprulecolor{\color{white}}
+\begin{centering}
+\begin{multicols}{2}
+\raggedright\item\large{\textbf{Unsafe Languages:} Many existing honeypots rely on code written in languages without memory- or type-safety, unacceptable for a high-security environment.}
+
+\raggedright\item\large{\textbf{Single-Protocol:} Most honeypots are designed to speak only a single protocol.}
+
+\raggedright\item\large{\textbf{Complex Deployment:} Open source honepots are generally not designed to be deployed, updated, and configured en masse.}
+
+\raggedright\item\large{\textbf{Expensive Hardware:} Commercial honeypots are too expensive to place in multiple locations across many subnets.}
+\end{multicols}
+\end{centering}
 \end{itemize}
 
-\fi
+\subsection*{Solution}
+
+We designed a honeypot \textit{plugin framework} (Figure \ref{fig:design})
+to enforce high-security process isolation, extreme extensibility, and
+easy and comprehensive testing. The system is tailored to run on Raspberry
+Pi consumer hardware and is cheap enough to place to buy in quantity, while
+still being powerful enough to run an Intrusion Detection System (IDS) capable
+of watching local network traffic for anomalies. Finally, we delivered a set
+of configuration management utilities that allow our client to deploy to
+many different locations and update all devices in a \textit{single-step}.
