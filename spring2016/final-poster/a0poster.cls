@@ -141,9 +141,9 @@
 
 \setlength{\headheight}{0 cm}
 \setlength{\headsep}{0 cm}
-\setlength{\topmargin}{3 cm} %% 3 cm for unprintable at top
+\setlength{\topmargin}{5 cm} %% 3 cm for unprintable at top
 			     %% (landscape) + 2 cm from border
-\setlength{\oddsidemargin}{3 cm} %% 3 cm for unprintable at left
+\setlength{\oddsidemargin}{5 cm} %% 3 cm for unprintable at left
 			    	 %% (landscape) + 2 cm from border
 \setlength{\topskip}{0 cm}
 
