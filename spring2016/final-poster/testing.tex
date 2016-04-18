@@ -2,37 +2,51 @@
 
 \large
 
+%\begin{center}
+\setlength{\columnsep}{2cm}
+%\renewcommand{\arraystretch}{1.4}
+%\begin{tabularx}{\linewidth}{X X}
+
+\begin{multicols}{2}
+%\textbf{Strategy} & \textbf{Environment} 
 \begin{center}
-\setlength{\tabcolsep}{18pt}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{X X}
-\textbf{Strategy} & \textbf{Environment} \\
+\Large{\color{Blue}\textbf{Strategy}}
+\end{center}
+\vspace{1cm}
 
 \begin{itemize}
-\item\Large{\color{Blue}\textbf{Unit Testing}}
-    \begin{itemize} % Elaborate on each item
+\item\Large{\color{Black}\textbf{Unit Testing}}
+\large
+	\begin{itemize}
         \item Time complexity analysis
         \item Code output verification
-    \end{itemize}
-\end{itemize} &
+	\end{itemize}
+\vspace{5cm}
+\item\Large{\color{Black}\textbf{Integration Testing}}
+\large  
+	\begin{itemize}     
+	\item Repeatable environment simulation
+        \item Automatic streamlined VM Provisioning
+	\end{itemize}
+\vfill
+\columnbreak
 
-\begin{itemize}
-\item\Large{\color{Blue}\textbf{Vagrant}}
-    \begin{itemize} % Elaborate on each item
+\begin{center}
+\Large{\color{Blue}\textbf{Environment}}
+\end{center}
+\vspace{1cm}
+
+\item\Large{\color{Black}\textbf{Vagrant}}
+\large
+	\begin{itemize}
         \item A tool using virtual box to build and test development
         \item Simplifyies the setup of test environment
-	\item Supports system wide connectivity testing
-    \end{itemize}
-\end{itemize}\\
+        \item Supports system wide connectivity testing
+	\end{itemize}
 
-\begin{itemize}
-\item\Large{\color{Blue}\textbf{Integration Testing}}
-`   \begin{itemize}
-        \item Repeatable environment simulation
-        \item Automatic streamlined VM Provisioning
-    \end{itemize}
 \end{itemize}
 
-%\begin{center}
-%\includegraphics[width=0.8\linewidth]{figures/Vagrant.png}
+
+\includegraphics[width=\linewidth]{figures/Vagrant.png}
 %\captionof{figure}{\color{Black} Vagrant Environment}
+\end{multicols}
