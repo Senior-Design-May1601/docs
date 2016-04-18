@@ -15,18 +15,21 @@
 \vspace{1cm}
 
 \begin{itemize}
-\item\Large{\color{Black}\textbf{Unit Testing}}
+\item[] \Large{\color{Black}\textbf{Unit Testing}}
 \large
 	\begin{itemize}
-        \item Time complexity analysis
-        \item Code output verification
+        \item Each honeypot plugin tested in isolation
+        \item Failures, crashes, and malicious input simulated for controller
+        \item Isolated design components leads to effective functional-style
+        testing
 	\end{itemize}
-\vspace{5cm}
-\item\Large{\color{Black}\textbf{Integration Testing}}
+\item[] \Large{\color{Black}\textbf{Integration Testing}}
 \large  
 	\begin{itemize}     
-	\item Repeatable environment simulation
-        \item Automatic streamlined VM Provisioning
+	\item Each honeypot protocol connected to, used, log output verified
+    \item Real-world attacks simulated
+    \item Stress-tested for high traffic volume
+    \item Automatic streamlined VM Provisioning
 	\end{itemize}
 \vfill
 \columnbreak
@@ -36,16 +39,16 @@
 \end{center}
 \vspace{1cm}
 
-\item\Large{\color{Black}\textbf{Vagrant}}
+\item[] \Large{\color{Black}\textbf{Simulated Substation Network}}
 \large
 	\begin{itemize}
-        \item A tool using virtual box to build and test development
-        \item Simplifyies the setup of test environment
-        \item Supports system wide connectivity testing
+        \item Vagrant used to create a minimal test network of virtual machines
+        \item Separate machines for virtual device, logging endpoints, and
+        simulated attacker
+        \item IDS rules tested with live traffic
+        \item Inter-system traffic and behavior monitored in real time
 	\end{itemize}
-
 \end{itemize}
-
 
 \includegraphics[width=\linewidth]{figures/Vagrant.png}
 %\captionof{figure}{\color{Black} Vagrant Environment}
