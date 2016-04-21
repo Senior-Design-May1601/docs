@@ -20,52 +20,61 @@ The final report should include
 
 ## Sections
 
+#### Project Overview
+
+File: 'overview.tex'
+
+assigned to: Dan
+
+Synopsis: mish mash. Introductory material from previous documents. say a tiny bit about SCADA/Honeypot, then introduce project.Consider using poster intro
+
 #### Revised Project Plan/Design Doc
 
 File: 'design.tex'
 
-Assigned to: 
+Assigned to: Nik
 
-Synopsis: 
+Synopsis: Honeypot architecture, how things talk to eachother. also a step back describing the entire system. Larger system integration.
 
 
 #### Implementation Details
 
 File: 'implementation.tex'
 
-Assigned to: 
+Assigned to: Nik
 
-Synopsis:
+Synopsis: discuss technologies, specific libraries and technologies.
 
 
 #### Testing process and results
 
 File: 'testing.tex'
 
-Assigned to: 
+Assigned to: Jon o. 
+
+Synopsis: discuss development process, tools used in addition to units tests, Gofuzz, emphasisze plugin architecture and how devices can be easily tested in isolation. discuss integration testing and vagrant isolated test networks. 100% emphasize integration testing and unit testing. 
 
 #### Appendix I Operational Manual
 
 File: 'manual.tex'
 
-Assigned to:
+Assigned to: Dan, Nik
 
-Synopsis: Start to finish how do they assemble and start/maintain our device
+Synopsis: Hardware,initial setup, nik: (config files, moddable plugins) .Start to finish how do they assemble and start/maintain our device
 
 
 #### Appendix II alternatives
 
 File: 'alternatives.tex'
 
-Assigned to:
+Assigned to: Nik, Jon H, Korbin
 
-Synopsis: Discuss earlier version of system before plugin architecture
+Synopsis: Discuss earlier version of (Monolithic)system before plugin architecture(Jon). using potential open source code(Nik). Hardware early considerations(Korbin)
 
 #### Appendix III Other considerations
 
-File: 'considerations.tex'
+File: 'considerations.tex' 
 
-Assigned to: 
+Assigned to: Aash, Jon H
 
-Synopsis: Discuss late notice of SCADA protocol dnp3
-
+Synopsis: Discuss late notice of SCADA protocol dnp3 mid march. Bad spec.
