@@ -1,7 +1,7 @@
 TEX=$(wildcard *.tex)
-PDF=May1601-Design-Document
+PDF=May1601-Final-Report
 BUILD=pdflatex
-SRC=May1601-Design-Document
+SRC=May1601-Final-Report
 
 all: ${PDF}
 
