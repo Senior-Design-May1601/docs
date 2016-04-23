@@ -1,3 +1,81 @@
 \chapter{Project Overview}
 
-%TODO
+\section{Purpose}
+
+The purpose of this document is to act as a final deliverable for the ICS/SCADA Traffic Baseline and Honeypot project.  A brief description of the project will be provided, followed by a detailed layout of the final product design, measures taken to ensure adequate testing, and guidelines concerning proper implementation of the device. Appendices will be used to deliver a step-by-step guide to device deployment and maintenance, as well as project concerns and considerations that should be noted.
+
+\section{Background}
+
+Supervisory Control and Data Acquisition (SCADA) systems play a vital role in
+maintaining and controlling critical infrastructure such as
+water treatment plants, oil pipelines, HVAC Systems, and the power grid.
+The societal importance of these services makes them a high-value target
+for well-funded, highly-skilled adversaries who increasingly turn to digital
+and electronic attack vectors, exploiting old and outdated protocols that
+were never designed to be exposed to the public internet.
+Thus, rapid intrusion detection and response is crucial for safeguarding
+SCADA networks.
+
+A \textit{honeypot} (a system designed to mimic a legitimate protocol, e.g.
+SSH, coerce an attacker into interacting with it, and then report attacker
+activity  to an administrator) is an old and well-understood approach to
+detecting network intruders.
+
+\subsection{Problem}
+
+Our client, Alliant Energy, requested many small, low-maintenance honeypot
+systems,
+each capable of speaking multiple network protocols (both SCADA and non-SCADA),
+able to log to many different backends, and able to sniff local network traffic
+for anomalies, to place inside each of their 28 electrical substations.
+
+Unfortunately, many mainstream honeypot implementations have a number of
+problems that make them unsuitable for deployment in Alliant's substations,
+including:
+
+\begin{itemize}
+\setlength{\columnsep}{0cm}
+\def\columnseprulecolor{}
+\item\textbf{Unsafe Languages:} Many existing honeypots rely on code written in languages without memory- or type-safety, unacceptable for a high-security environment.
+
+\item\textbf{Single-Protocol:} Most honeypots are designed to speak only a single protocol.
+
+\item\textbf{Complex Deployment:} Open source honepots are generally not designed to be deployed, updated, and configured en masse.
+
+\item\textbf{Expensive Hardware:} Commercial honeypots are too expensive to place in multiple locations across many subnets.
+\end{itemize}
+
+\subsection{Solution}
+
+We designed a honeypot \textit{plugin framework} (Figure \ref{fig:design})
+to enforce high-security process isolation, extreme extensibility, and
+easy and comprehensive testing. The system is tailored to run on Raspberry
+Pi consumer hardware and is cheap enough to buy in quantity, while
+still being powerful enough to run an Intrusion Detection System (IDS) capable
+of watching local network traffic for anomalies. Finally, we delivered a set
+of configuration management utilities that allow our client to deploy to
+many different locations and update all devices in a \textit{single-step}.
+
+\newpage
+
+\section{Deliverables}
+
+The final deliverable of this project will be based upon the assumption that the client will be required to provide the following hardware per honeypot device deployed.
+
+\subsection{Hardware}
+\begin{itemize}
+\item RaspberryPi Model 2 B
+\item 8GB MicroSD card
+\item 2.5A Micro USB power supply(5ft cable) with noise filter.
+\item USB 3.0 network adapter to RJ45 Ethernet connection.
+\item RaspberryPi plastic hardcase.
+\item Appropriate ethernet connection
+\end{itemize}
+
+\subsection{Software}
+All code necessary to deploy our device can be cloned from the git repository address:
+\\\newline
+\textit{https://github.com/Senior-Design-May1601/config}
+\\\newline
+An iso image of the full system deployed on a Raspbian operating system will also be provided, however it is highly recommended, as listed in the {TODO REF APPENDIX 1}, that the client deploy device via Ansible as to streamline the process and apply proper configurations per device.
+
