@@ -1,3 +1,9 @@
 \chapter{Testing}
+\section{Unit Testing}
 
-%TODO
+Unit tests are written to evaluate the performance of a specific module or function. Go programming language has support for running automated tests through it's testing package\footnote{https://golang.org/pkg/testing}. On plugins, unit tests can be written to evaluate the performance of triggered events. For instance, does the dnp3 plugin properly parse all headers available on connection? On loggers, testing functions can be used to identify any faults that occurr when reporting an event. While useful for the proccess manager that regulates extensions, the efficacy of unit testing is minimal in the case of plugins and loggers because of the dependency that each have with the core. Therefore, Integration testing is the more preffered method. 
+
+
+\section{Integration Testing}
+
+Integration testing was performed using Vagrant\footnote{https://www.vagrantup.com}. The service provides a reproducible environment for deployment and network emulation. Specific to this project, Vagrant was used to provision two virtual machines. The first virtual machine serves as an external Splunk instance which is the reporting system used by Alliant Energy. The second virtual machine executes the Ansible provisioning to download, install, configure and start all plugins and loggers. The important thing to note is that Vagrant is actually deploying the honeypot to a new Debian instance everytime. Therefore, we are emulating the installation process across multiple Rasberry Pi devices. Both virtual machines are given seperate addresses on a subnet. This allows the verification of events and alerts across an actual network.
