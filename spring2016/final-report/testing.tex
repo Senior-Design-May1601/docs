@@ -1,8 +1,7 @@
 \chapter{Testing}
 \section{Unit Testing}
 
-Unit tests are written to evaluate the performance of a specific module or function. Go programming language has support for running automated tests through it's testing package\footnote{\url{https://golang.org/pkg/testing}}. On plugins, unit tests can be written to evaluate the performance of triggered events. For instance, does the dnp3 plugin properly parse all headers available on connection? On loggers, testing functions can be used to identify any faults that occur when reporting an event. While useful for the proccess manager that regulates extensions, the efficacy of unit testing is minimal in the case of plugins and loggers because of the dependency that each have with the core. Therefore, Integration testing is the more preferred method. 
-
+Unit tests are written to evaluate the performance of a specific module or function. Go programming language has support for running automated tests through it's testing package\footnote{\url{https://golang.org/pkg/testing}}. On plugins, unit tests can be written to evaluate the performance of triggered events. For instance, does the dnp3 plugin properly parse all headers available on connection? On loggers, testing functions can be used to identify any faults that occur when reporting an event. While useful for the proccess manager that regulates extensions, the efficacy of unit testing is minimal in the case of plugins and loggers because of the dependency that each have with the core. 
 
 \section{Integration Testing}
 
