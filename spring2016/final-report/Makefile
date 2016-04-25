@@ -8,6 +8,7 @@ all: ${PDF}
 ${PDF}: ${TEX}
 	${BUILD} ${SRC}
 	${BUILD} ${SRC}
+	${BUILD} ${SRC}
 
 clean:
 	rm -rf *.pdf *.aux *.log *.out *.glg *.glo *.gls *.ist *.lof *.lot *.toc *.xdy *.glsdefs
