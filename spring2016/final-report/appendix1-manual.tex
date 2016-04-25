@@ -9,7 +9,7 @@ The device should be connected to the local ethernet twice, once using the Pi's 
 
 \section{Deployment}
 \subsection{Install Requirements}
-The machine which will deploy/configure/maintain these honeypot devices will be required to have either an OS X or Linux operating system with the following packages installed. These packages can be installed using package managers like pipor apt which are often installed by default on these operating systems. 
+The machine which will deploy/configure/maintain these honeypot devices will be required to have either an OS X or Linux operating system with the following packages installed. These packages can be installed using package managers like pipo r apt which are often installed by default on these operating systems. 
 
 The system should have the following minnimum software version.
 \begin{itemize}
@@ -30,7 +30,7 @@ $ git clone https://github.com/Senior-Design-May1601/config
 \end{figure}
 
 \subsection{Initialization}
-After cloning the repository cd into the ansible directory, \texttt{cd} to the
+After cloning the repository,\texttt{cd} to the
 new directory and update permissions on the \texttt{init} file:
 
 \begin{figure}[H]
@@ -46,11 +46,11 @@ This shell script will do a number of things. First it will create 2 new directo
 \item \textbf{hosts:} stores ansible inventory files
 \item \textbf{keys:} stores deployment SSH keys
 \end{itemize}
-Next the script will create a series of variables that will define the honeypot devices host name/login information. the default deployment user name is deploy.Passwords for root and deploy will be generated using (NIK PLEASE CLARIFY THIS).The script will prompt the user for an administrative IP address. This address should be the one of the current system which will deploy and maintain honeypot devices. After deployment, no other systems aside from the current host machine will be able to connect to honeypot devices via SSH.
+Next the script will create a series of variables that will define the honeypot devices host name/login information. The default deployment user name is deploy. Passwords for root and deploy will be generated using random characters. The script will prompt the user for an administrative IP address. This address should be the one of the current system which will deploy and maintain honeypot devices. After deployment, no other systems aside from the current host machine will be able to connect to honeypot devices via SSH.
 
 The script will also prompt the user for an administrative email address which if entered will be used by the Apticron package on each machine to notify administration upon pertinent operating system security updates for the device. This email will not be used for general logging.
 
-A Splunk HTTP-EVENT-COLLECTOR token value will need to be provided next, which will enable the device to log to an administrative Splunk server. Finally the script will encrypt all the data entered abaove into a secrets.yml variable file via ansible-vault which will be stored in \textbf{vars/secrets.yml}. The user should provide a password for this file which will be needed to run ansible playbooks in the future. Viewing the contents of this file or modifying it can be done by using the ansible-vault command as needed.
+A Splunk HTTP-EVENT-COLLECTOR token value will need to be provided next, which will enable the device to log to an administrative Splunk server. Finally the script will encrypt all the data entered above into a secrets.yml variable file via ansible-vault which will be stored in \textbf{vars/secrets.yml}. The user should provide a password for this file which will be needed to run ansible playbooks in the future. Viewing the contents of this file or modifying it can be done by using the ansible-vault command as needed.
 
 \subsection{Deploy}
 With everything configured, the last step in deploying any number of honeypot devices is to simply run command
@@ -62,7 +62,7 @@ $ ansible-playbook -i hosts/hosts bootstrap-playbook.yml
 \end{lstlisting}
 \end{figure}
 
-This command will simultaneously bootstrap and start any number of devices at various locations by downloading necessary packages, applying system configurations, starting firewalls/IDS systems, and starting the core honeypot service. Be warned this will take some time as there are a small number of packages that need to be downloaded. Once the playbook has complete all devices will be setup as honeypot devices and will no longer require full network access until updates are required.
+This command will simultaneously bootstrap and start any number of devices at various locations by downloading necessary packages, applying system configurations, starting firewalls/IDS systems, and starting the core honeypot service. Be warned this will take some time as there are a small number of packages that need to be downloaded. Once the playbook has completed all devices will be setup as honeypot devices and will no longer require full network access until updates are required.
 
 \section{Plugin Configuration}
 
