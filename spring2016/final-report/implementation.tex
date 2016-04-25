@@ -1,15 +1,63 @@
 \chapter{Implementation}
 
-% intro: 2 different strategies
-%   - mention 2nd one focused on (use open source stuff, stick closes to upstream, etc).
+\section{Honeypot Plugin Framework}
 
-% hpot system
+\subsection{Plugin Manager}
 
-% golang
-% main packages
-% minimal dependencies
-% rpc
+The honeypot plugin manager is implemneted using the Go programming language.
+Communication with plugins is done via the Go standard library's RPC module.
 
-% system
+\subsection{Honeypot Plugins}
 
-% configured/deployed with ansible
+Each honeypot plugin is also implemented in the Go programming language.
+
+\subsubsection{SSH Plugin}
+
+The SSH plugin uses Go's \texttt{crypto/ssh} package to simulate legitimate SSH
+protocol handshakes with two custom callbacks that log alerts when an attacker
+attempts either a password-based login or a key-based login.
+
+\subsubsection{HTTP Plugin}
+
+The HTTP plugin uses Go's \texttt{net/http} package to implement a standard HTTP
+server, along with Go's \texttt{html/template} package to provide site- and
+device-specific template configuration for the fake login page.
+
+\subsubsection{HTTPS Plugin}
+
+Along with the packages used for the HTTP plugin, the HTTPS plugin also uses
+Go's \texttt{http.ListenAndServeTLS} module to handle TLS protocol negotiation
+and operation.
+
+\subsubsection{DNP3 Plugin}
+
+The DNP3 plugin uses a custom implementation of DNP3 protocol parsing. In order
+to accomodate the many different types of DNP3 protocol messages, a SecureAuth
+challenge is sent in response to any incoming command message, and the challenge
+is always rejected. This allows a full DNP3 monitoring implementation without
+needing to implement any of the protocol state or controlling logic.
+
+\section{Supporting System}
+
+\subsection{Configuration Management}
+
+The Ansible configuration management system is used to provide an automated
+means of configuring, updating, and deploying many simultaneous device installations.
+A set of configurable Ansible ``roles'' is included as part of the final deliverable
+that allow our client to tailor the system to their specific needs automatically.
+
+\subsection{Firewall}
+
+The device firewall uses the standard linux \texttt{iptables} package.
+
+\subsection{Administration SSH Server}
+
+The core device administration server uses the standard \texttt{OpenSSH} server
+implementation.
+
+\subsection{Intrusion Detection System}
+
+The intrusion detection system included on the device uses the industry-standard
+Snort IDS, along with a minimal set of initial rules tailored to the client's
+operating environment. Future changes and and ruleset adjustments for the IDS
+can be made using the Ansible configuration mangement system described above.
