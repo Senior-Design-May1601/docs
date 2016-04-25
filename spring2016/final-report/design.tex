@@ -1,3 +1,128 @@
 \chapter{Design}
 
-%TODO
+\section{Honeypot Plugin Framework}
+
+\subsection{Motivation}
+
+Our decision to implement a plugin framework for honeypots instead of a
+static, monolithic program tailored exactly to our client's current needs
+comes from three key observations:
+
+\begin{enumerate}
+    \item Overall client needs evolve and change over time
+    \item Each substation may require a different set of honeypot protocols
+    \item Large programs implementing many different network protocols become
+    very hard to reason about and test
+\end{enumerate}
+
+By using a modular, extensible architecture from the beginning, we are able
+to react quickly to evolving client specifications as well as lay the groundwork
+for future, proprietary or site-specific extensions to be made.
+
+\subsection{Plugin Architecture}
+
+Figure \ref{fig:hpot-arch} shows how honeypot plugins, logging modules, and
+the core manager fit together in a single system.
+
+\begin{center}
+\begin{figure}
+{\scalefont{0.9}
+\scalebox{0.7}{\input{figures/hpot-arch.tex}}
+}
+\label{fig:hpot-arch}
+\caption{Honepot Plugin Architecture}
+\end{figure}
+\end{center}
+
+\subsubsection{What is a Plugin?}
+
+There are two types of recognized plugins: Honeypot Plugins and Logging Plugins.
+
+Honeypot plugins are small, isolated programs that simply import our logging library
+(which uses exactly the same interface as the standard Go logging library)
+and log any events that should be broadcast as alerts (for instance, an
+attempted SSH login).
+
+Logging plugins must implement a single-function interface that specifies the
+behavior that should take place when the logger receives an alert (for instance,
+writing the byte string to a text file).
+
+Each plugin is responsible for implementing its own, protocol-specific functionality
+(for instance, an HTTPS honeypot plugin needs to do TLS protocol negotiation and handshakes
+as well as respond to HTTP requests on its own, and a Splunk logging plugin needs
+to coordinate with the remote endpoint independently), and the only interface to
+the rest of the system is through the imported logging module for honeypot
+plugins and the single-function interface for logging plugins.
+
+\subsubsection{Plugin Management}
+
+The plugin manager runs as a system daemon and is responsible for starting,
+stopping, and managing all plugins as child subprocesses.
+The plugin manager receives alerts from honeypot plugins and broadcasts them to
+each logging plugin. The plugin manager also centralizes error messages and
+reporting and provides a single interface to configure the system.
+
+\subsubsection{Plugin Communication}
+
+Plugins communicate via an asynchronous message-passing protocol which uses
+Go's RPC library under the hood. When honeypot plugins call an imported logging
+function, an asynchronous RPC call is made behind the scenes to the plugin
+manager, using a connection that is setup and initiated when the logger is
+created.
+
+Logger plugins also receive messages over via the same message-passing protocol,
+and the interface they implement is actually the method called via asynchronous
+RPC.
+
+\subsubsection{The Default Plugin Set}
+
+Along with the plugin architecture itself, our deliverable includes a set
+of default plugins tailored to our client's current needs. This set includes
+the honeypot plugins for the following protocols:
+\begin{itemize}
+    \item \textbf{SSH}: the SSH plugin simulates and SSH protocol information and
+    logs metadata about the attempted login
+    \item \textbf{HTTP}: the HTTP plugin presents a fake login page and harvests
+    attacker credential
+    \item \textbf{HTTPS}: similar in practice to the HTTP plugin, the HTTPS plugin
+    adds TLS to the fake login page
+    \item \textbf{DNP3}: the DNP3 plugin collects DNP3 SCADA commands and logs
+    attempted attacker activity
+\end{itemize}
+
+The default plugin set also includes the following logging plugins:
+\begin{itemize}
+    \item \textbf{Splunk}: the Splunk logger logs alerts to a remote Splunk
+    instance using the Splunk Event Collector API
+    \item \textbf{TextFile}: the text file logger logs alerts to a local text
+    file
+    \item \textbf{Syslog}: the Syslog logger logs syslog alerts on the device
+\end{itemize}
+
+
+\section{Supporting System Design}
+
+The supporting system is essentially every device component that is not part of
+the honeypot plugin framework. For instance: the operating system itself,
+particular critical software components (e.g. iptables), and the intrusion
+detection system.
+
+\subsection{Design Considerations}
+
+The supporting system is designed to accomodate our client's particular needs
+as well as minimize the amount of ongoing maintenance and system-specific work
+that must be performed.
+
+We use the Raspbian operating system, designed for Raspberry Pi's, as the base
+system. All other components are designed to stay as close to the upstream
+packages as possible (minimize or eliminate custom modifications).
+
+\subsection{System Components}
+
+The supporting system has the following critical components, described in more
+detail in the Implementation Section:
+\begin{enumerate}
+    \item Firewall
+    \item (Real) SSH server for ongoing maintenance
+    \item Intrusion Detection System
+\end{enumerate}
