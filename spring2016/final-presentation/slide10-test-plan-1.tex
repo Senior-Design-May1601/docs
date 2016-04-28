@@ -1,26 +1,23 @@
 \begin{frame}[fragile]
-\frametitle{Test Plan Continued}
+\frametitle{Test Plan}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}[b]
+%\centering
+{\scalefont{0.75}
+\scalebox{0.35}{\input{figures/TestPlan.tex}}
+}
+\end{figure}
+\column{0.5\textwidth}
+\vspace{3em}
 \begin{itemize} % Elaborate on each item
-        \item Time complexity analysis
-    \item Unit Testing, Integration Testing
-        \item Code output verification
-        \end{itemize}
-
-\begin{example}[Unit Testing] % Explain Code & Elaborate on output testing
-\begin{verbatim}
-        func TestSplunk (t *testing.T){
-                m := map[string]string{"username":"bob","password":"1234"}
-                http:=Http{Method:"POST",Path:"index.html",Parameters:m}
-                ev := Event{...,Http: &http}
-                fmt.Println(event)
-                //Output: [username: bob password: 1234 \
-           Method: POST Path: index.html]       
-        }
-        $ go test -v
-        === RUN TestSplunk
-        --- PASS: TestSplunk (0.00s)
-\end{verbatim}
-\end{example}
+    \item Unit Testing
+    \item Code Output Verification
+    \item Plugin Strategies
+    \item Log Strategies
+    \item Core Strategies
+\end{itemize}
+\end{columns}
 \end{frame}
 
 
